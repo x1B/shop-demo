@@ -60,25 +60,18 @@ module.exports = function( grunt ) {
       },
       widget_json_merger: { default: {} },
       directory_tree: {
-         layouts: {
-            dest: 'var/listing/application_layouts.json',
+         application: {
+            dest: 'var/listing/application.json',
             src: [
-               'application/layouts/**/*.+(css|html)'
+               'application/layouts/**/*.+(css|html)',
+               'application/pages/**/*.json',
+               'application/flow/flow.json'
             ],
             options: {
                embedContents: [
-                  'application/layouts/**/*.+(css|html)'
-               ]
-            }
-         },
-         pages: {
-            dest: 'var/listing/application_pages.json',
-            src: [
-               'application/pages/**/*.json'
-            ],
-            options: {
-               embedContents: [
-                  '**/*.*'
+                  'application/layouts/**/*.+(css|html)',
+                  'application/pages/**/*.json',
+                  'application/flow/flow.json'
                ]
             }
          },
@@ -126,7 +119,9 @@ module.exports = function( grunt ) {
                optimize: 'uglify2'
             }
          }
-      },
+      }
+      /*
+       ,
       watch: {
          options:  {
             livereload: liveReloadPort
@@ -134,13 +129,13 @@ module.exports = function( grunt ) {
          Gruntfile: {
             files: __filename,
             options: {
-               /* reload Grunt config */
+               // reload Grunt config
                reload: true
             }
          },
          layouts: {
-            files: [ '<%= directory_tree.layouts.src %>' ],
-            tasks: [ 'directory_tree:layouts' ],
+            files: [ '<%= directory_tree.application.src %>' ],
+            tasks: [ 'directory_tree:application' ],
             options: {
                event: [ 'added', 'deleted' ]
             }
@@ -160,6 +155,7 @@ module.exports = function( grunt ) {
             }
          }
       }
+      */
    } );
 
    /* Find all widget.json files,
@@ -170,11 +166,10 @@ module.exports = function( grunt ) {
              .forEach( function( widget ) {
       var config = grunt.config( 'widget.' + widget );
       grunt.config( 'widget.' + widget, _.defaults( {}, config ) );
-      grunt.config( 'watch.' + widget, {
-         files: [ widget + '/!(bower_components|node_modules)',
-                  widget + '/!(bower_components|node_modules)/**' ]/*,
-         tasks: [ 'widget:' + widget ]*/
-      } );
+      // grunt.config( 'watch.' + widget, {
+      //    files: [ widget + '/!(bower_components|node_modules)',
+      //             widget + '/!(bower_components|node_modules)/**' ]
+      // } );
    } );
 
    grunt.loadNpmTasks( 'grunt-laxar' );
@@ -184,7 +179,7 @@ module.exports = function( grunt ) {
 
    grunt.registerTask( 'server', [ 'connect' ] );
    grunt.registerTask( 'build', [ 'directory_tree', 'portal_angular_dependencies' ] );
-   grunt.registerTask( 'optimize', [ 'widget_json_merger', 'css_merger', 'requirejs' ] );
+   grunt.registerTask( 'optimize', [ 'css_merger', 'requirejs' ] );
    grunt.registerTask( 'test', [ 'server', 'widgets' ] );
    grunt.registerTask( 'default', [ 'build', 'test' ] );
    grunt.registerTask( 'dist', [ 'build', 'optimize' ] );
