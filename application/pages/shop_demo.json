@@ -2,41 +2,7 @@
    "layout": "application",
 
    "areas": {
-      "activities": [
-         {
-            "widget": "shop_demo/order-activity",
-            "features": {
-               "cart": {
-                  "resource": "cart"
-               },
-               "order":{
-                  "action": "order",
-                  "target": "finishOrder"
-               },
-               "database":{
-                  "pouchDb": {
-                     "dbId": "orders"
-                  }
-               }
-            }
-         }
-      ],
-
-      "searchBox": [
-         {
-            "widget": "shop_demo/article-search-box-widget",
-            "features": {
-               "resource": "articles",
-               "database":{
-                  "pouchDb": {
-                     "dbId": "articles"
-                  }
-               }
-            }
-         }
-      ],
-
-      "content1a": [
+      "left": [
          {
             "widget": "shop_demo/article-browser-widget",
             "features": {
@@ -49,7 +15,7 @@
             }
          }
       ],
-      "content1b": [
+      "center": [
          {
             "widget": "shop_demo/article-teaser-widget",
             "features": {
@@ -63,7 +29,7 @@
             }
          }
       ],
-      "content1c": [
+      "right": [
          {
             "widget": "shop_demo/shopping-cart-widget",
             "features": {
@@ -82,9 +48,6 @@
                }
             }
          }
-      ],
-
-      "footer": [
       ]
    }
 }
