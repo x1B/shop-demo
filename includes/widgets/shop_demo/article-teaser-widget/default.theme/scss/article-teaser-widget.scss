@@ -13,7 +13,7 @@
       background-color: #ddd;
       padding: 11px 6px;
       margin: 0 -6px 10px;
-      font-weight: 300;
+      font-weight: 500;
       font-size: $font-size-base;
       text-align: center;
    }
@@ -26,6 +26,7 @@
       }
       dd {
          margin-left: 120px;
+         width: 240px;
       }
    }
 
@@ -45,6 +46,17 @@
 
 
    .app-teaser-wrapper {
+      position: relative;
+      min-height: 240px;
+
+      .app-teaser-image {
+         position: absolute;
+         max-width: 300px;
+         max-height: 180px;
+         top: 48px;
+         right: 12px;
+      }
+
       padding: 0 6px;
       margin-bottom: $ax-unit-vertical-double;
 

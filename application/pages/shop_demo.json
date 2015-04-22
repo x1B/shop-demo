@@ -20,8 +20,7 @@
                   "resource": "articles"
                },
                "selection": {
-                  "resource": "selectedArticle",
-                  "action": "addToCart"
+                  "resource": "selectedArticle"
                }
             }
          },
@@ -32,6 +31,17 @@
          }
       ],
       "right": [
+         {
+            "widget": "shop_demo/article-teaser-widget",
+            "features": {
+               "article": {
+                  "resource": "selectedArticle"
+               },
+               "confirmation":   {
+                  "action": "addToCart"
+               }
+            }
+         },
          {
             "widget": "shop_demo/shopping-cart-widget",
             "features": {

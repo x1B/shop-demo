@@ -16,7 +16,7 @@ define( [
       $scope.selectedArticle = null;
 
       eventBus.subscribe( 'didReplace.' + $scope.features.articles.resource, function( event ) {
-         $scope.resources[ $scope.features.articles.resource ] = event.data;
+         $scope.resources.articles = event.data;
          updateSelection();
       } );
 
@@ -28,9 +28,11 @@ define( [
             resource: $scope.features.selection.resource,
             data: article
          } ).then( function() {
-            eventBus.publish( 'takeActionRequest.' + $scope.features.selection.action, {
-               action: $scope.features.selection.action
-            } );
+            if( $scope.features.selection.action ) {
+               eventBus.publish( 'takeActionRequest.' + $scope.features.selection.action, {
+                  action: $scope.features.selection.action
+               } );
+            }
          } );
       };
 

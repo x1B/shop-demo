@@ -3,19 +3,24 @@
  * Released under the MIT license.
  */
 define( [
+   'require',
    'angular',
    './articles'
-], function( ng, articles ) {
+], function( require, ng, articles ) {
    'use strict';
 
-   Controller.$inject = [ 'axContext' ];
+   Controller.$inject = [ 'axContext', 'axEventBus' ];
 
-   function Controller( context ) {
-      context.eventBus.subscribe( 'beginLifecycleRequest', function() {
-         context.eventBus.publish( 'didReplace.' + context.features.articles.resource, {
+   function Controller( context, eventBus ) {
+      eventBus.subscribe( 'beginLifecycleRequest', function() {
+         eventBus.publish( 'didReplace.' + context.features.articles.resource, {
             resource: context.features.articles.resource,
             data: {
-               entries: articles
+               entries: articles.map( function( article ) {
+                  var copy = ng.copy( article );
+                  copy.pictureUrl = copy.picture ? require.toUrl( './images/' + copy.picture ) : null;
+                  return copy;
+               } )
             }
          } );
       } );

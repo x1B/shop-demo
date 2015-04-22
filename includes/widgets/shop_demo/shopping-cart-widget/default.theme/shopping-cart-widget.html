@@ -22,7 +22,7 @@
    </thead>
    <tbody>
    <tr data-ng-repeat="item in model.cartItems track by item.article.id">
-      <td>{{ item.article.id }}</td>
+      <td class="app-col-1">{{ item.article.id }}</td>
       <td>{{ item.article.name }}</td>
       <td class="text-right">{{ item.article.price | currency : "€ " }}</td>
       <td class="text-right app-increase-quantity">{{ item.quantity }}</td>

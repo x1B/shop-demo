@@ -6,10 +6,6 @@
 
       "shopDemo": {
          "page":  "shop_demo"
-      },
-
-      "finishOrder": {
-         "page":  "finish_order"
       }
    }
 }

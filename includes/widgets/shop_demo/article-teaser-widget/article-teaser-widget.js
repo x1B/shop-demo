@@ -4,23 +4,25 @@
  * www.laxarjs.org
  */
 define( [
-   'angular',
-   'laxar_patterns',
-   'angular-sanitize'
-], function( ng, patterns ) {
+   'angular'
+], function( ng ) {
    'use strict';
 
-   Controller.$inject = [ '$scope' ];
+   Controller.$inject = [ '$scope', 'axEventBus' ];
 
-   function Controller( $scope ) {
+   function Controller( $scope, eventBus ) {
 
       $scope.resources = {};
 
-      patterns.resources.handlerFor( $scope ).registerResourceFromFeature( 'display' );
+      eventBus.subscribe( 'didReplace.' + $scope.features.article.resource, function( event ) {
+         $scope.resources.article = event.data;
+      } );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       $scope.addToCart = function() {
-         var actionName = $scope.features.button.action;
-         $scope.eventBus.publish( 'takeActionRequest.' + actionName, {
+         var actionName = $scope.features.confirmation.action;
+         eventBus.publish( 'takeActionRequest.' + actionName, {
             action: actionName
          } );
       };
@@ -29,7 +31,7 @@ define( [
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   return ng.module( 'articleTeaserWidget', [ 'ngSanitize' ] )
+   return ng.module( 'articleTeaserWidget', [] )
       .controller( 'ArticleTeaserWidgetController', Controller );
 
 } );
