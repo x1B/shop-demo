@@ -14,8 +14,7 @@
       "laxar_patterns": "LaxarJS/laxar_patterns#^1.0.0-alpha.0",
       "laxar_uikit": "LaxarJS/laxar_uikit#^1.0.0-alpha.4",
       "bootswatch-scss": "3.2.x",
-      "marked": "0.3.x",
-      "pouchdb": "2.2.x"
+      "marked": "0.3.x"
    },
    "devDependencies": {
       "es5-shim": "2.3.x",

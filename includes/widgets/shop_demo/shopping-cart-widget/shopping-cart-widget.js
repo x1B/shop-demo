@@ -38,16 +38,6 @@ define( [
          $scope.eventBus.subscribe( 'takeActionRequest.' + action, addArticleToCart );
       } );
 
-      $scope.eventBus.subscribe( 'didTakeAction.' + $scope.features.cart.order.action + '.SUCCESS', function() {
-         resources.cart = { entries: [] };
-         replaceCart();
-         model.hint = features.display.htmlOrderedCartText;
-      } );
-
-      $scope.eventBus.subscribe( 'didTakeAction.' + $scope.features.cart.order.action + '.ERROR', function() {
-         model.hint = features.display.htmlOrderedCartErrorText;
-      } );
-
       $scope.eventBus.subscribe( 'beginLifecycleRequest', replaceCart );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,15 +68,6 @@ define( [
             updateSum();
             updatePublisherForCart.compareAndPublish( oldCart, resources.cart );
          }
-      };
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      $scope.performOrder = function() {
-         var actionName = $scope.features.cart.order.action;
-         $scope.eventBus.publish( 'takeActionRequest.' + actionName, {
-            action: actionName
-         } );
       };
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////

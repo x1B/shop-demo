@@ -23,29 +23,6 @@
                   "type": "string",
                   "description": "Name of the data resource with articles of the cart.",
                   "format": "topic"
-               },
-               "order": {
-                  "type": "object",
-                  "description": "Reset the cart.",
-                  "properties": {
-                     "required": [ "action" ],
-                     "button": {
-                        "type": "object",
-                        "description": "A button to perform the order.",
-                        "properties": {
-                           "htmlLabel": {
-                              "type": "string",
-                              "description": "Label of the button.",
-                              "default": "Order"
-                           }
-                        }
-                     },
-                     "action": {
-                        "type": "string",
-                        "description": "Name of the action to perform the order.",
-                        "format": "topic"
-                     }
-                  }
                }
             }
          },

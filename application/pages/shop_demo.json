@@ -2,6 +2,16 @@
    "layout": "application",
 
    "areas": {
+      "activities": [
+         {
+            "widget": "shop_demo/dummy-articles-activity",
+            "features": {
+               "articles": {
+                  "resource": "articles"
+               }
+            }
+         }
+      ],
       "left": [
          {
             "widget": "shop_demo/article-browser-widget",
@@ -10,22 +20,14 @@
                   "resource": "articles"
                },
                "select": {
-                  "resource": "selectedArticle"
+                  "resource": "selectedArticle",
+                  "action": "addToCart"
                }
             }
-         }
-      ],
-      "center": [
+         },
          {
-            "widget": "shop_demo/article-teaser-widget",
+            "widget": "laxarjs/ax-developer-tools-widget",
             "features": {
-               "display": {
-                  "resource": "selectedArticle"
-               },
-               "button": {
-                  "htmlLabel": "<i class='fa fa-shopping-cart'></i> Add to Cart",
-                  "action": "addArticle"
-               }
             }
          }
       ],
@@ -34,17 +36,11 @@
             "widget": "shop_demo/shopping-cart-widget",
             "features": {
                "cart": {
-                  "resource": "cart",
-                  "order": {
-                     "action": "order",
-                     "button": {
-                        "htmlLabel": "<i class='fa fa-send'></i> Order"
-                     }
-                  }
+                  "resource": "cart"
                },
                "article": {
                   "resource": "selectedArticle",
-                  "onActions": [ "addArticle" ]
+                  "onActions": [ "addToCart" ]
                }
             }
          }

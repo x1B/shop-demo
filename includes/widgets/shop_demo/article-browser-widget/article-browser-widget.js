@@ -25,14 +25,14 @@ define( [
 
       $scope.selectArticle = function( article ) {
          $scope.selectedArticle = article;
-         var resourceName = $scope.features.select.resource;
-         $scope.eventBus.publish( 'didReplace.' + resourceName, {
-               resource: resourceName,
-               data: article
-            }, {
-               deliverToSender: false
-            }
-         );
+         $scope.eventBus.publish( 'didReplace.' + $scope.features.select.resource, {
+            resource: $scope.features.select.resource,
+            data: article
+         } ).then( function() {
+            $scope.eventBus.publish( 'takeActionRequest.' + $scope.features.select.action, {
+               action: $scope.features.select.action
+            } );
+         } );
       };
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////

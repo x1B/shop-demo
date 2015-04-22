@@ -95,9 +95,6 @@ var require = {
       'laxar-path-themes': '../includes/themes',
       'laxar-path-flow': '../application/flow/flow.json',
 
-      // PouchDB:
-      'pouchdb': 'pouchdb/dist/pouchdb-nightly',
-
       portal_angular_dependencies: '../var/static/portal_angular_dependencies'
    }
 };
