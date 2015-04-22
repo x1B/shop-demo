@@ -11,83 +11,8 @@
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "type": "object",
-      "required": [ "cart", "article" ],
+      "required": [ "article" ],
       "properties": {
-
-         "cart": {
-            "type": "object",
-            "description": "The shopping cart with articles.",
-            "required": [ "resource" ],
-            "properties": {
-               "resource": {
-                  "type": "string",
-                  "description": "Name of the data resource with articles of the cart.",
-                  "format": "topic"
-               }
-            }
-         },
-
-         "display": {
-            "type": "object",
-            "description": "Display the articles of the shopping cart in a table.",
-            "properties": {
-               "headline": {
-                  "type": "string",
-                  "description": "Title of the item list.",
-                  "default": "Shopping Cart"
-               },
-               "htmlNameLabel": {
-                  "type": "string",
-                  "description": "Label for the article name.",
-                  "default": "Article"
-               },
-               "htmlIdLabel": {
-                  "type": "string",
-                  "description": "Label for the article id.",
-                  "default": "Art. ID"
-               },
-               "htmlPriceLabel": {
-                  "type": "string",
-                  "description": "Label for the article price.",
-                  "default": "Price"
-               },
-               "htmlQuantityLabel": {
-                  "type": "string",
-                  "description": "Label for the quantity of articles.",
-                  "default": "Quantity"
-               },
-               "htmlSumLabel": {
-                  "type": "string",
-                  "description": "Label for the subtotal of all items.",
-                  "default": "Subtotal"
-               },
-               "htmlAddItemLabel": {
-                  "type": "string",
-                  "description": "Label for the button to add the article again.",
-                  "default": "<i class='fa fa-plus-square'></i>"
-               },
-               "htmlDeleteItemLabel": {
-                  "type": "string",
-                  "description": "Label for the button to delete one item of the article.",
-                  "default": "<i class='fa fa-minus-square'></i>"
-               },
-               "htmlNoItemsText": {
-                  "type": "string",
-                  "description": "A hint if the cart is empty.",
-                  "default": "The cart is empty"
-               },
-               "htmlOrderedCartText": {
-                  "type": "string",
-                  "description": "A hint that the order was performed.",
-                  "default": "Articles ordered!"
-               },
-               "htmlOrderedCartErrorText": {
-                  "type": "string",
-                  "description": "A hint that a error occurred when trying to order.",
-                  "default": "Could not order Articles. Try again later."
-               }
-            }
-         },
 
          "article": {
             "type": "object",

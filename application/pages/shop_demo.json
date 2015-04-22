@@ -16,10 +16,10 @@
          {
             "widget": "shop_demo/article-browser-widget",
             "features": {
-               "display": {
+               "articles": {
                   "resource": "articles"
                },
-               "select": {
+               "selection": {
                   "resource": "selectedArticle",
                   "action": "addToCart"
                }
@@ -35,9 +35,6 @@
          {
             "widget": "shop_demo/shopping-cart-widget",
             "features": {
-               "cart": {
-                  "resource": "cart"
-               },
                "article": {
                   "resource": "selectedArticle",
                   "onActions": [ "addToCart" ]

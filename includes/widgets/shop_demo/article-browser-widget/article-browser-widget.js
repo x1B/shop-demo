@@ -4,47 +4,46 @@
  * www.laxarjs.org
  */
 define( [
-   'angular',
-   'laxar',
-   'laxar_patterns',
-   'angular-sanitize'
-], function( ng, ax, patterns ) {
+   'angular'
+], function( ng ) {
    'use strict';
 
-   Controller.$inject = [ '$scope' ];
+   Controller.$inject = [ '$scope', 'axEventBus' ];
 
-   function Controller( $scope ) {
+   function Controller( $scope, eventBus ) {
 
       $scope.resources = {};
       $scope.selectedArticle = null;
 
-      patterns.resources.handlerFor( $scope )
-         .registerResourceFromFeature( 'display', { onUpdateReplace: checkArticles } );
+      eventBus.subscribe( 'didReplace.' + $scope.features.articles.resource, function( event ) {
+         $scope.resources[ $scope.features.articles.resource ] = event.data;
+         updateSelection();
+      } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       $scope.selectArticle = function( article ) {
          $scope.selectedArticle = article;
-         $scope.eventBus.publish( 'didReplace.' + $scope.features.select.resource, {
-            resource: $scope.features.select.resource,
+         eventBus.publish( 'didReplace.' + $scope.features.selection.resource, {
+            resource: $scope.features.selection.resource,
             data: article
          } ).then( function() {
-            $scope.eventBus.publish( 'takeActionRequest.' + $scope.features.select.action, {
-               action: $scope.features.select.action
+            eventBus.publish( 'takeActionRequest.' + $scope.features.selection.action, {
+               action: $scope.features.selection.action
             } );
          } );
       };
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      function checkArticles() {
+      function updateSelection() {
          var resources = $scope.resources;
          var selectedArticle = $scope.selectedArticle;
          if( selectedArticle === null ) {
             return;
          }
 
-         var entries = ax.object.path( resources, 'display.entries', [] );
+         var entries = resources.articles ? resources.articles.entries : [];
          if( !entries.length ) {
             $scope.selectArticle( null );
             return;
@@ -63,7 +62,7 @@ define( [
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   return ng.module( 'articleBrowserWidget', [ 'ngSanitize' ] )
+   return ng.module( 'articleBrowserWidget', [] )
       .controller( 'ArticleBrowserWidgetController', Controller );
 
 } );

@@ -17,10 +17,10 @@ define( [
       var anyFunction = jasmine.any( Function );
       var testBed;
       var configuration = {
-         display: {
+         articles: {
             resource: 'articles'
          },
-         select: {
+         selection: {
             resource: 'selectedArticle'
          }
       };
@@ -39,7 +39,7 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'with feature display and configured resource', function() {
+      describe( 'with feature articles and configured resource', function() {
 
          beforeEach( function() {
             setup( configuration );
@@ -55,42 +55,14 @@ define( [
          it( 'acts as a slave of the resource and displays the list of articles', function() {
             expect( testBed.scope.eventBus.subscribe )
                .toHaveBeenCalledWith( 'didReplace.articles', anyFunction );
-            expect( testBed.scope.eventBus.subscribe )
-               .toHaveBeenCalledWith( 'didUpdate.articles', anyFunction );
-            expect( testBed.scope.resources.display ).toEqual( resourceData );
-         } );
-
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         describe( 'and an update of the articles resource', function() {
-
-            beforeEach( function() {
-               testBed.eventBusMock.publish( 'didUpdate.articles', {
-                  resource: 'articles',
-                  patches: [
-                     {
-                        op: 'replace',
-                        path: '/entries/1/details/price',
-                        value: 19.99
-                     }
-                  ]
-               } );
-               jasmine.Clock.tick( 0 );
-            } );
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-
-            it( 'reflects updates to the published resource', function() {
-               expect( testBed.scope.resources.display.entries[ 1 ].details.price ).toEqual( 19.99 );
-            } );
-
+            expect( testBed.scope.resources.articles ).toEqual( resourceData );
          } );
 
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'with feature select and user selects an article', function() {
+      describe( 'with feature selection and user selects an article', function() {
 
          beforeEach( function() {
             setup( configuration );
@@ -100,7 +72,7 @@ define( [
             } );
             jasmine.Clock.tick( 0 );
 
-            testBed.scope.selectArticle(resourceData.entries[ 2 ]);
+            testBed.scope.selectArticle( resourceData.entries[ 2 ] );
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,10 +82,7 @@ define( [
                .toHaveBeenCalledWith( 'didReplace.selectedArticle', {
                   resource: 'selectedArticle',
                   data: resourceData.entries[ 2 ]
-               }, {
-                  deliverToSender: false
-               }
-            );
+               } );
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,45 +114,9 @@ define( [
                      .toHaveBeenCalledWith( 'didReplace.selectedArticle', {
                         resource: 'selectedArticle',
                         data: null
-                     }, {
-                        deliverToSender: false
-                     }
-                  );
+                     } );
                } );
 
-            } );
-
-         } );
-
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         describe( 'and an update of the articles resource which removes the selected article', function() {
-
-            beforeEach( function() {
-               testBed.eventBusMock.publish( 'didUpdate.articles', {
-                  resource: 'articles',
-                  patches: [
-                     {
-                        op: 'remove',
-                        path: '/entries/2'
-                     }
-                  ]
-               } );
-               jasmine.Clock.tick( 0 );
-            } );
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-
-            it( 'sets the selected article to null and publishes a didReplace event for it', function() {
-               expect( testBed.scope.selectedArticle ).toEqual( null );
-               expect( testBed.scope.eventBus.publish )
-                  .toHaveBeenCalledWith( 'didReplace.selectedArticle', {
-                     resource: 'selectedArticle',
-                     data: null
-                  }, {
-                     deliverToSender: false
-                  }
-               );
             } );
 
          } );

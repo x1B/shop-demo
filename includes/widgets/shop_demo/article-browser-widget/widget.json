@@ -14,7 +14,7 @@
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "type": "object",
-      "required": [ "display", "select" ],
+      "required": [ "articles", "selection" ],
       "properties": {
 
          "articles": {
@@ -22,30 +22,10 @@
             "description": "Display a list of articles.",
             "required": [ "resource" ],
             "properties": {
-               "headline": {
-                  "type": "string",
-                  "default": "Articles",
-                  "description": "The title for the widget."
-               },
                "resource": {
                   "type": "string",
                   "description": "Name of the data resource with articles.",
                   "format": "topic"
-               },
-               "htmlNameLabel": {
-                  "type": "string",
-                  "description": "Label for the article name.",
-                  "default": "Article"
-               },
-               "htmlIdLabel": {
-                  "type": "string",
-                  "description": "Label for the article id.",
-                  "default": "Art. ID"
-               },
-               "htmlPriceLabel": {
-                  "type": "string",
-                  "description": "Label for the article price.",
-                  "default": "Price"
                }
             }
          },
