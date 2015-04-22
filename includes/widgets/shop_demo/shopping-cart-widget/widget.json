@@ -1,12 +1,11 @@
 {
    "name": "ShoppingCartWidget",
-   "description": "Displays a cart with a list of articles, lets the user add or delete some and order them.",
+   "description": "A shopping cart with a list of articles, lets the user add articles and change their quantity.",
 
    "integration": {
-      "type": "angular"
+      "technology": "angular",
+      "type": "widget"
    },
-
-   "compatibility": [ "json-patch" ],
 
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
