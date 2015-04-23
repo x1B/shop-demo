@@ -1,13 +1,14 @@
 /**
- * Copyright 2014 Jonas Schulte
+ * Copyright 2014 aixigo AG
  * Released under the MIT license.
- * www.laxarjs.org
+ * http://laxarjs.org/license
  */
 require( [
-   'portal_angular_dependencies',
-   'laxar'
-], function( widgetModules, ax ) {
+   'laxar',
+   'laxar-application-dependencies'
+], function( ax, applicationDependencies ) {
    'use strict';
 
-   ax.bootstrap( widgetModules );
+   ax.bootstrap( applicationDependencies );
+
 } );

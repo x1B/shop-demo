@@ -1,8 +1,5 @@
 var require = {
    baseUrl: 'bower_components',
-   deps: [
-      'es5-shim/es5-shim'
-   ],
    shim: {
       angular: {
          exports: 'angular'
@@ -95,6 +92,6 @@ var require = {
       'laxar-path-themes': '../includes/themes',
       'laxar-path-flow': '../application/flow/flow.json',
 
-      portal_angular_dependencies: '../var/static/portal_angular_dependencies'
+      'laxar-application-dependencies': '../var/static/laxar_application_dependencies'
    }
 };
