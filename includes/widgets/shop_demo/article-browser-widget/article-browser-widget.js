@@ -15,54 +15,35 @@ define( [
       $scope.resources = {};
       $scope.selectedArticle = null;
 
-      eventBus.subscribe( 'didReplace.' + $scope.features.articles.resource, function( event ) {
+      var articlesResource = $scope.features.articles.resource;
+
+      eventBus.subscribe( 'didReplace.' + articlesResource, function( event ) {
          $scope.resources.articles = event.data;
-         updateSelection();
+         $scope.selectArticle( null );
       } );
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
       $scope.selectArticle = function( article ) {
          $scope.selectedArticle = article;
-         eventBus.publish( 'didReplace.' + $scope.features.selection.resource, {
-            resource: $scope.features.selection.resource,
+
+         var selectionResource = $scope.features.selection.resource;
+         eventBus.publish( 'didReplace.' + selectionResource, {
+            resource: selectionResource,
             data: article
          } ).then( function() {
-            if( $scope.features.selection.action ) {
-               eventBus.publish( 'takeActionRequest.' + $scope.features.selection.action, {
-                  action: $scope.features.selection.action
+            var selectionAction = $scope.features.selection.action;
+            if( selectionAction ) {
+               eventBus.publish( 'takeActionRequest.' + selectionAction, {
+                  action: selectionAction
                } );
             }
          } );
       };
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function updateSelection() {
-         var resources = $scope.resources;
-         var selectedArticle = $scope.selectedArticle;
-         if( selectedArticle === null ) {
-            return;
-         }
-
-         var entries = resources.articles ? resources.articles.entries : [];
-         if( !entries.length ) {
-            $scope.selectArticle( null );
-            return;
-         }
-
-         var selectedArticleExists = entries.some( function( article ) {
-            return article.id === selectedArticle.id;
-         } );
-
-         if( !selectedArticleExists ) {
-            $scope.selectArticle( null );
-         }
-      }
-
    }
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////
 
    return ng.module( 'articleBrowserWidget', [] )
       .controller( 'ArticleBrowserWidgetController', Controller );

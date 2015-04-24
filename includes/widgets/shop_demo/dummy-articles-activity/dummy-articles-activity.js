@@ -13,12 +13,15 @@ define( [
 
    function Controller( context, eventBus ) {
       eventBus.subscribe( 'beginLifecycleRequest', function() {
-         eventBus.publish( 'didReplace.' + context.features.articles.resource, {
-            resource: context.features.articles.resource,
+         var articleResource = context.features.articles.resource;
+         eventBus.publish( 'didReplace.' + articleResource, {
+            resource: articleResource,
             data: {
                entries: articles.map( function( article ) {
                   var copy = ng.copy( article );
-                  copy.pictureUrl = copy.picture ? require.toUrl( './images/' + copy.picture ) : null;
+                  copy.pictureUrl = article.picture ?
+                     require.toUrl( './images/' + article.picture ) :
+                     null;
                   return copy;
                } )
             }
@@ -26,7 +29,7 @@ define( [
       } );
    }
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////
 
    return ng.module( 'dummyArticlesActivity', [] )
       .controller( 'DummyArticlesActivityController', Controller );

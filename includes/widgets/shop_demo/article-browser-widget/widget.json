@@ -33,12 +33,12 @@
             "properties": {
                "resource": {
                   "type": "string",
-                  "description": "Name of the data resource with the selected article.",
+                  "description": "Name of the resource for the user selection",
                   "format": "topic"
                },
                "action": {
                   "type": "string",
-                  "description": "The action to trigger after selection takes place.",
+                  "description": "Action to trigger after user selection",
                   "format": "topic"
                }
             }

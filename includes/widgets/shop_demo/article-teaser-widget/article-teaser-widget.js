@@ -14,11 +14,12 @@ define( [
 
       $scope.resources = {};
 
-      eventBus.subscribe( 'didReplace.' + $scope.features.article.resource, function( event ) {
+      var articleResource = $scope.features.article.resource;
+      eventBus.subscribe( 'didReplace.' + articleResource, function( event ) {
          $scope.resources.article = event.data;
       } );
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
       $scope.addToCart = function() {
          var actionName = $scope.features.confirmation.action;
@@ -29,7 +30,7 @@ define( [
 
    }
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////
 
    return ng.module( 'articleTeaserWidget', [] )
       .controller( 'ArticleTeaserWidgetController', Controller );

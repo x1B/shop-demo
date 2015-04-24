@@ -23,11 +23,6 @@
                   "resource": "selectedArticle"
                }
             }
-         },
-         {
-            "widget": "laxarjs/ax-developer-tools-widget",
-            "features": {
-            }
          }
       ],
       "right": [

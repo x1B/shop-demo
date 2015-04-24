@@ -1,7 +1,9 @@
-<h3 class="ax-function-point" ng-class="{ 'app-articles': model.cartItems.length > 0 }"><i
+<h3 class="ax-function-point"
+    ng-class="{ 'app-articles': cart.length > 0 }"><i
    class="fa fa-shopping-cart"></i> Shopping Cart
 </h3>
-<table class="table table-striped" ng-class="{ 'app-articles': model.cartItems.length > 0 }">
+<table class="table table-striped"
+       ng-class="{ 'app-articles': cart.length > 0 }">
    <colgroup>
       <col class="app-col-1">
       <col class="app-col-2">
@@ -10,10 +12,12 @@
       <col class="app-col-5">
    </colgroup>
    <thead>
-   <tr data-ng-show="!model.cartItems.length">
-      <th class="app-no-articles" colspan="5">Please select articles to add them to the cart!</th>
+   <tr data-ng-show="!cart.length">
+      <th class="app-no-articles" colspan="5">
+         Please select articles to add them to the cart!
+      </th>
    </tr>
-   <tr data-ng-show="model.cartItems.length">
+   <tr data-ng-show="cart.length">
       <th>Art. ID</th>
       <th>Article</th>
       <th class="text-right">Price</th>
@@ -21,23 +25,25 @@
    </tr>
    </thead>
    <tbody>
-   <tr data-ng-repeat="item in model.cartItems track by item.article.id">
+   <tr data-ng-repeat="item in cart">
       <td class="app-col-1">{{ item.article.id }}</td>
       <td>{{ item.article.name }}</td>
       <td class="text-right">{{ item.article.price | currency : "€ " }}</td>
       <td class="text-right app-increase-quantity">{{ item.quantity }}</td>
       <td class="app-increase-buttons">
-         <button class="btn btn-link" type="button" data-ng-click="increaseQuantity( $index )"
+         <button class="btn btn-link" type="button"
+                 data-ng-click="increaseQuantity( item )"
                 ><i class='fa fa-plus-square'></i></button>
-         <button class="btn btn-link" type="button" data-ng-click="decreaseQuantity( $index )"
+         <button class="btn btn-link" type="button"
+                 data-ng-click="decreaseQuantity( item )"
                 ><i class='fa fa-minus-square'></i></button>
       </td>
    </tr>
-   <tr data-ng-show="!model.cartItems.length">
+   <tr data-ng-show="!cart.length">
       <td colspan="5">&nbsp;</td>
    </tr>
    </tbody>
-   <tfoot data-ng-show="model.cartItems.length">
+   <tfoot data-ng-show="cart.length">
    <tr>
       <td></td>
       <td>Subtotal</td>

@@ -26,20 +26,21 @@ define( [
       };
 
       function setup( features ) {
-         testBed = ax.testing.portalMocksAngular.createControllerTestBed( manifest.name );
+         testBed = ax.testing.portalMocksAngular
+            .createControllerTestBed( manifest.name );
          testBed.featuresMock = features;
          testBed.setup();
       }
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
       afterEach( function() {
          testBed.tearDown();
       } );
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
-      describe( 'with feature articles and configured resource', function() {
+      describe( 'with feature articles and a configured resource', function() {
 
          beforeEach( function() {
             setup( configuration );
@@ -50,9 +51,9 @@ define( [
             jasmine.Clock.tick( 0 );
          } );
 
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
+         //////////////////////////////////////////////////////////////////////
 
-         it( 'acts as a slave of the resource and displays the list of articles', function() {
+         it( 'subscribes to and displays the list of articles', function() {
             expect( testBed.scope.eventBus.subscribe )
                .toHaveBeenCalledWith( 'didReplace.articles', anyFunction );
             expect( testBed.scope.resources.articles ).toEqual( resourceData );
@@ -60,9 +61,9 @@ define( [
 
       } );
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
-      describe( 'with feature selection and user selects an article', function() {
+      describe( 'with feature selection, after user selection', function() {
 
          beforeEach( function() {
             setup( configuration );
@@ -75,7 +76,7 @@ define( [
             testBed.scope.selectArticle( resourceData.entries[ 2 ] );
          } );
 
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
+         //////////////////////////////////////////////////////////////////////
 
          it( 'publishes the resource with the selected article', function() {
             expect( testBed.scope.eventBus.publish )
@@ -85,7 +86,7 @@ define( [
                } );
          } );
 
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
+         //////////////////////////////////////////////////////////////////////
 
          var articles = {
             'null': null,
@@ -106,7 +107,7 @@ define( [
                   jasmine.Clock.tick( 0 );
                } );
 
-               ///////////////////////////////////////////////////////////////////////////////////////////////
+               /////////////////////////////////////////////////////////////////////////
 
                it( 'sets the selected article to null and publishes a didReplace event for it', function() {
                   expect( testBed.scope.selectedArticle ).toEqual( null );

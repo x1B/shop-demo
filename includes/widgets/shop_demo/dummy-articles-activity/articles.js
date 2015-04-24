@@ -37,13 +37,13 @@ define( function() {
       {
          'id': 'B00JP3ZA0I',
          'picture': 'bus.jpg',
-         'name': 'The original LaxarJS Event-Bus',
+         'name': 'Original Event-Bus',
          'htmlDescription': 'They say some folk never grow up, but why should they? This, however, is no mere toy. It is a bus. A bus to take you on an <em>event-ful</em> trip!',
          'price': 417.95
       },
       {
          'id': 'B009ZAAG8C',
-         'name': 'LaxarJS Box of Chocolates',
+         'name': 'Box of Chocolates',
          'htmlDescription': 'Unlike with life, you\'ll know exactly what you\'re gonna get: Delicious Chocolates.',
          'price': 8.95
       },

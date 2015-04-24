@@ -12,13 +12,12 @@ define( [
 
    function Controller( $scope, eventBus ) {
 
-      $scope.resources = { };
-      $scope.model = {
-         cartItems: [],
-         sum: 0
-      };
+      $scope.resources = {};
+      $scope.cart = [];
+      $scope.sum = 0;
 
-      eventBus.subscribe( 'didReplace.' + $scope.features.article.resource, function( event ) {
+      var articleResource = $scope.features.article.resource;
+      eventBus.subscribe( 'didReplace.' + articleResource, function( event ) {
          $scope.resources.article = event.data;
       } );
 
@@ -32,60 +31,53 @@ define( [
          } );
       } );
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
-      $scope.increaseQuantity = function( index ) {
-         ++$scope.model.cartItems[ index ].quantity;
+      $scope.increaseQuantity = function( item ) {
+         ++item.quantity;
          updateSum();
       };
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
-      $scope.decreaseQuantity = function( index ) {
-         if( $scope.model.cartItems[ index ].quantity === 1 ) {
-            $scope.model.cartItems.splice( index, 1 );
-         }
-         else {
-            --$scope.model.cartItems[ index ].quantity;
+      $scope.decreaseQuantity = function( item ) {
+         --item.quantity;
+         if( item.quantity === 0 ) {
+            $scope.cart.splice( $scope.cart.indexOf( item ), 1 );
          }
          updateSum();
       };
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
       function addArticleToCart( article ) {
-         var index = indexOfArticle( article );
-         if( index === -1 ) {
-            $scope.model.cartItems.push( {
-               article: article,
-               quantity: 1
-            } );
-            updateSum();
+         var item = itemByArticle( article );
+         if( !item ) {
+            item = { article: article, quantity: 0 };
+            $scope.cart.push( item );
          }
-         else {
-            $scope.increaseQuantity( index );
-         }
+         $scope.increaseQuantity( item );
       }
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
-      function indexOfArticle( article ) {
-         return $scope.model.cartItems
-            .map( function( item ) { return item.article.id; } )
-            .indexOf( article.id );
+      function itemByArticle( article ) {
+         return $scope.cart.filter( function( item ) {
+            return article === item.article;
+         } )[ 0 ] || null;
       }
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////
 
       function updateSum() {
-         $scope.model.sum = $scope.model.cartItems.reduce( function( acc, item ) {
+         $scope.sum = $scope.cart.reduce( function( acc, item ) {
             return acc + item.quantity * ( item.article.price * 100 );
          }, 0 ) / 100;
       }
 
    }
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////
 
    return ng.module( 'shoppingCartWidget', [ 'ngSanitize' ] )
       .controller( 'ShoppingCartWidgetController', Controller );
