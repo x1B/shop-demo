@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Jonas Schulte
+ * Copyright 2014 aixigo AG
  * Released under the MIT license.
  * www.laxarjs.org
  */
@@ -26,6 +26,18 @@ module.exports = function( grunt ) {
             jshintrc: __dirname + '/.jshintrc'
          }
       },
+      laxar_application_dependencies: {
+         default: {
+            options: {},
+            dest: 'var/static/laxar_application_dependencies.js',
+            src: [ 'application/flow/*.json' ]
+         }
+      },
+      css_merger: {
+         default: {
+            src: [ 'application/flow/*.json' ]
+         }
+      },
       cssmin: {
          default: {
             options: {
@@ -36,6 +48,27 @@ module.exports = function( grunt ) {
                src: 'var/static/css/*.theme.css',
                ext: '.min.css'
             }]
+         }
+      },
+      concat: {
+         build: {
+            src: [
+               'require_config.js',
+               'application/application.js',
+               'bower_components/requirejs/require.js'
+            ],
+            dest: 'var/build/require_configured.js'
+         }
+      },
+      requirejs: {
+         default: {
+            options: {
+               mainConfigFile: 'require_config.js',
+               deps: [ '../var/build/require_configured' ],
+               name: '../init',
+               optimize: 'uglify2',
+               out: 'var/build/bundle.js'
+            }
          }
       },
       compress: {
@@ -56,18 +89,6 @@ module.exports = function( grunt ) {
                ],
                filter: 'isFile'
             } ]
-         }
-      },
-      laxar_application_dependencies: {
-         default: {
-            options: {},
-            dest: 'var/static/laxar_application_dependencies.js',
-            src: [ 'application/flow/*.json' ]
-         }
-      },
-      css_merger: {
-         default: {
-            src: [ 'application/flow/*.json' ]
          }
       },
       directory_tree: {
@@ -113,16 +134,6 @@ module.exports = function( grunt ) {
                   'includes/widgets/*/*/*.theme/*.html',
                   'includes/widgets/*/*/*.theme/css/*.css'
                ]
-            }
-         }
-      },
-      requirejs: {
-         default: {
-            options: {
-               mainConfigFile: 'require_config.js',
-               name: '../init',
-               out: 'var/build/optimized_init.js',
-               optimize: 'uglify2'
             }
          }
       },
@@ -183,6 +194,7 @@ module.exports = function( grunt ) {
    } );
 
    grunt.loadNpmTasks( 'grunt-laxar' );
+   grunt.loadNpmTasks( 'grunt-contrib-concat' );
    grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
    grunt.loadNpmTasks( 'grunt-contrib-compass' );
    grunt.loadNpmTasks( 'grunt-contrib-compress' );
@@ -190,7 +202,7 @@ module.exports = function( grunt ) {
 
    grunt.registerTask( 'server', [ 'connect' ] );
    grunt.registerTask( 'build', [ 'directory_tree', 'laxar_application_dependencies' ] );
-   grunt.registerTask( 'optimize', [ 'build', 'css_merger', 'cssmin', 'requirejs' ] );
+   grunt.registerTask( 'optimize', [ 'build', 'css_merger', 'cssmin', 'concat', 'requirejs' ] );
    grunt.registerTask( 'test', [ 'server', 'widgets' ] );
    grunt.registerTask( 'default', [ 'build', 'test' ] );
    grunt.registerTask( 'dist', [ 'optimize', 'compress' ] );

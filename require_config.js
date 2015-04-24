@@ -30,9 +30,6 @@ var require = {
             'use strict';
             return angular;
          }
-      },
-      'json-patch': {
-         exports: 'jsonpatch'
       }
    },
    packages: [
@@ -40,11 +37,6 @@ var require = {
          name: 'laxar',
          location: 'laxar',
          main: 'laxar'
-      },
-      {
-         name: 'laxar_patterns',
-         location: 'laxar_patterns',
-         main: 'laxar_patterns'
       },
       {
          name: 'laxar_uikit',
@@ -67,9 +59,6 @@ var require = {
       'angular-sanitize': 'angular-sanitize/angular-sanitize',
       jjv: 'jjv/lib/jjv',
       jjve: 'jjve/jjve',
-
-      // LaxarJS Patterns:
-      'json-patch': 'fast-json-patch/src/json-patch-duplex',
 
       // LaxarJS Core Testing:
       jasmine: 'jasmine/lib/jasmine-core/jasmine',

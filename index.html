@@ -5,15 +5,13 @@
    <meta http-equiv="x-ua-compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>LaxarJS ShopDemo</title>
-   <link data-ax-merged-css href="var/static/css/cube.min.css" rel="stylesheet" type="text/css">
+   <link data-ax-merged-css
+         href="var/static/css/cube.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
    <div data-ax-page></div>
    <div data-ng-view></div>
-
-   <script data-ax-application-mode="RELEASE" src="application/application.js"></script>
-   <script src="require_config.js"></script>
-   <script src="bower_components/requirejs/require.js"></script>
-   <script src="var/build/optimized_init.js" async></script>
+   <script data-ax-application-mode="PRODUCTION"
+           src="var/build/bundle.js" async></script>
 </body>
 </html>

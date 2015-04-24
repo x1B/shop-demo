@@ -10,11 +10,8 @@
 <body>
    <div data-ax-page></div>
    <div data-ng-view></div>
-
-   <script data-ax-application-mode="RELEASE" src="application/application.js"></script>
-   <script>window.laxar.theme = 'darkly_scss';</script>
-   <script src="require_config.js"></script>
-   <script src="bower_components/requirejs/require.js"></script>
-   <script src="var/build/optimized_init.js" async></script>
+   <script data-ax-application-mode="PRODUCTION"
+           data-ax-application-overrides='{ "theme": "darkly" }'
+           src="var/build/bundle.js" async></script>
 </body>
 </html>
