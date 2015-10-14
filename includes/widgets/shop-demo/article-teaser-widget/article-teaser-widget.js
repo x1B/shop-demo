@@ -13,48 +13,42 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
 
    var _React = _interopRequireDefault(_react);
 
-   module.exports = {
-      name: 'article-teaser-widget',
-      injections: ['axEventBus', 'axFeatures', 'axReactRender'],
-      create: function create(eventBus, features, reactRender) {
+   var injections = ['axEventBus', 'axFeatures', 'axReactRender'];
+   function create(eventBus, features, reactRender) {
+      var resources = {};
+      var articleResource = features.article.resource;
+      eventBus.subscribe('didReplace.' + articleResource, function (event) {
+         resources.article = event.data;
+         render();
+      });
+      return { onDomAvailable: render };
 
-         var resources = { article: null };
-         var articleResource = features.article.resource;
-         eventBus.subscribe('didReplace.' + articleResource, function (event) {
-            resources.article = event.data;
-            render();
-         });
-
-         function addToCart() {
-            var actionName = features.confirmation.action;
-            eventBus.publish('takeActionRequest.' + actionName, {
-               action: actionName
-            });
-         }
-
-         function render() {
-            reactRender(_React['default'].createElement(
-               'div',
-               null,
-               _React['default'].createElement(ArticleHeader, { isSelected: !!resources.article }),
-               _React['default'].createElement(ArticleTeaser, { article: resources.article || { name: 'No article selected' } }),
-               _React['default'].createElement(
-                  'div',
-                  { className: 'clearfix' },
-                  _React['default'].createElement(
-                     'button',
-                     { type: 'button',
-                        className: '\'btn btn-info pull-right ' + (resources.article ? '' : ' ax-disabled'),
-                        onClick: addToCart },
-                     _React['default'].createElement('i', { className: 'fa fa-shopping-cart' }),
-                     ' Add to Cart'
-                  )
-               )
-            ));
-         }
-
-         return { onDomAvailable: render };
+      function addToCart() {
+         var actionName = features.confirmation.action;
+         eventBus.publish('takeActionRequest.' + actionName, {
+            action: actionName });
       }
+      function render() {
+         reactRender(_React['default'].createElement(
+            'div',
+            null,
+            _React['default'].createElement(ArticleHeader, { isSelected: resources.article != null }),
+            _React['default'].createElement(ArticleTeaser, { article: resources.article }),
+            _React['default'].createElement(
+               'button',
+               { onClick: addToCart, type: 'button',
+                  className: resources.article || 'ax-disabled' },
+               _React['default'].createElement('i', { className: 'fa fa-shopping-cart' }),
+               ' Add to Cart'
+            )
+         ));
+      }
+   }
+   module.exports = { name: 'article-teaser-widget', injections: injections, create: create };
+
+   var eventBus = {
+      subscribe: function subscribe() {},
+      publish: function publish() {}
    };
 
    var ArticleHeader = _React['default'].createClass({
@@ -76,8 +70,7 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
       displayName: 'ArticleTeaser',
 
       render: function render() {
-         var article = this.props.article;
-
+         var article = this.props.article || { name: 'No article selected' };
          return _React['default'].createElement(
             'div',
             { className: 'app-teaser-wrapper clearfix' + (article.id && ' app-selection') },
@@ -139,6 +132,5 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
       formattedPrice: function formattedPrice(price) {
          return price == null ? null : '€ ' + price.toFixed(2);
       }
-
    });
 });

@@ -7,40 +7,38 @@
  * > babel -m amd -d . article-teaser-widget.jsx
  */
 import React from 'react';
+const injections = [ 'axEventBus', 'axFeatures', 'axReactRender' ];
+function create( eventBus, features, reactRender ) {
+   var resources = {};
+   const articleResource = features.article.resource;
+   eventBus.subscribe( `didReplace.${articleResource}`, event => {
+      resources.article = event.data;
+      render();
+   } );
+   return { onDomAvailable: render };
 
-export default {
-   name: 'article-teaser-widget',
-   injections: [ 'axEventBus', 'axFeatures', 'axReactRender' ],
-   create: function( eventBus, features, reactRender ) {
-
-      var resources = { article: null };
-      const articleResource = features.article.resource;
-      eventBus.subscribe( 'didReplace.' + articleResource, event => {
-         resources.article = event.data;
-         render();
-      } );
-
-      function addToCart() {
-         const actionName = features.confirmation.action;
-         eventBus.publish( 'takeActionRequest.' + actionName, {
-            action: actionName
-         } );
-      }
-
-      function render() {
-         reactRender( <div>
-            <ArticleHeader isSelected={ !!resources.article } />
-            <ArticleTeaser article={ resources.article || { name: 'No article selected' } } />
-            <div className='clearfix'>
-               <button type='button'
-                       className={ `'btn btn-info pull-right ${resources.article ? '' : ' ax-disabled'}` }
-                       onClick={addToCart}><i className='fa fa-shopping-cart'></i> Add to Cart</button>
-            </div>
-         </div> );
-      }
-
-      return { onDomAvailable: render };
+   function addToCart() {
+      const actionName = features.confirmation.action;
+      eventBus.publish( `takeActionRequest.${actionName}`, {
+         action: actionName } );
    }
+   function render() {
+      reactRender( <div>
+         <ArticleHeader isSelected={ resources.article != null } />
+         <ArticleTeaser article={ resources.article } />
+         <button onClick={ addToCart } type='button'
+                 className={ resources.article || 'ax-disabled' }>
+            <i className='fa fa-shopping-cart'></i> Add to Cart</button>
+      </div> );
+   }
+}
+export default { name: 'article-teaser-widget', injections, create };
+
+
+
+const eventBus = {
+   subscribe() {},
+   publish() {}
 };
 
 const ArticleHeader = React.createClass({
@@ -53,8 +51,9 @@ const ArticleHeader = React.createClass({
 });
 
 const ArticleTeaser = React.createClass({
+
    render() {
-      const { article } = this.props;
+      const article = this.props.article || { name: 'No article selected' };
       return <div className={ 'app-teaser-wrapper clearfix' + (article.id && ' app-selection') }>
          <h4 className={ article.id || 'app-no-selection' }>{ article.name }</h4>
          <div className='row'>
@@ -82,5 +81,4 @@ const ArticleTeaser = React.createClass({
    formattedPrice( price ) {
       return price == null ? null : ('€ ' + price.toFixed( 2 ));
    }
-
 });
