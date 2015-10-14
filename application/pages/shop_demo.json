@@ -51,9 +51,7 @@
                   "action": "addArticle"
                }
             }
-         }
-      ],
-      "contentC": [
+         },
          {
             "widget": "shop-demo/shopping-cart-widget",
             "features": {

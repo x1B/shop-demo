@@ -37,7 +37,7 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
             _React['default'].createElement(
                'button',
                { onClick: addToCart, type: 'button',
-                  className: resources.article || 'ax-disabled' },
+                  className: 'btn pull-right ' + (resources.article ? 'btn-info' : 'ax-disabled') },
                _React['default'].createElement('i', { className: 'fa fa-shopping-cart' }),
                ' Add to Cart'
             )
@@ -84,16 +84,7 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
                { className: 'row' },
                _React['default'].createElement(
                   'div',
-                  { className: 'col col-md-12 app-teaser-image-wrapper' },
-                  article.pictureUrl && _React['default'].createElement('img', { className: 'app-teaser-image', src: article.pictureUrl })
-               )
-            ),
-            _React['default'].createElement(
-               'div',
-               { className: 'row' },
-               _React['default'].createElement(
-                  'div',
-                  { className: 'col col-md-12' },
+                  { className: 'col col-md-6' },
                   _React['default'].createElement(
                      'dl',
                      { className: 'dl-horizontal' },
@@ -124,6 +115,11 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
                         this.formattedPrice(article.price)
                      )
                   )
+               ),
+               _React['default'].createElement(
+                  'div',
+                  { className: 'col col-md-6 app-teaser-image-wrapper' },
+                  article.pictureUrl && _React['default'].createElement('img', { className: 'app-teaser-image', src: article.pictureUrl })
                )
             )
          );
