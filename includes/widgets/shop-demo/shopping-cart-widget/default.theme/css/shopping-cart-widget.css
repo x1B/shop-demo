@@ -8,6 +8,9 @@
   font-size: x-small;
   vertical-align: middle;
 }
+.shopping-cart-widget .app-col-3 {
+  width: 6rem;
+}
 .shopping-cart-widget .app-col-4 {
   width: 55px;
 }

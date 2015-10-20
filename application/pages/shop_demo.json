@@ -14,17 +14,7 @@
       ],
 
       "searchBox": [
-         {
-            "widget": "shop-demo/article-search-box-widget",
-            "features": {
-               "articles": {
-                  "resource": "articles"
-               },
-               "filteredArticles": {
-                  "resource": "filteredArticles"
-               }
-            }
-         }
+
       ],
 
       "contentA": [
@@ -32,7 +22,7 @@
             "widget": "shop-demo/article-browser-widget",
             "features": {
                "articles": {
-                  "resource": "filteredArticles"
+                  "resource": "articles"
                },
                "selection": {
                   "resource": "selectedArticle",
