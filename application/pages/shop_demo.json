@@ -35,13 +35,23 @@
                   "resource": "filteredArticles"
                },
                "selection": {
-                  "resource": "selectedArticle",
-                  "action": "addArticle"
+                  "resource": "selectedArticle"
                }
             }
          }
       ],
       "contentB": [
+        {
+           "widget": "shop-demo/article-teaser-widget",
+           "features": {
+              "article": {
+                 "resource": "selectedArticle"
+              },
+              "confirmation": {
+                 "action": "addArticle"
+              }
+           }
+        },
         {
            "widget": "shop-demo/shopping-cart-widget",
            "features": {
