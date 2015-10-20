@@ -35,6 +35,11 @@
                   "type": "string",
                   "description": "Name of the resource for the user selection",
                   "format": "topic"
+               },
+               "action": {
+                  "type": "string",
+                  "description": "Name of the action to trigger upon user selection",
+                  "format": "topic"
                }
             }
          }
