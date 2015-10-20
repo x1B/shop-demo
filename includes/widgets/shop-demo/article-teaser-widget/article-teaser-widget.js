@@ -91,16 +91,12 @@ define(['exports', 'module', 'react'], function (exports, module, _react) {
                { className: 'row' },
                _React['default'].createElement(
                   'div',
-                  { className: 'col col-md-12 app-teaser-image-wrapper' },
+                  { className: 'col col-md-6 app-teaser-image-wrapper' },
                   article.pictureUrl && _React['default'].createElement('img', { className: 'app-teaser-image', src: article.pictureUrl })
-               )
-            ),
-            _React['default'].createElement(
-               'div',
-               { className: 'row' },
+               ),
                _React['default'].createElement(
                   'div',
-                  { className: 'col col-md-12' },
+                  { className: 'col col-md-6' },
                   _React['default'].createElement(
                      'dl',
                      { className: 'dl-horizontal' },
