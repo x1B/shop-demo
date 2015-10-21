@@ -58,6 +58,9 @@
            "features": {
               "open": {
                  "onGlobalMethod": "laxarShowDeveloperTools"
+              },
+              "button": {
+                 "enabled": false
               }
             }
          }
