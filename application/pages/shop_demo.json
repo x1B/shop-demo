@@ -30,7 +30,7 @@
          }
       ],
       "contentB": [
-        {
+         {
            "widget": "shop-demo/article-teaser-widget",
            "features": {
               "article": {
@@ -52,7 +52,15 @@
                  "target": "finishOrder"
               }
            }
-        }
+        },
+        {
+           "widget": "amd:laxar-developer-tools-widget",
+           "features": {
+              "open": {
+                 "onGlobalMethod": "laxarShowDeveloperTools"
+              }
+            }
+         }
       ]
    }
 }
