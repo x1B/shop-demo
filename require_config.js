@@ -5,10 +5,15 @@ var require = {
       requirejs: 'requirejs/require',
       text: 'requirejs-plugins/lib/text',
       json: 'requirejs-plugins/src/json',
+      jjv: 'jjv/lib/jjv',
+      jjve: 'jjve/jjve',
 
-      'laxar': 'laxar/dist/laxar.with-deps',
       'laxar-uikit': 'laxar-uikit/dist/laxar-uikit',
       'laxar-path-default-theme': 'laxar-uikit/dist/themes/default.theme',
+
+      // LaxarJS Patterns:
+      'laxar-patterns': 'laxar-patterns/dist/laxar-patterns',
+      'json-patch': 'fast-json-patch/src/json-patch-duplex',
 
       // LaxarJS Testing:
       'laxar-mocks': 'laxar-mocks/dist/laxar-mocks',
@@ -31,13 +36,19 @@ var require = {
 
       // React:
       'react': 'react/react',
-      'laxar-react-adapter': 'laxar-react-adapter/laxar-react-adapter'
+      'laxar-react-adapter': 'laxar-react-adapter/laxar-react-adapter',
+      'laxar-developer-tools-widget': '../ax-developer-tools-widget'
    },
    packages: [
       {
          name: 'laxar-application',
          location: '..',
          main: 'init'
+      },
+      {
+         name: 'laxar',
+         location: '../includes/lib/laxar',
+         main: 'laxar'
       }
    ],
    shim: {

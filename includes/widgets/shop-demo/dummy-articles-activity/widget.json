@@ -20,7 +20,8 @@
                "resource": {
                   "description": "The event bus topic under which to publish the list of articles",
                   "type": "string",
-                  "format": "topic"
+                  "format": "topic",
+                  "axRole": "master"
                }
             }
          }

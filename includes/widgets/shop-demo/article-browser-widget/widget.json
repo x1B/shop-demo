@@ -21,7 +21,8 @@
                "resource": {
                   "type": "string",
                   "description": "Name of the data resource with articles.",
-                  "format": "topic"
+                  "format": "topic",
+                  "axRole": "slave"
                }
             }
          },
@@ -34,7 +35,8 @@
                "resource": {
                   "type": "string",
                   "description": "Name of the resource for the user selection",
-                  "format": "topic"
+                  "format": "topic",
+                  "axRole": "master"
                }
             }
          }

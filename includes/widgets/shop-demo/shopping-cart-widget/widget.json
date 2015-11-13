@@ -20,14 +20,16 @@
                "resource": {
                   "type": "string",
                   "description": "ID of the article resource to add to the cart.",
-                  "format": "topic"
+                  "format": "topic",
+                  "axRole": "slave"
                },
                "onActions": {
                   "type": "array",
                   "description": "Adds the article to the cart.",
                   "items": {
                      "type": "string",
-                     "format": "topic"
+                     "format": "topic",
+                     "axRole": "slave"
                   }
                }
             }

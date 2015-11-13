@@ -20,7 +20,8 @@
                "resource": {
                   "type": "string",
                   "description": "Name of the data resource representing an article.",
-                  "format": "topic"
+                  "format": "topic",
+                  "axRole": "slave"
                }
             }
          },
@@ -32,7 +33,8 @@
                "action": {
                   "type": "string",
                   "description": "Name of the action to request to add the selected article to cart",
-                  "format": "topic"
+                  "format": "topic",
+                  "axRole": "master"
                }
             }
          }

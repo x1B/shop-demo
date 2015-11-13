@@ -1,3 +1,9 @@
 [submodule "includes/themes/cube.theme"]
 	path = includes/themes/cube.theme
 	url = https://github.com/LaxarJS/cube.theme.git
+[submodule "includes/lib/laxar"]
+	path = includes/lib/laxar
+	url = https://github.com/x1b/laxar.git
+[submodule "ax-developer-tools-widget"]
+	path = ax-developer-tools-widget
+	url = https://github.com/x1b/ax-developer-tools-widget.git

@@ -38,6 +38,14 @@
                   "resource": "selectedArticle"
                }
             }
+         },
+         {
+            "widget": "amd:laxar-developer-tools-widget",
+            "features": {
+               "develop": {
+                  "enabled": true
+               }
+            }
          }
       ],
       "contentB": [
