@@ -5,5 +5,5 @@
 	path = includes/lib/laxar
 	url = https://github.com/x1b/laxar.git
 [submodule "ax-developer-tools-widget"]
-	path = ax-developer-tools-widget
+	path = includes/widgets/laxarjs/ax-developer-tools-widget
 	url = https://github.com/x1b/ax-developer-tools-widget.git

@@ -11,7 +11,7 @@
     "requirejs": "2.1.x",
     "requirejs-plugins": "1.0.x",
     "laxar": "~1.2.0-alpha.1",
-    "laxar-patterns": "~1.2.0-alpha.1",
+    "laxar-patterns": "~1.2.0-alpha.2",
     "laxar-uikit": "~1.1.0",
     "laxar-react-adapter": "~0.2.0",
     "bootswatch-scss": "3.2.x",

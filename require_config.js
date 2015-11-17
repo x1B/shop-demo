@@ -37,7 +37,7 @@ var require = {
       // React:
       'react': 'react/react',
       'laxar-react-adapter': 'laxar-react-adapter/laxar-react-adapter',
-      'laxar-developer-tools-widget': '../ax-developer-tools-widget'
+      'laxar-developer-tools-widget': '../includes/widgets/laxarjs/ax-developer-tools-widget'
    },
    packages: [
       {
