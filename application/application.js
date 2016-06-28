@@ -10,7 +10,10 @@ window.laxar = ( function() {
       description: 'A DemoApp to learn how LaxarJS works.',
       theme: 'cube',
       useMergedCss: mode === 'PRODUCTION',
-      useEmbeddedFileListings: mode === 'PRODUCTION'
+      useEmbeddedFileListings: mode === 'PRODUCTION',
+      paths: {
+         defaultTheme: 'bower_components/laxar-uikit/dist/themes/default.theme'
+      }
    };
 
 } )();

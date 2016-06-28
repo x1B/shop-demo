@@ -1,3 +1,9 @@
 [submodule "includes/themes/cube.theme"]
 	path = includes/themes/cube.theme
 	url = https://github.com/LaxarJS/cube.theme.git
+[submodule "includes/lib/laxar"]
+	path = includes/lib/laxar
+	url = gh:laxarjs/laxar
+[submodule "includes/lib/laxar-angular-adapter"]
+	path = includes/lib/laxar-angular-adapter
+	url = gh:laxarjs/laxar-angular-adapter

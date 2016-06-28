@@ -1,5 +1,5 @@
 {
-  "name": "ShopDemo",
+  "name": "shop-demo",
   "version": "1.12.0-pre",
   "description": "A demo application to learn how LaxarJS works.",
   "license": "MIT",
@@ -10,14 +10,15 @@
   "dependencies": {
     "requirejs": "~2.1.0",
     "requirejs-plugins": "~1.0.0",
-    "laxar": "~1.2.0",
+    "laxar": "./includes/lib/laxar",
     "laxar-uikit": "~1.1.0",
     "bootswatch-scss": "~3.2.0",
     "angular": "~1.4.3",
     "angular-route": "~1.4.3",
     "angular-sanitize": "~1.4.3",
     "laxar-react-adapter": "~0.2.0",
-    "laxar-developer-tools-widget": "~2.0.0"
+    "laxar-developer-tools-widget": "~2.0.0",
+    "whatwg-fetch": "*"
   },
   "devDependencies": {
     "laxar-mocks": "~1.0.0",
