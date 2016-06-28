@@ -23,10 +23,11 @@ module.exports = {
 
    _distOutput: {
       path: path.resolve( './var/flows/main/dist' ),
+      publicPath: '/var/flows/main/dist/',
       filename: '[name].bundle.min.js'
    },
    _distPlugins: [
-      new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.js' ),
+      new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.min.js' ),
       new webpack.SourceMapDevToolPlugin( {
          filename: '[name].bundle.min.js.map'
       } ),
@@ -39,7 +40,11 @@ module.exports = {
    ],
 
    module: {
-      noParse: /bower_components\/page\/page\.js/,
+      noParse: [
+         /bower_components\/page\/page.js/,
+         /bower_components\/react\/react.js/,
+         /bower_components\/angular*\/*.js/
+      ],
       loaders: [
          {
             test: /\.js$/,
