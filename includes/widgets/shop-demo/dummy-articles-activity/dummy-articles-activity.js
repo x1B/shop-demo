@@ -3,29 +3,20 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-define( [
-   'angular',
-   './articles'
-], function( ng, articles ) {
-   'use strict';
 
-   Controller.$inject = [ 'axContext', 'axEventBus' ];
+import { articles } from './articles';
 
-   function Controller( context, eventBus ) {
-      eventBus.subscribe( 'beginLifecycleRequest', function() {
-         var articleResource = context.features.articles.resource;
-         eventBus.publish( 'didReplace.' + articleResource, {
-            resource: articleResource,
-            data: {
-               entries: articles
-            }
-         } );
+export const name = 'dummy-articles-activity';
+export const injections = [ 'axEventBus', 'axFeatures' ];
+export function create( eventBus, features ) {
+   eventBus.subscribe( 'beginLifecycleRequest', function() {
+      const articleResource = features.articles.resource;
+
+      eventBus.publish( `didReplace.${articleResource}`, {
+         resource: articleResource,
+         data: {
+            entries: articles
+         }
       } );
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   return ng.module( 'dummyArticlesActivity', [] )
-      .controller( 'DummyArticlesActivityController', Controller );
-
-} );
+   } );
+}

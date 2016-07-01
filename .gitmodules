@@ -7,3 +7,6 @@
 [submodule "includes/lib/laxar-angular-adapter"]
 	path = includes/lib/laxar-angular-adapter
 	url = gh:laxarjs/laxar-angular-adapter
+[submodule "includes/lib/laxar-react-adapter"]
+	path = includes/lib/laxar-react-adapter
+	url = gh:laxarjs/laxar-react-adapter

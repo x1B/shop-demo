@@ -3,7 +3,7 @@
    "description": "Provides shopping articles from a JSON file",
 
    "integration": {
-      "technology": "angular",
+      "technology": "plain",
       "type": "activity"
    },
 
