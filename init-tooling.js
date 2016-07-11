@@ -3,8 +3,8 @@
  * Released under the MIT license
  */
 import { bootstrap } from 'laxar';
-import applicationDependencies from './var/flows/main/dependencies';
-import resources from 'json!./var/flows/main/resources.json';
+import applicationDependencies from 'laxar-loader?dependencies!./application/flow/flow.json';
+import resources from 'laxar-loader?resources!./application/flow/flow.json';
 import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
 import 'whatwg-fetch';

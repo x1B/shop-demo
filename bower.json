@@ -26,6 +26,11 @@
   },
   "resolutions": {
     "bootstrap-sass-official": "~3.3.0",
-    "react": "~15.1"
+    "react": "~15.1",
+    "laxar": "*",
+    "angular": "~1.5.7",
+    "angular-route": "~1.5.7",
+    "angular-sanitize": "~1.5.7",
+    "angular-mocks": "~1.5.7"
   }
 }
