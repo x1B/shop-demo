@@ -6,6 +6,9 @@ window.laxar = ( function() {
    var mode = document.querySelector( 'script[' + modeAttribute + ']' ).getAttribute( modeAttribute );
 
    return {
+      logging: {
+         threshold: 'TRACE'
+      },
       name: 'LaxarJS ShopDemo',
       description: 'A DemoApp to learn how LaxarJS works.',
       theme: 'cube',

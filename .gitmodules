@@ -3,10 +3,16 @@
 	url = https://github.com/LaxarJS/cube.theme.git
 [submodule "includes/lib/laxar"]
 	path = includes/lib/laxar
-	url = gh:laxarjs/laxar
+	url = https://github.com/LaxarJS/laxar.git
 [submodule "includes/lib/laxar-angular-adapter"]
 	path = includes/lib/laxar-angular-adapter
-	url = gh:laxarjs/laxar-angular-adapter
+	url = https://github.com/LaxarJS/laxar-angular-adapter.git
 [submodule "includes/lib/laxar-react-adapter"]
 	path = includes/lib/laxar-react-adapter
-	url = gh:laxarjs/laxar-react-adapter
+	url = https://github.com/LaxarJS/laxar-react-adapter.git
+[submodule "includes/lib/laxar-patterns"]
+	path = includes/lib/laxar-patterns
+	url = https://github.com/LaxarJS/laxar-patterns.git
+[submodule "includes/lib/laxar-uikit"]
+	path = includes/lib/laxar-uikit
+	url = https://github.com/LaxarJS/laxar-uikit.git

@@ -18,15 +18,5 @@ window.laxar.fileListings = {
 bootstrap( document.querySelector( '[data-ax-page]' ), {
    widgetAdapters: [ angularAdapter, reactAdapter ],
    widgetModules: applicationDependencies,
-   configuration: window.laxar,
-   whenServicesReady( { log, storage } ) {
-      const instanceIdStorageKey = 'axLogTags.INST';
-      const store = storage.getApplicationSessionStorage();
-      let instanceId = store.getItem( instanceIdStorageKey );
-      if( !instanceId ) {
-         instanceId = '' + Date.now() + Math.floor( Math.random() * 100 );
-         store.setItem( instanceIdStorageKey, instanceId );
-      }
-      log.addTag( 'INST', instanceId );
-   }
+   configuration: window.laxar
 } );

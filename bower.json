@@ -13,16 +13,16 @@
     "laxar": "./includes/lib/laxar",
     "laxar-uikit": "~1.1.0",
     "bootswatch-scss": "~3.2.0",
-    "angular": "~1.4.3",
-    "angular-route": "~1.4.3",
-    "angular-sanitize": "~1.4.3",
+    "angular": "~1.5.7",
+    "angular-route": "~1.5.7",
+    "angular-sanitize": "~1.5.7",
     "react": "~15.1",
     "laxar-developer-tools-widget": "~2.0.0",
     "whatwg-fetch": "*"
   },
   "devDependencies": {
     "laxar-mocks": "~1.0.0",
-    "angular-mocks": "~1.4.3"
+    "angular-mocks": "~1.5.7"
   },
   "resolutions": {
     "bootstrap-sass-official": "~3.3.0",
