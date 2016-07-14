@@ -3,9 +3,9 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-define( [
-   'angular'
-], function( ng ) {
+// an AMD-example:
+/* global define */
+define( [ 'angular' ], ng => {
    'use strict';
 
    Controller.$inject = [];
