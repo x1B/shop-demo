@@ -9,14 +9,9 @@ import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
 import 'whatwg-fetch';
 
-window.laxar.fileListings = {
-  application: resources,
-  bower_components: resources,
-  includes: resources
-};
-
 bootstrap( document.querySelector( '[data-ax-page]' ), {
    widgetAdapters: [ angularAdapter, reactAdapter ],
    widgetModules: applicationDependencies,
-   configuration: window.laxar
+   configuration: window.laxarConfig,
+   resources
 } );

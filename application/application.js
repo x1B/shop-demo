@@ -1,11 +1,14 @@
 // See https://github.com/LaxarJS/laxar/blob/master/docs/manuals/configuration.md
-window.laxar = ( function() {
+window.laxarConfig = ( function() {
    'use strict';
 
    var modeAttribute = 'data-ax-application-mode';
    var mode = document.querySelector( 'script[' + modeAttribute + ']' ).getAttribute( modeAttribute );
 
    return {
+      tooling: {
+         enabled: true
+      },
       logging: {
          threshold: 'TRACE'
       },
