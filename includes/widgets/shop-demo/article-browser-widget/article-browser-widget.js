@@ -3,9 +3,10 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+/* global define */
 define( [
    'angular'
-], function( ng ) {
+], ng => {
    'use strict';
 
    Controller.$inject = [ '$scope', 'axEventBus' ];
@@ -15,8 +16,8 @@ define( [
       $scope.resources = {};
       $scope.selectedArticle = null;
 
-      var articlesResource = $scope.features.articles.resource;
-      eventBus.subscribe( 'didReplace.' + articlesResource, function( event ) {
+      const articlesResource = $scope.features.articles.resource;
+      eventBus.subscribe( `didReplace.${articlesResource}`, event => {
          $scope.resources.articles = event.data;
          $scope.selectArticle( null );
       } );
@@ -26,8 +27,8 @@ define( [
       $scope.selectArticle = function( article ) {
          $scope.selectedArticle = article;
 
-         var selectionResource = $scope.features.selection.resource;
-         eventBus.publish( 'didReplace.' + selectionResource, {
+         const selectionResource = $scope.features.selection.resource;
+         eventBus.publish( `didReplace.${selectionResource}`, {
             resource: selectionResource,
             data: article
          } );

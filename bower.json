@@ -17,8 +17,7 @@
     "angular-route": "~1.5.7",
     "angular-sanitize": "~1.5.7",
     "react": "~15.1",
-    "laxar-developer-tools-widget": "~2.0.0",
-    "whatwg-fetch": "*"
+    "laxar-developer-tools-widget": "~2.0.0"
   },
   "devDependencies": {
     "laxar-mocks": "~1.0.0",

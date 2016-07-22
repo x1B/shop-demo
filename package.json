@@ -7,6 +7,7 @@
     "test": "grunt test --force",
     "prepublish": "bower install && grunt optimize",
     "start": "grunt start",
+    "eslint": "eslint init.js includes/widgets *.config.js",
     "optimize": "grunt optimize",
     "yo": "yo",
     "babel": "babel"
@@ -28,6 +29,7 @@
     "grunt-laxar": "~1.1.0",
     "grunt-webpack": "^1.0.11",
     "json-loader": "^0.5.4",
+    "laxar-tooling": "^0.1.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",

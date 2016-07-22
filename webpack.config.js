@@ -6,19 +6,19 @@ const webpack = require( 'webpack' );
 module.exports = {
    entry: {
       'app': './init.js',
-      'vendor': [ 'react', 'angular' ]
+      'vendor': [ 'react', 'angular', 'laxar' ]
    },
 
    output: {
       path: path.resolve( './var/flows/main/dist' ),
       publicPath: '/var/flows/main/dist/',
-      filename: '[name].bundle.js',
+      filename: '[name].bundle.js'
    },
    plugins: [
       new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.js' ),
       new webpack.SourceMapDevToolPlugin( {
          filename: '[name].bundle.js.map'
-      } ),
+      } )
    ],
 
    _distOutput: {
@@ -28,6 +28,7 @@ module.exports = {
    },
    _distPlugins: [
       new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.min.js' ),
+      new webpack.optimize.DedupePlugin(),
       new webpack.SourceMapDevToolPlugin( {
          filename: '[name].bundle.min.js.map'
       } ),
@@ -41,7 +42,9 @@ module.exports = {
 
    resolve: {
       root: [
-         path.resolve( './includes/lib/' ),
+         path.resolve( './includes/lib' ),
+         path.resolve( './includes/controls' ),
+         path.resolve( './node_modules' ),
          path.resolve( './bower_components' )
       ],
       extensions: [ '', '.js', '.jsx' ],
@@ -51,12 +54,17 @@ module.exports = {
          'moment': path.resolve( './bower_components/moment/moment' ),
          'react': path.resolve( './bower_components/react/react' ),
          'react-dom': path.resolve( './bower_components/react/react-dom' ),
+
          'laxar': path.resolve( './includes/lib/laxar/laxar' ),
-         'whatwg-fetch': path.resolve( './bower_components/whatwg-fetch/fetch' ),
+         // uncomment to test compatibility mode:
+         //'laxar': path.resolve( './includes/lib/laxar/laxar-compatibility' ),
+         // uncomment to test the dist version of laxar:
+         //'laxar': path.resolve( './includes/lib/laxar/dist/laxar' ),
+
          'laxar-react-adapter': path.resolve( './includes/lib/laxar-react-adapter/laxar-react-adapter' ),
-         'laxar-angular-adapter': path.resolve( './includes/lib/laxar-angular-adapter/laxar-angular-adapter' ),
-         // uncomment to test the dist version of laxar or the git submodule
-         // 'laxar': path.resolve( './includes/lib/laxar/dist/laxar' ),
+         'laxar-angular-adapter': path.resolve(
+            './includes/lib/laxar-angular-adapter'
+         ),
          'laxar-application': path.resolve( __dirname ),
          'laxar-application-dependencies': './var/flows/main/dependencies',
 
@@ -64,6 +72,7 @@ module.exports = {
          'laxar-path-layouts': './application/layouts',
          'laxar-path-pages': './application/pages',
          'laxar-path-widgets': './includes/widgets',
+         'laxar-path-controls': './includes/controls',
          'laxar-path-themes': './includes/themes'
       }
    },
@@ -85,11 +94,11 @@ module.exports = {
             exclude: /(node_modules|bower_components|spec)/,
             loader: 'file-loader'
          },
-         // {
-         //    test: /\.json$/,
-         //    exclude: /(node_modules|bower_components|spec)/,
-         //    loader: 'json-loader'
-         // }
+         {
+            test: /\.json$/,
+            exclude: /(node_modules|bower_components|spec)/,
+            loader: 'json-loader'
+         }
       ]
    }
 };

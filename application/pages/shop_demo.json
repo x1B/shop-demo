@@ -55,6 +55,38 @@
       ],
       "contentC": [
          {
+            "widget": "ax-accordion-widget",
+            "id": "accordion",
+            "features": {
+               "areas": [
+                  {
+                     "name": "first",
+                     "i18nHtmlLabel": "First Area"
+                  },
+                  {
+                     "name": "second",
+                     "i18nHtmlLabel": "Second Area"
+                  }
+               ]
+            }
+         }
+      ],
+      "accordion.first": [
+         {
+            "widget": "shop-demo/shopping-cart-widget",
+            "features": {
+               "article": {
+                  "resource": "selectedArticle",
+                  "onActions": [ "addArticle" ]
+               },
+               "order": {
+                  "target": "finishOrder"
+               }
+            }
+         }
+      ],
+      "accordion.second": [
+         {
             "widget": "shop-demo/shopping-cart-widget",
             "features": {
                "article": {

@@ -35,7 +35,10 @@ var require = {
 
       // React:
       'react': 'react/react',
-      'laxar-react-adapter': 'laxar-react-adapter/laxar-react-adapter'
+      'laxar-react-adapter': 'laxar-react-adapter/laxar-react-adapter',
+
+      'laxar-i18n-control': 'includes/controls/laxar-i18n-control',
+      'laxar-accordion-control': 'includes/controls/laxar-accordion-control'
    },
    packages: [
       {
