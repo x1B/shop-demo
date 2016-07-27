@@ -60,6 +60,7 @@ module.exports = {
          //'laxar': path.resolve( './includes/lib/laxar/laxar-compatibility' ),
          // uncomment to test the dist version of laxar:
          //'laxar': path.resolve( './includes/lib/laxar/dist/laxar' ),
+         jquery: 'jquery/dist/jquery',
 
          'laxar-react-adapter': path.resolve( './includes/lib/laxar-react-adapter/laxar-react-adapter' ),
          'laxar-angular-adapter': path.resolve(
@@ -93,11 +94,6 @@ module.exports = {
             test: /\.png$/,
             exclude: /(node_modules|bower_components|spec)/,
             loader: 'file-loader'
-         },
-         {
-            test: /\.json$/,
-            exclude: /(node_modules|bower_components|spec)/,
-            loader: 'json-loader'
          }
       ]
    }
