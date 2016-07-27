@@ -6,6 +6,9 @@ window.laxarConfig = ( function() {
    var mode = document.querySelector( 'script[' + modeAttribute + ']' ).getAttribute( modeAttribute );
 
    return {
+      flow: {
+         name: 'main'
+      },
       tooling: {
          enabled: true
       },
