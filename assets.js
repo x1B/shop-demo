@@ -6,7 +6,8 @@ module.exports = {
          main: 0
       },
       pages: {
-         shop_demo: 0
+         shop_demo: 0,
+         finish_order: 1
       },
       layouts: {
          application: 0
@@ -17,10 +18,15 @@ module.exports = {
       },
       widgets: {
          'shop-demo/dummy-articles-activity': 0,
-         'shop-demo/article-browser-widget': 1
+         'shop-demo/article-browser-widget': 1,
+         'shop-demo/article-teaser-widget': 2,
+         'shop-demo/shopping-cart-widget': 3,
+         'shop-demo/article-search-box-widget': 4,
+         'shop-demo/headline-widget': 5
       }
    },
    flows: [ {
+      descriptor: { name: 'main' },
       definition: require( '!!json!./application/flows/main.json' )
    } ],
    pages: [ {
@@ -28,6 +34,11 @@ module.exports = {
          name: 'shop_demo'
       },
       definition: require( '!!json!./application/pages/shop_demo.json' )
+   }, {
+      descriptor: {
+         name: 'finish_order'
+      },
+      definition: require( '!!json!./application/pages/finish_order.json' )
    } ],
    layouts: [ {
       descriptor: {
@@ -86,9 +97,62 @@ module.exports = {
             'css/article-browser-widget.css': {
                url: './includes/widgets/shop-demo/article-browser-widget/cube.theme/css/article-browser-widget.css'
             }
-            // 'article-browser-widget.html': {
-            //    content: require( '!!raw!./includes/themes/cube.theme/article-browser-widget/article-browser-widget.html' )
-            // }
+         }
+      }
+   }, {
+      descriptor: require( '!!json!./includes/widgets/shop-demo/article-teaser-widget/widget.json' ),
+      module: require( './includes/widgets/shop-demo/article-teaser-widget/article-teaser-widget' ),
+      assets: {
+         'default.theme': {
+            'css/article-teaser-widget.css': {
+               url: './includes/widgets/shop-demo/article-teaser-widget/default.theme/css/article-teaser-widget.css'
+            }
+         },
+         'cube.theme': {
+            'css/article-teaser-widget.css': {
+               url: './includes/widgets/shop-demo/article-teaser-widget/cube.theme/css/article-teaser-widget.css'
+            }
+         }
+      }
+   }, {
+      descriptor: require( '!!json!./includes/widgets/shop-demo/shopping-cart-widget/widget.json' ),
+      module: require( './includes/widgets/shop-demo/shopping-cart-widget/shopping-cart-widget' ),
+      assets: {
+         'default.theme': {
+            'shopping-cart-widget.html': {
+               content: require( '!!raw!./includes/widgets/shop-demo/shopping-cart-widget/default.theme/shopping-cart-widget.html' )
+            },
+            'css/shopping-cart-widget.css': {
+               url: './includes/widgets/shop-demo/shopping-cart-widget/default.theme/css/shopping-cart-widget.css'
+            }
+         },
+         'cube.theme': {
+            'css/shopping-cart-widget.css': {
+               url: './includes/widgets/shop-demo/shopping-cart-widget/cube.theme/css/shopping-cart-widget.css'
+            }
+         }
+      }
+   }, {
+      descriptor: require( '!!json!./includes/widgets/shop-demo/article-search-box-widget/widget.json' ),
+      module: require( './includes/widgets/shop-demo/article-search-box-widget/article-search-box-widget' ),
+      assets: {
+         'default.theme': {
+            'article-search-box-widget.html': {
+               content: require( '!!raw!./includes/widgets/shop-demo/article-search-box-widget/default.theme/article-search-box-widget.html' )
+            },
+            'css/article-search-box-widget.css': {
+               url: './includes/widgets/shop-demo/article-search-box-widget/default.theme/css/article-search-box-widget.css'
+            }
+         }
+      }
+   }, {
+      descriptor: require( '!!json!./includes/widgets/shop-demo/headline-widget/widget.json' ),
+      module: require( './includes/widgets/shop-demo/headline-widget/headline-widget' ),
+      assets: {
+         'default.theme': {
+            'headline-widget.html': {
+               content: require( '!!raw!./includes/widgets/shop-demo/headline-widget/default.theme/headline-widget.html' )
+            }
          }
       }
    } ],
