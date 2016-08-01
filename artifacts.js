@@ -22,7 +22,11 @@ module.exports = {
          'shop-demo/article-teaser-widget': 2,
          'shop-demo/shopping-cart-widget': 3,
          'shop-demo/article-search-box-widget': 4,
-         'shop-demo/headline-widget': 5
+         'shop-demo/headline-widget': 5,
+         'ax-accordion-widget': 6
+      },
+      controls: {
+         'laxar-accordion-control': 0
       }
    },
    flows: [ {
@@ -155,7 +159,31 @@ module.exports = {
             }
          }
       }
+   }, {
+      descriptor: require( '!!json!./includes/widgets/ax-accordion-widget/widget.json' ),
+      module: require( './includes/widgets/ax-accordion-widget/ax-accordion-widget' ),
+      assets: {
+         'default.theme': {
+            'ax-accordion-widget.html': {
+               content: require( '!!raw!./includes/widgets/ax-accordion-widget/default.theme/ax-accordion-widget.html' )
+            },
+            'css/article-search-box-widget.css': {
+               url: './includes/widgets/ax-accordion-widget/default.theme/css/ax-accordion-widget.css'
+            }
+         }
+      }
    } ],
    controls: [
+      {
+         descriptor: require( '!!json!./includes/controls/laxar-accordion-control/control.json' ),
+         module: require( './includes/controls/laxar-accordion-control/ax-accordion-control' ),
+         assets: {
+            'default.theme': {
+               'css/ax-accordion-control.css': {
+                  url: './includes/widgets/ax-accordion-control/default.theme/css/ax-accordion-control.css'
+               }
+            }
+         }
+      }
    ]
 };
