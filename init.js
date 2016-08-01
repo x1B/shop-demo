@@ -10,12 +10,12 @@ import { bootstrap } from 'laxar';
 import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
 
-import assets from './assets';
+import artifacts from './artifacts';
 
 bootstrap( document.querySelector( '[data-ax-page]' ), {
    widgetAdapters: [ angularAdapter, reactAdapter ],
    configuration: window.laxarConfig,
-   assets
+   artifacts
 } );
 
 // uncomment to test compatibility mode (change webpack config first)
