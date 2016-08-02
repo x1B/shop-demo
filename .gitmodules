@@ -18,7 +18,7 @@
 	url = https://github.com/LaxarJS/laxar-uikit.git
 [submodule "includes/widgets/ax-accordion-widget"]
 	path = includes/widgets/ax-accordion-widget
-	url = git@github.com:LaxarJS/ax-accordion-widget.git
+	url = git@github.com:x1b/ax-accordion-widget.git
 [submodule "includes/controls/laxar-i18n-control"]
 	path = includes/controls/laxar-i18n-control
 	url = git@github.com:LaxarJS/laxar-i18n-control
