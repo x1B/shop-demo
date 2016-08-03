@@ -1,0 +1,19 @@
+{
+   "layout": "application-one-column",
+
+   "areas": {
+      "content": [
+         {
+            "widget": "shop-demo/headline-widget",
+            "features": {
+               "headline": {
+                  "htmlText": "404 - Seite nicht gefunden"
+               },
+               "intro": {
+                  "htmlText": "Die von Ihnen angeforderte Seite existiert nicht. Das ist okay und ein guter Grund Feierabend zu machen. Vermutlich möchten Sie zurück zur <a href=\"#!/shopDemo\">Startseite</a>"
+               }
+            }
+         }
+      ]
+   }
+}

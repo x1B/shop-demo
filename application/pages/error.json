@@ -1,0 +1,19 @@
+{
+   "layout": "application",
+
+   "areas": {
+      "contentA": [
+         {
+            "widget": "shop-demo/headline-widget",
+            "features": {
+               "headline": {
+                  "htmlText": "Schrecklicher Fehler!"
+               },
+               "intro": {
+                  "htmlText": "Ein Entwickler hat Mumpitz gemacht! Laufen Sie bitte schreiend weg!"
+               }
+            }
+         }
+      ]
+   }
+}

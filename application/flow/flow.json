@@ -1,6 +1,18 @@
 {
+   "redirectOn": {
+      "unknownPlace": "error404",
+      "error": "errorFatal"
+   },
    "places": {
-      "entry": {
+      "error404": {
+         "page": "404"
+      },
+
+      "errorFatal": {
+         "page": "error"
+      },
+
+      "": {
          "redirectTo": "shopDemo"
       },
 
@@ -9,7 +21,7 @@
       },
 
       "finishOrder": {
-         "page":  "finish_order"
+         "page": "finish_order"
       }
    }
 }
