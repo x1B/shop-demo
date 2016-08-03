@@ -74,6 +74,8 @@ module.exports = {
          'laxar-application-dependencies': './var/flows/main/dependencies',
 
          'laxar-path-root': '.',
+         'laxar-path-flows': './application/flows',
+         'laxar-path-default-theme': './includes/lib/laxar-uikit/themes/default.theme',
          'laxar-path-layouts': './application/layouts',
          'laxar-path-pages': './application/pages',
          'laxar-path-widgets': './includes/widgets',

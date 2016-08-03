@@ -10,7 +10,7 @@ import { bootstrap } from 'laxar';
 import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
 
-import artifacts from './artifacts';
+import artifacts from 'laxar-loader?flows=main&themes=cube,default!./package.json';
 
 bootstrap( document.querySelector( '[data-ax-page]' ), {
    widgetAdapters: [ angularAdapter, reactAdapter ],
