@@ -47,17 +47,17 @@ module.exports = function(grunt) {
       },
 
       'webpack-dev-server': {
-			options: {
-				webpack: webpackConfig,
-				publicPath: webpackConfig.output.publicPath,
+         options: {
+            webpack: webpackConfig,
+            publicPath: webpackConfig.output.publicPath,
             port: 8100
-			},
-			start: {
-				keepAlive: true,
-				webpack: {
-					devtool: "eval",
-					debug: true
-				}
+         },
+         start: {
+            keepAlive: true,
+            webpack: {
+               devtool: 'eval',
+               debug: true
+            }
          }
       },
       concurrent: {
@@ -69,26 +69,26 @@ module.exports = function(grunt) {
             options: {
                logConcurrentOutput: true
             }
-          }
+         }
       }
    } );
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   grunt.loadNpmTasks('grunt-concurrent');
-   grunt.loadNpmTasks('grunt-laxar');
-   grunt.loadNpmTasks('grunt-webpack');
+   grunt.loadNpmTasks( 'grunt-concurrent' );
+   grunt.loadNpmTasks( 'grunt-laxar' );
+   grunt.loadNpmTasks( 'grunt-webpack' );
 
    // basic aliases
-   grunt.registerTask('test', ['laxar-test']);
-   grunt.registerTask('build', ['laxar-build', 'webpack:main-develop']);
-   grunt.registerTask('develop', ['concurrent:develop-main']);
-   grunt.registerTask('info', ['laxar-info']);
-   grunt.registerTask('dist', ['laxar-configure', 'laxar-dist-css', 'webpack:main-dist']);
+   grunt.registerTask( 'test', [ 'laxar-test' ] );
+   grunt.registerTask( 'build', [ 'laxar-build', 'webpack:main-develop' ] );
+   grunt.registerTask( 'develop', [ 'concurrent:develop-main' ] );
+   grunt.registerTask( 'info', [ 'laxar-info' ] );
+   grunt.registerTask( 'dist', [ 'laxar-configure', 'laxar-dist-css', 'webpack:main-dist' ] );
 
    // additional (possibly) more intuitive aliases
-   grunt.registerTask('optimize', ['dist']);
-   grunt.registerTask('start', ['develop']);
+   grunt.registerTask( 'optimize', [ 'dist' ] );
+   grunt.registerTask( 'start', [ 'develop' ] );
 
-   grunt.registerTask('default', ['build', 'test']);
+   grunt.registerTask( 'default', [ 'build', 'test' ] );
 };
