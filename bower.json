@@ -18,7 +18,9 @@
     "angular-sanitize": "~1.5.7",
     "react": "~15.1",
     "laxar-developer-tools-widget": "~2.0.0",
-    "whatwg-fetch": "*"
+    "whatwg-fetch": "*",
+    "html5-history-api": "^4.2.7",
+    "number-to-locale-string": "^1.0.1"
   },
   "devDependencies": {
     "laxar-mocks": "~1.0.0",

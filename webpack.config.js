@@ -12,13 +12,13 @@ module.exports = {
    output: {
       path: path.resolve( './var/flows/main/dist' ),
       publicPath: '/var/flows/main/dist/',
-      filename: '[name].bundle.js',
+      filename: '[name].bundle.js'
    },
    plugins: [
       new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.js' ),
       new webpack.SourceMapDevToolPlugin( {
          filename: '[name].bundle.js.map'
-      } ),
+      } )
    ],
 
    _distOutput: {
@@ -52,6 +52,7 @@ module.exports = {
          'react': path.resolve( './bower_components/react/react' ),
          'react-dom': path.resolve( './bower_components/react/react-dom' ),
          'laxar': path.resolve( './includes/lib/laxar/laxar' ),
+         'polyfills': path.resolve( './includes/lib/laxar/polyfills' ),
          'whatwg-fetch': path.resolve( './bower_components/whatwg-fetch/fetch' ),
          'laxar-react-adapter': path.resolve( './includes/lib/laxar-react-adapter/laxar-react-adapter' ),
          'laxar-angular-adapter': path.resolve( './includes/lib/laxar-angular-adapter/laxar-angular-adapter' ),
