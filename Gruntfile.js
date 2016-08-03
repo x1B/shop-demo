@@ -20,7 +20,7 @@ module.exports = function(grunt) {
             flows: [
                {
                   target: 'main',
-                  src: 'application/flow/flow.json'
+                  src: 'application/flows/main.json'
                }
             ],
             ports: {

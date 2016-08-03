@@ -27,6 +27,12 @@ module.exports = {
       filename: '[name].bundle.min.js'
    },
    _distPlugins: [
+      // make react happy
+      new webpack.DefinePlugin( {
+         'process.env': {
+            'NODE_ENV': JSON.stringify( 'production' )
+         }
+      } ),
       new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.min.js' ),
       new webpack.optimize.DedupePlugin(),
       new webpack.SourceMapDevToolPlugin( {
@@ -52,8 +58,6 @@ module.exports = {
          'page': path.resolve( './bower_components/page/page' ),
          'fast-json-patch': path.resolve( './bower_components/fast-json-patch/src/json-patch' ),
          'moment': path.resolve( './bower_components/moment/moment' ),
-         'react': path.resolve( './bower_components/react/react' ),
-         'react-dom': path.resolve( './bower_components/react/react-dom' ),
 
          'laxar': path.resolve( './includes/lib/laxar/laxar' ),
          // uncomment to test compatibility mode:
