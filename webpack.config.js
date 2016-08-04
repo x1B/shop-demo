@@ -3,7 +3,7 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 
-const commonPlugins = [
+const basePlugins = [
    new webpack.ResolverPlugin( [
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'package.json', [ 'main' ] ),
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'bower.json', [ 'main' ] )
@@ -13,37 +13,20 @@ const commonPlugins = [
 module.exports = {
    entry: {
       'app': './init.js',
-      'vendor': [ 'react', 'angular', 'laxar' ]
+      'vendor': [ 'react', 'jquery', 'angular', 'laxar' ]
    },
 
    output: {
-      path: path.resolve( './var/flows/main/dist' ),
-      publicPath: '/var/flows/main/dist/',
+      path: path.resolve( './var/build/' ),
+      publicPath: '/var/build',
       filename: '[name].bundle.js'
    },
-   plugins: commonPlugins.concat( [
+
+   basePlugins,
+   plugins: basePlugins.concat( [
       new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.js' ),
       new webpack.SourceMapDevToolPlugin( {
          filename: '[name].bundle.js.map'
-      } )
-   ] ),
-
-   _distOutput: {
-      path: path.resolve( './var/flows/main/dist' ),
-      publicPath: '/var/flows/main/dist/',
-      filename: '[name].bundle.min.js'
-   },
-   _distPlugins: commonPlugins.concat( [
-      // make react happy
-      new webpack.DefinePlugin( {
-         'process.env': { 'NODE_ENV': JSON.stringify( 'production' ) }
-      } ),
-      new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.bundle.min.js' ),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.min.js.map' } ),
-      new webpack.optimize.UglifyJsPlugin( {
-         compress: { warnings: false },
-         sourceMap: true
       } )
    ] ),
 

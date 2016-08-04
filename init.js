@@ -11,8 +11,27 @@ import * as reactAdapter from 'laxar-react-adapter';
 
 import artifacts from 'laxar-loader?flows=main&themes[]=default&themes[]=cube!./package.json';
 
+const config = {
+   name: 'LaxarJS ShopDemo',
+   baseHref: window.location.pathname,
+   flow: {
+      name: 'main',
+      router: {
+         hashbang: true,
+         dispatch: true
+      }
+   },
+   logging: {
+      threshold: 'TRACE'
+   },
+   theme: 'cube',
+   tooling: {
+      enabled: true
+   }
+};
+
 bootstrap( document.querySelector( '[data-ax-page]' ), {
    widgetAdapters: [ angularAdapter, reactAdapter ],
-   configuration: window.laxarConfig,
+   configuration: config,
    artifacts
 } );
