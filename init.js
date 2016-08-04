@@ -3,18 +3,16 @@
  * Released under the MIT license
  */
 import 'polyfills';
-import 'html5-history-api';
 import 'number-to-locale-string';
 import { bootstrap } from 'laxar';
-import applicationDependencies from './var/flows/main/dependencies';
-import resources from 'json!./var/flows/main/resources.json';
+
 import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
-import 'whatwg-fetch';
+
+import artifacts from 'laxar-loader?flows=main&themes[]=default&themes[]=cube!./package.json';
 
 bootstrap( document.querySelector( '[data-ax-page]' ), {
    widgetAdapters: [ angularAdapter, reactAdapter ],
-   widgetModules: applicationDependencies,
    configuration: window.laxarConfig,
-   resources
+   artifacts
 } );

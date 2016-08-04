@@ -13,10 +13,6 @@
       },
 
       "": {
-         "redirectTo": "shopDemo"
-      },
-
-      "shopDemo": {
          "page":  "shop_demo"
       },
 

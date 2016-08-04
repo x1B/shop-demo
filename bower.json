@@ -16,10 +16,6 @@
     "angular": "~1.5.7",
     "angular-route": "~1.5.7",
     "angular-sanitize": "~1.5.7",
-    "react": "~15.1",
-    "laxar-developer-tools-widget": "~2.0.0",
-    "whatwg-fetch": "*",
-    "html5-history-api": "^4.2.7",
     "number-to-locale-string": "^1.0.1"
   },
   "devDependencies": {
@@ -28,7 +24,6 @@
   },
   "resolutions": {
     "bootstrap-sass-official": "~3.3.0",
-    "react": "~15.1",
     "laxar": "*",
     "angular": "~1.5.7",
     "angular-route": "~1.5.7",
