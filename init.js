@@ -9,7 +9,7 @@ import { bootstrap } from 'laxar';
 import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
 
-import artifacts from 'laxar-loader?flows=main&themes[]=default&themes[]=cube!./package.json';
+import artifacts from 'laxar-loader?flow=main&theme=cube!./package.json';
 
 const config = {
    name: 'LaxarJS ShopDemo',
