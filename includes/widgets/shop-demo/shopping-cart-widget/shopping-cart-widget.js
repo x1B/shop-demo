@@ -62,6 +62,8 @@ export function create( eventBus, id, features, log, withDom ) {
       withDom( element => {
          const $ = selector => q( element, selector )[ 0 ];
          const cartEmpty = !cart.length;
+         toggleClass( $( '.ax-function-point' ), 'app-articles', !cartEmpty );
+         toggleClass( $( 'table' ), 'app-articles', !cartEmpty );
          toggleClass( $( '.app-order-button-area' ), 'hidden', cartEmpty );
          toggleClass( $( '.app-articles-row' ), 'hidden', cartEmpty );
          toggleClass( $( '.app-no-articles-row' ), 'hidden', !cartEmpty );
@@ -75,6 +77,7 @@ export function create( eventBus, id, features, log, withDom ) {
 
    function updateCartTable() {
       withDom( element => {
+
          const container = q( element, '.app-articles-container' )[ 0 ];
          Array.from( container.childNodes ).forEach( node => {
             node.parentNode.removeChild( node );
