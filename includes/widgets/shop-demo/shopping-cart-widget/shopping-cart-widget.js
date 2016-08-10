@@ -6,24 +6,28 @@
 import { assert } from 'laxar';
 
 export const name = 'shopping-cart-widget';
-export const injections = [ 'axEventBus', 'axId', 'axFeatures', 'axLog', 'axWithDom' ];
-export function create( eventBus, id, features, log, withDom ) {
+export const injections = [ 'axEventBus', 'axId', 'axFeatures', 'axLog', 'axWithDom', 'axContext' ];
+export function create( eventBus, id, features, log, withDom, context ) {
 
    const format = number => number.toLocaleString( window.navigator.language, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
    } );
 
-   let article = null;
-   let cart = [];
+   context.article = null;
+   context.cart = [];
+   context.sum = 0;
 
-   eventBus.subscribe( `didReplace.${features.article.resource}`, ({ data }) => { article = data; } );
+
+   eventBus.subscribe( `didReplace.${features.article.resource}`, ({ data }) => {
+      context.article = data;
+   } );
 
    features.article.onActions.forEach( action => {
       eventBus.subscribe( `takeActionRequest.${action}`, () => {
          eventBus.publish( `willTakeAction.${action}`, { action } );
-         if( article ) {
-            addArticleToCart( article );
+         if( context.article ) {
+            addArticleToCart( context.article );
          }
          eventBus.publish( `didTakeAction.${action}`, { action } );
       } );
@@ -32,11 +36,11 @@ export function create( eventBus, id, features, log, withDom ) {
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function addArticleToCart( newArticle ) {
-      if( !cart.some( item => item.article.id === newArticle.id ) ) {
-         cart = [ ...cart, { article: newArticle, quantity: 1 } ];
+      if( !context.cart.some( item => item.article.id === newArticle.id ) ) {
+         context.cart = [ ...context.cart, { article: newArticle, quantity: 1 } ];
       }
       else {
-         cart = cart.map( ( { article, quantity } ) => {
+         context.cart = context.cart.map( ( { article, quantity } ) => {
             return { article, quantity: article.id === newArticle.id ? quantity + 1 : quantity };
          } );
       }
@@ -47,7 +51,7 @@ export function create( eventBus, id, features, log, withDom ) {
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function removeArticleFromCart( articleToRemove ) {
-      cart = cart
+      context.cart = context.cart
          .map( ({ article, quantity }) => {
             return { article, quantity: article.id === articleToRemove.id ? quantity - 1 : quantity };
          } )
@@ -61,7 +65,7 @@ export function create( eventBus, id, features, log, withDom ) {
    function updateDom() {
       withDom( element => {
          const $ = selector => q( element, selector )[ 0 ];
-         const cartEmpty = !cart.length;
+         const cartEmpty = !context.cart.length;
          toggleClass( $( '.ax-function-point' ), 'app-articles', !cartEmpty );
          toggleClass( $( 'table' ), 'app-articles', !cartEmpty );
          toggleClass( $( '.app-order-button-area' ), 'hidden', cartEmpty );
@@ -83,7 +87,7 @@ export function create( eventBus, id, features, log, withDom ) {
             node.parentNode.removeChild( node );
          } );
 
-         const cartRows = cart.length ? cart.reduce( ( html, item ) => {
+         const cartRows = context.cart.length ? context.cart.reduce( ( html, item ) => {
             return html + rowTemplate( item );
          }, '' ) : '<tr><td colspan="5">&nbsp;</td></tr>';
 
@@ -100,7 +104,7 @@ export function create( eventBus, id, features, log, withDom ) {
                action: button.getAttribute( 'data-action' ),
                articleId: button.getAttribute( 'data-article-id' )
             };
-            const [ { article } ] = cart.filter( ({ article }) => article.id === articleId );
+            const [ { article } ] = context.cart.filter( ({ article }) => article.id === articleId );
             button.addEventListener( 'click', () => {
                switch( action ) {
                   case 'increase':
@@ -124,8 +128,11 @@ export function create( eventBus, id, features, log, withDom ) {
 
    function updateSum() {
       withDom( element => {
-         const sum = cart.reduce( ( sum, { article, quantity } ) => sum + ( quantity * article.price ), 0 );
-         q( element, '.app-out-sum' )[ 0 ].innerHTML = `${format( sum )}€`;
+         context.sum = context.cart.reduce(
+            ( sum, { article, quantity } ) => sum + ( quantity * article.price ),
+            0
+         );
+         q( element, '.app-out-sum' )[ 0 ].innerHTML = `${format( context.sum )}€`;
       } );
    }
 

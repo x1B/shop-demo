@@ -10,3 +10,4 @@ ShopDemo-*.zip
 *~
 npm-debug.log
 test-results.xml
+/spec-output

@@ -3,52 +3,50 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-define( [
-   'json!../widget.json',
-   'laxar-mocks',
-   '../articles'
-], function( descriptor, axMocks, articles ) {
-   'use strict';
+import descriptor from 'json!../widget.json';
+import * as axMocks from 'laxar-mocks';
+import { articles } from '../articles';
 
-   describe( 'The dummy-articles-activity', function() {
+console.log( "DELETE ME", articles );
 
-      beforeEach( axMocks.createSetupForWidget( descriptor ) );
-      beforeEach( function() {
-         axMocks.widget.configure( {
-            articles: {
-               resource: 'articles'
-            }
-         } );
+describe( 'The dummy-articles-activity', () => {
+
+   beforeEach( axMocks.createSetupForWidget( descriptor ) );
+   beforeEach( () => {
+      axMocks.widget.configure( {
+         articles: {
+            resource: 'articles'
+         }
       } );
-      beforeEach( axMocks.widget.load );
+   } );
+   beforeEach( axMocks.widget.load );
 
-      afterEach( axMocks.tearDown );
+   afterEach( axMocks.tearDown );
 
-      /////////////////////////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'on beginLifecycleRequest', function() {
+   describe( 'on beginLifecycleRequest', () => {
 
-         beforeEach( function() {
-            axMocks.triggerStartupEvents();
-         } );
+      beforeEach( () => {
+         axMocks.triggerStartupEvents();
+      } );
 
-         //////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'publishes some dummy articles', function() {
-            expect( axMocks.widget.axEventBus.publish )
-               .toHaveBeenCalledWith( 'didReplace.articles', {
-                  resource: 'articles',
-                  data: {
-                     entries: articles.map( function( article ) {
-                        article.pictureUrl = article.picture ?
-                           jasmine.any( String ) : null;
-                        return article;
-                     } )
-                  }
-               } );
-         } );
-
+      it( 'publishes some dummy articles', () => {
+         expect( axMocks.widget.axEventBus.publish )
+            .toHaveBeenCalledWith( 'didReplace.articles', {
+               resource: 'articles',
+               data: {
+                  entries: articles.map( article => {
+                     article.pictureUrl = article.picture ?
+                        jasmine.any( String ) : null;
+                     return article;
+                  } )
+               }
+            } );
       } );
 
    } );
+
 } );

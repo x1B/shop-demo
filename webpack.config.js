@@ -1,3 +1,8 @@
+/**
+ * Copyright 2016 aixigo AG
+ * Released under the MIT license.
+ * http://laxarjs.org/license
+ */
 /* eslint-env node */
 
 const path = require( 'path' );
@@ -61,13 +66,18 @@ module.exports = {
       loaders: [
          {
             test: /\.jsx?$/,
-            exclude: /(node_modules|bower_components|spec)/,
+            exclude: /(node_modules|bower_components)/,
             loader: 'babel-loader'
          },
          {
             test: /\.png$/,
             exclude: /(node_modules|bower_components|spec)/,
             loader: 'file-loader'
+         },
+         {
+            test: /.spec.jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            loader: './includes/lib/laxar-mocks/spec-loader'
          }
       ]
    }
