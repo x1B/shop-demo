@@ -3,27 +3,32 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+// Just as an example, here is an AMD-based spec test.
+/* global define */
 define( [
    'json!../widget.json',
-   'laxar-mocks'
-], function( descriptor, axMocks ) {
+   'laxar-mocks',
+   'laxar-angular-adapter'
+], ( descriptor, axMocks, adapter ) => {
    'use strict';
 
-   describe( 'The headline-widget', function() {
+   describe( 'The headline-widget', () => {
 
-      var widgetDom;
+      let widgetDom;
 
       beforeEach( axMocks.createSetupForWidget( descriptor, {
-         knownMissingResources: [ 'css/headline-widget.css' ]
+         adapter
       } ) );
 
-      beforeEach( function() {
+      beforeEach( () => {
          axMocks.widget.configure( {
-            headline: { htmlText: 'I am here!', level: 2 }
+            headline: { htmlText: 'I am here!' },
+            intro: { htmlText: 'For more information, read this!' }
          } );
       } );
       beforeEach( axMocks.widget.load );
-      beforeEach( function() {
+      beforeEach( () => {
          widgetDom = axMocks.widget.render();
       } );
 
@@ -31,8 +36,14 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      it( 'displays a headline', function() {
+      it( 'displays a headline', () => {
          expect( widgetDom.querySelector( 'h2' ).textContent ).toEqual( 'I am here!' );
+      } );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      it( 'displays an intro text', () => {
+         expect( widgetDom.querySelector( 'p' ).textContent ).toEqual( 'For more information, read this!' );
       } );
 
    } );

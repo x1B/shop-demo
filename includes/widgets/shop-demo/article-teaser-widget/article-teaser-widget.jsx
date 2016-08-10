@@ -2,9 +2,6 @@
  * Copyright 2016 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
- *
- * compile using
- * > babel -m amd -d . article-teaser-widget.jsx
  */
 import React from 'react';
 

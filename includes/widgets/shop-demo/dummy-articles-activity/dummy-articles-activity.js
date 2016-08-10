@@ -9,7 +9,7 @@ import { articles } from './articles';
 export const name = 'dummy-articles-activity';
 export const injections = [ 'axEventBus', 'axFeatures' ];
 export function create( eventBus, features ) {
-   eventBus.subscribe( 'beginLifecycleRequest', function() {
+   eventBus.subscribe( 'beginLifecycleRequest', () => {
       const articleResource = features.articles.resource;
 
       eventBus.publish( `didReplace.${articleResource}`, {

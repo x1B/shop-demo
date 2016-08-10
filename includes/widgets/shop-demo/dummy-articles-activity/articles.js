@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* global require */
+
 export const articles = [
    {
       'id': 'B009K2QULM',

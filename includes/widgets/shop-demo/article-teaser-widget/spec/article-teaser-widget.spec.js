@@ -3,35 +3,35 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* global define */
 define( [
    'json!../widget.json',
    'laxar-mocks',
    'laxar-react-adapter',
    'json!./spec_data.json'
-], function( descriptor, axMocks, axReactAdapter, resourceData ) {
+], ( descriptor, axMocks, axReactAdapter, resourceData ) => {
    'use strict';
 
-   describe( 'The article-teaser-widget', function() {
+   describe( 'The article-teaser-widget', () => {
 
-      var features = {
-         article: {
-            resource: 'article'
-         },
-         confirmation: {
-            action: 'addArticle'
-         }
-      };
-
-      var widgetDom;
+      let widgetDom;
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       beforeEach( axMocks.createSetupForWidget( descriptor, { adapter: axReactAdapter } ) );
-      beforeEach( function() {
-         axMocks.widget.configure( features );
+      beforeEach( () => {
+         axMocks.widget.configure( {
+            article: {
+               resource: 'article'
+            },
+            confirmation: {
+               action: 'addArticle'
+            }
+         } );
       } );
       beforeEach( axMocks.widget.load );
-      beforeEach( function() {
+      beforeEach( () => {
          widgetDom = axMocks.widget.render();
       } );
 
@@ -39,9 +39,9 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'with feature article and configured resource', function() {
+      describe( 'with feature article and configured resource', () => {
 
-         beforeEach( function() {
+         beforeEach( () => {
             axMocks.eventBus.publish( 'didReplace.article', {
                resource: 'article',
                data: resourceData
@@ -50,7 +50,7 @@ define( [
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'subscribes to didReplace events of the article resource', function() {
+         it( 'subscribes to didReplace events of the article resource', () => {
             expect( axMocks.widget.axEventBus.subscribe )
                .toHaveBeenCalledWith( 'didReplace.article', jasmine.any( Function ) );
          } );
@@ -59,9 +59,9 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'with feature confirmation, when the user adds an article to the cart', function() {
+      describe( 'with feature confirmation, when the user adds an article to the cart', () => {
 
-         beforeEach( function() {
+         beforeEach( () => {
             axMocks.eventBus.publish( 'didReplace.article', {
                resource: 'article',
                data: resourceData
@@ -72,7 +72,7 @@ define( [
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'publishes a corresponding takeActionRequest event', function() {
+         it( 'publishes a corresponding takeActionRequest event', () => {
             expect( axMocks.widget.axEventBus.publish )
                .toHaveBeenCalledWith( 'takeActionRequest.addArticle', { action: 'addArticle' } );
          } );

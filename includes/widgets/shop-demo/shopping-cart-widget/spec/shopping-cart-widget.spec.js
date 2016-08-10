@@ -3,197 +3,191 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-define( [
-   'json!../widget.json',
-   'laxar-mocks',
-   'json!./spec_data.json'
-], function( descriptor, axMocks, articles ) {
-   'use strict';
 
-   describe( 'The ShoppingCartWidget', function() {
+import descriptor from 'json!../widget.json';
+import * as axMocks from 'laxar-mocks';
 
-      var widgetDom;
+import articles from 'json!./spec_data.json';
 
-      beforeEach( axMocks.createSetupForWidget( descriptor ) );
-      beforeEach( function() {
-         axMocks.widget.configure( {
-            article: {
-               resource: 'article',
-               onActions: [ 'addArticle' ]
-            },
-            order: {
-               target: 'placeOrder'
-            }
+describe( 'The ShoppingCartWidget', () => {
+
+   beforeEach( axMocks.createSetupForWidget( descriptor ) );
+   beforeEach( () => {
+      axMocks.widget.configure( {
+         article: {
+            resource: 'article',
+            onActions: [ 'addArticle' ]
+         },
+         order: {
+            target: 'placeOrder'
+         }
+      } );
+   } );
+   beforeEach( axMocks.widget.load );
+
+   let widgetDom;
+   beforeEach( () => { widgetDom = axMocks.widget.render(); } );
+   afterEach( axMocks.tearDown );
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   describe( 'with a configured article', () => {
+
+      beforeEach( () => {
+         axMocks.eventBus.publish( 'didReplace.article', {
+            resource: 'article',
+            data: articles[ 0 ]
          } );
-      } );
-      beforeEach( axMocks.widget.load );
-      beforeEach( function() {
-         widgetDom = axMocks.widget.render();
+         axMocks.eventBus.flush();
       } );
 
-      afterEach( axMocks.tearDown );
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      /////////////////////////////////////////////////////////////////////////
+      it( 'subscribes to the article resource.', () => {
+         expect( axMocks.widget.axEventBus.subscribe ).toHaveBeenCalledWith(
+            'didReplace.article',
+            jasmine.any( Function ) );
 
-      describe( 'with a configured article', function() {
+         expect( axMocks.widget.axContext.article )
+            .toEqual( articles[ 0 ] );
+      } );
 
-         beforeEach( function() {
-            axMocks.eventBus.publish( 'didReplace.article', {
-               resource: 'article',
-               data: articles[ 0 ]
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      it( 'listens to configured action events.', () => {
+         expect( axMocks.widget.axEventBus.subscribe ).toHaveBeenCalledWith(
+            'takeActionRequest.addArticle',
+            jasmine.any( Function )
+         );
+      } );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      describe( 'when the article action was triggered', () => {
+
+         beforeEach( () => {
+            axMocks.eventBus.publish( 'takeActionRequest.addArticle', {
+               action: 'addArticle'
             } );
             axMocks.eventBus.flush();
          } );
 
-         //////////////////////////////////////////////////////////////////////
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'subscribes to the article resource.', function() {
-            expect( axMocks.widget.axEventBus.subscribe ).toHaveBeenCalledWith(
-               'didReplace.article',
-               jasmine.any( Function ) );
-
-            expect( axMocks.widget.$scope.resources.article )
-               .toEqual( articles[ 0 ] );
-         } );
-
-         //////////////////////////////////////////////////////////////////////
-
-         it( 'listens to configured action events.', function() {
-            expect( axMocks.widget.axEventBus.subscribe ).toHaveBeenCalledWith(
-               'takeActionRequest.addArticle',
-               jasmine.any( Function )
-            );
-         } );
-
-         //////////////////////////////////////////////////////////////////////
-
-         describe( 'when the article action was triggered', function() {
-
-            beforeEach( function() {
-               axMocks.eventBus.publish( 'takeActionRequest.addArticle', {
+         it( 'publishes a willTakeAction event', () => {
+            expect( axMocks.widget.axEventBus.publish )
+               .toHaveBeenCalledWith( 'willTakeAction.addArticle', {
                   action: 'addArticle'
                } );
+         } );
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         it( 'adds the new article to the cart', () => {
+            const firstItem = axMocks.widget.axContext.cart[ 0 ];
+            expect( firstItem.article ).toEqual( articles[ 0 ] );
+            expect( firstItem.quantity ).toBe( 1 );
+         } );
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         it( 'publishes a didTakeAction event', () => {
+            expect( axMocks.widget.axEventBus.publish )
+               .toHaveBeenCalledWith( 'didTakeAction.addArticle', {
+                  action: 'addArticle'
+               } );
+         } );
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         describe( 'and then triggered again', () => {
+
+            beforeEach( () => {
+               axMocks.eventBus
+                  .publish( 'takeActionRequest.addArticle', {
+                     action: 'addArticle'
+                  } );
                axMocks.eventBus.flush();
             } );
 
-            ///////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            it( 'publishes a willTakeAction event', function() {
+            it( 'publishes a willTakeAction event', () => {
                expect( axMocks.widget.axEventBus.publish )
                   .toHaveBeenCalledWith( 'willTakeAction.addArticle', {
                      action: 'addArticle'
                   } );
             } );
 
-            ///////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            it( 'adds the new article to the cart', function() {
-               var firstItem = axMocks.widget.$scope.cart[ 0 ];
-               expect( firstItem.article ).toEqual( articles[ 0 ] );
-               expect( firstItem.quantity ).toBe( 1 );
+            it( 'increases the quantity', () => {
+               expect( axMocks.widget.axContext.cart[ 0 ].quantity ).toBe( 2 );
             } );
 
-            ///////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            it( 'publishes a didTakeAction event', function() {
+            it( 'publishes a didTakeAction event', () => {
                expect( axMocks.widget.axEventBus.publish )
                   .toHaveBeenCalledWith( 'didTakeAction.addArticle', {
                      action: 'addArticle'
                   } );
             } );
 
-            ///////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            describe( 'and then triggered again', function() {
+            describe( 'when the user increases the quantity', () => {
 
-               beforeEach( function() {
-                  axMocks.eventBus
-                     .publish( 'takeActionRequest.addArticle', {
-                        action: 'addArticle'
-                     } );
-                  axMocks.eventBus.flush();
+               beforeEach( () => {
+                  const increaseButton = widgetDom.querySelector(
+                     'tbody tr:first-child td:last-child button:first-child'
+                  );
+                  increaseButton.click();
                } );
 
-               ////////////////////////////////////////////////////////////////
+               ///////////////////////////////////////////////////////////////////////////////////////////////
 
-               it( 'publishes a willTakeAction event', function() {
-                  expect( axMocks.widget.axEventBus.publish )
-                     .toHaveBeenCalledWith( 'willTakeAction.addArticle', {
-                        action: 'addArticle'
-                     } );
+               it( 'updates the sum accordingly', () => {
+                  expect( axMocks.widget.axContext.sum ).toEqual( 74.97 );
                } );
 
-               ////////////////////////////////////////////////////////////////
+            } );
 
-               it( 'increases the quantity', function() {
-                  expect( axMocks.widget.$scope.cart[ 0 ].quantity ).toBe( 2 );
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+
+            describe( 'when the user decreases the quantity', () => {
+               let decreaseButton;
+               beforeEach( () => {
+                  decreaseButton = widgetDom.querySelector(
+                     'tbody tr:first-child td:last-child button:last-child'
+                  );
+                  decreaseButton.click();
                } );
 
-               ////////////////////////////////////////////////////////////////
+               ///////////////////////////////////////////////////////////////////////////////////////////////
 
-               it( 'publishes a didTakeAction event', function() {
-                  expect( axMocks.widget.axEventBus.publish )
-                     .toHaveBeenCalledWith( 'didTakeAction.addArticle', {
-                        action: 'addArticle'
-                     } );
+               it( 'updates the sum accordingly', () => {
+                  expect( axMocks.widget.axContext.sum ).toEqual( 24.99 );
                } );
 
-               ////////////////////////////////////////////////////////////////
+               ///////////////////////////////////////////////////////////////////////////////////////////////
 
-               describe( 'when the user increases the quantity', function() {
-
-                  beforeEach( function() {
-                     var increaseButton = widgetDom.querySelector(
-                        'tbody tr:first-child td:last-child button:first-child'
-                     );
-                     increaseButton.click();
-                  } );
-
-                  /////////////////////////////////////////////////////////////
-
-                  it( 'updates the sum accordingly', function() {
-                     expect( axMocks.widget.$scope.sum ).toEqual( 74.97 );
-                  } );
-
+               it( 'removes one item from the cart', () => {
+                  expect( axMocks.widget.axContext.cart[ 0 ].quantity ).toBe( 1 );
                } );
 
-               ////////////////////////////////////////////////////////////////
+               ///////////////////////////////////////////////////////////////////////////////////////////////
 
-               describe( 'when the user decreases the quantity', function() {
-                  var decreaseButton;
-                  beforeEach( function() {
-                     decreaseButton = widgetDom.querySelector(
-                        'tbody tr:first-child td:last-child button:last-child'
-                     );
+               describe( 'and decreases it again', () => {
+
+                  beforeEach( () => {
                      decreaseButton.click();
                   } );
 
-                  /////////////////////////////////////////////////////////////
+                  ////////////////////////////////////////////////////////////////////////////////////////////
 
-                  it( 'updates the sum accordingly', function() {
-                     expect( axMocks.widget.$scope.sum ).toEqual( 24.99 );
-                  } );
-
-                  /////////////////////////////////////////////////////////////
-
-                  it( 'removes one item from the cart', function() {
-                     expect( axMocks.widget.$scope.cart[ 0 ].quantity ).toBe( 1 );
-                  } );
-
-                  /////////////////////////////////////////////////////////////
-
-                  describe( 'and decreases it again', function() {
-
-                     beforeEach( function() {
-                        decreaseButton.click();
-                     } );
-
-                     //////////////////////////////////////////////////////////
-
-                     it( 'deletes the article from the cart', function() {
-                        expect( axMocks.widget.$scope.cart.length ).toBe( 0 );
-                     } );
-
+                  it( 'deletes the article from the cart', () => {
+                     expect( axMocks.widget.axContext.cart.length ).toBe( 0 );
                   } );
 
                } );
@@ -204,42 +198,41 @@ define( [
 
       } );
 
+   } );
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   describe( 'with feature order', () => {
+
+      beforeEach( () => {
+         axMocks.widget.axContext.cart = [
+            {
+               article: articles[ 0 ],
+               quantity: 1
+            },
+            {
+               article: articles[ 1 ],
+               quantity: 4
+            }
+         ];
+      } );
+
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+      describe( 'and the user clicks the order button', () => {
 
-      describe( 'with feature order', function() {
-
-         beforeEach( function() {
-            axMocks.widget.$scope.cart = [
-               {
-                  article: articles[0],
-                  quantity: 1
-               },
-               {
-                  article: articles[1],
-                  quantity: 4
-               }
-            ];
-            axMocks.widget.$scope.$digest();
+         beforeEach( () => {
+            widgetDom.querySelector( 'button.btn-success' ).click();
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         describe( 'and the user clicks the order button', function() {
-
-            beforeEach( function() {
-               widgetDom.querySelector( 'button.btn-success' ).click();
-            } );
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-
-            it( 'triggers a navigateRequest with the configured target', function() {
-               expect( axMocks.widget.axEventBus.publish )
-                  .toHaveBeenCalledWith( 'navigateRequest.placeOrder',{
-                     target: 'placeOrder'
-                  } );
-            } );
-
+         it( 'triggers a navigateRequest with the configured target', () => {
+            expect( axMocks.widget.axEventBus.publish )
+               .toHaveBeenCalledWith( 'navigateRequest.placeOrder', {
+                  target: 'placeOrder'
+               } );
          } );
 
       } );

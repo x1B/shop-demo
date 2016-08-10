@@ -3,23 +3,24 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* global define */
 define( [
    'json!../widget.json',
    'laxar-mocks',
    'laxar',
    'json!./spec_data.json'
-], function( descriptor, axMocks, ax, resourceData ) {
+], ( descriptor, axMocks, ax, resourceData ) => {
    'use strict';
 
-   describe( 'The article-browser-widget', function() {
+   describe( 'The article-browser-widget', () => {
 
-      var data;
-      var widgetEventBus;
-      var widgetScope;
-      var testEventBus;
+      let data;
+      let widgetEventBus;
+      let testEventBus;
 
       beforeEach( axMocks.createSetupForWidget( descriptor ) );
-      beforeEach( function() {
+      beforeEach( () => {
          axMocks.widget.configure( {
             articles: {
                resource: 'articles'
@@ -30,9 +31,8 @@ define( [
          } );
       } );
       beforeEach( axMocks.widget.load );
-      beforeEach( function() {
+      beforeEach( () => {
          data = ax.object.deepClone( resourceData );
-         widgetScope = axMocks.widget.$scope;
          widgetEventBus = axMocks.widget.axEventBus;
          testEventBus = axMocks.eventBus;
       } );
@@ -40,26 +40,26 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      it( 'subscribes to didReplace events of the articles resource', function() {
+      it( 'subscribes to didReplace events of the articles resource', () => {
          expect( widgetEventBus.subscribe )
             .toHaveBeenCalledWith( 'didReplace.articles', jasmine.any( Function ) );
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'when the list of articles is replaced', function() {
+      describe( 'when the list of articles is replaced', () => {
 
-         beforeEach( function() {
+         beforeEach( () => {
             testEventBus.publish( 'didReplace.articles', {
                resource: 'articles',
-               data: data
+               data
             } );
             testEventBus.flush();
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'resets the article selection', function() {
+         it( 'resets the article selection', () => {
             expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'didReplace.selectedArticle', {
                resource: 'selectedArticle',
                data: null
@@ -68,15 +68,15 @@ define( [
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         describe( 'and the user selects an article', function() {
+         describe( 'and the user selects an article', () => {
 
-            beforeEach( function() {
+            beforeEach( () => {
                axMocks.widget.$scope.selectArticle( axMocks.widget.$scope.resources.articles[ 1 ] );
             } );
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            it( 'the configured selection resource is replaced', function() {
+            it( 'the configured selection resource is replaced', () => {
                expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'didReplace.selectedArticle', {
                   resource: 'selectedArticle',
                   data: axMocks.widget.$scope.resources.articles[ 1 ]
