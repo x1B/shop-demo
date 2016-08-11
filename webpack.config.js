@@ -18,7 +18,7 @@ const basePlugins = [
 module.exports = {
    entry: {
       'app': './init.js',
-      'vendor': [ 'react', 'jquery', 'angular', 'laxar' ]
+      'vendor': [ 'react', 'jquery', 'angular', 'laxar', 'laxar-angular-adapter' ]
    },
 
    output: {

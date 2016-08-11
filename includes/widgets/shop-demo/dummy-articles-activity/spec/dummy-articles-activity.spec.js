@@ -7,8 +7,6 @@ import descriptor from 'json!../widget.json';
 import * as axMocks from 'laxar-mocks';
 import { articles } from '../articles';
 
-console.log( "DELETE ME", articles );
-
 describe( 'The dummy-articles-activity', () => {
 
    beforeEach( axMocks.createSetupForWidget( descriptor ) );
