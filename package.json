@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "browser-spec": "webpack --config webpack.browser-spec.config.js && webpack-dev-server --port 8180 --config webpack.browser-spec.config.js",
-    "eslint": "eslint init.js includes/widgets *.config.js",
-    "karma": "karma start karma.config.js",
+    "eslint": "eslint init.js includes/widgets/shop-demo *.config.js",
+    "karma": "node karma.config.js",
     "optimize": "grunt optimize",
     "prepublish": "bower install && grunt optimize",
     "start": "webpack-dev-server",
@@ -44,7 +44,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-jasmine-html-runner-plugin": "^0.4.0",
+    "webpack-jasmine-html-runner-plugin": "^0.5.0",
     "yo": "~1.7.0"
   },
   "dependencies": {

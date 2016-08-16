@@ -3,9 +3,11 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+ /* global define */
 define( [
    'angular'
-], function( ng ) {
+], ng => {
    'use strict';
 
    Controller.$inject = [ '$scope', 'axEventBus' ];
@@ -19,23 +21,23 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      var unfilteredArticles = [];
-      var filteredArticles = [];
-      var articlesResource = $scope.features.articles.resource;
-      var filterArticlesResource = $scope.features.filteredArticles.resource;
+      let unfilteredArticles = [];
+      let filteredArticles = [];
+      const articlesResource = $scope.features.articles.resource;
+      const filterArticlesResource = $scope.features.filteredArticles.resource;
 
-      eventBus.subscribe( 'didReplace.' + articlesResource, function( event ) {
-         unfilteredArticles = event.data.entries || [];
+      eventBus.subscribe( `didReplace.${articlesResource}`, ({ data }) => {
+         unfilteredArticles = data.entries || [];
          search();
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       function search() {
-         var newFilteredArticles = unfilteredArticles;
-         var searchTerm = $scope.model.searchTerm;
+         let newFilteredArticles = unfilteredArticles;
+         const searchTerm = $scope.model.searchTerm;
          if( searchTerm ) {
-            newFilteredArticles = unfilteredArticles.filter( function( article ) {
+            newFilteredArticles = unfilteredArticles.filter( article => {
                return infixMatch( article.name, searchTerm ) ||
                   infixMatch( article.id, searchTerm ) ||
                   infixMatch( article.htmlDescription, searchTerm );
@@ -44,7 +46,7 @@ define( [
 
          if( !ng.equals( newFilteredArticles, filteredArticles ) ) {
             filteredArticles = newFilteredArticles;
-            eventBus.publish( 'didReplace.' + filterArticlesResource, {
+            eventBus.publish( `didReplace.${filterArticlesResource}`, {
                resource: filterArticlesResource,
                data: {
                   entries: filteredArticles

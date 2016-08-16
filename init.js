@@ -4,7 +4,7 @@
  */
 import 'polyfills';
 import 'number-to-locale-string';
-import { bootstrap, assert } from 'laxar';
+import { bootstrap } from 'laxar';
 
 import * as angularAdapter from 'laxar-angular-adapter';
 import * as reactAdapter from 'laxar-react-adapter';

@@ -3,23 +3,25 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* global define */
 define( [
    'json!../widget.json',
    'laxar-mocks',
    'laxar',
    'json!./spec_data.json'
-], function( descriptor, axMocks, ax, resourceData ) {
+], ( descriptor, axMocks, ax, resourceData ) => {
    'use strict';
 
-   describe( 'A ArticleSearchBoxWidget', function() {
+   describe( 'A ArticleSearchBoxWidget', () => {
 
-      var data;
-      var widgetEventBus;
-      var widgetScope;
-      var testEventBus;
+      let data;
+      let widgetEventBus;
+      let widgetScope;
+      let testEventBus;
 
       beforeEach( axMocks.createSetupForWidget( descriptor ) );
-      beforeEach( function() {
+      beforeEach( () => {
          axMocks.widget.configure( {
             articles: {
                resource: 'articles'
@@ -30,7 +32,7 @@ define( [
          } );
       } );
       beforeEach( axMocks.widget.load );
-      beforeEach( function() {
+      beforeEach( () => {
          data = ax.object.deepClone( resourceData );
          widgetScope = axMocks.widget.$scope;
          widgetEventBus = axMocks.widget.axEventBus;
@@ -40,30 +42,30 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'when articles were published without given search term', function() {
+      describe( 'when articles were published without given search term', () => {
 
-         beforeEach( function() {
+         beforeEach( () => {
             testEventBus.publish( 'didReplace.articles', {
                resource: 'articles',
-               data: data
+               data
             } );
             testEventBus.flush();
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'publishes the same list as filtered articles', function() {
+         it( 'publishes the same list as filtered articles', () => {
             expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'didReplace.filteredArticles', {
                resource: 'filteredArticles',
-               data: data
+               data
             } );
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         describe( 'and a search was initiated afterwards', function() {
+         describe( 'and a search was initiated afterwards', () => {
 
-            beforeEach( function() {
+            beforeEach( () => {
                // testBed.scope.eventBus.publish.reset();
                widgetScope.model.searchTerm = 'beer';
                widgetScope.search();
@@ -71,7 +73,7 @@ define( [
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            it( 'publishes the matching articles only', function() {
+            it( 'publishes the matching articles only', () => {
                expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'didReplace.filteredArticles', {
                   resource: 'filteredArticles',
                   data: {
@@ -86,20 +88,20 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      describe( 'when articles were published with already given search term', function() {
+      describe( 'when articles were published with already given search term', () => {
 
-         beforeEach( function() {
+         beforeEach( () => {
             widgetScope.model.searchTerm = 'beer';
             testEventBus.publish( 'didReplace.articles', {
                resource: 'articles',
-               data: data
+               data
             } );
             testEventBus.flush();
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         it( 'publishes the matching articles only', function() {
+         it( 'publishes the matching articles only', () => {
             expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'didReplace.filteredArticles', {
                resource: 'filteredArticles',
                data: {

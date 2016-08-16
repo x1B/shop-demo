@@ -18,7 +18,7 @@ const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plu
 const baseConfig = require( './webpack.config' );
 const config = Object.assign( {}, baseConfig );
 
-config.entry = WebpackJasmineHtmlRunnerPlugin.entry( './includes/widgets/shop-demo/*/spec/*.spec.js' );
+config.entry = WebpackJasmineHtmlRunnerPlugin.entry( './includes/widgets/**/spec/*.spec.js' );
 config.output = {
    path: path.resolve( path.join( process.cwd(), 'spec-output' ) ),
    publicPath: '/spec-output/',

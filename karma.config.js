@@ -9,11 +9,14 @@ const path = require( 'path' );
 
 const resolve = p => path.resolve( __dirname, p );
 const polyfillsPath = resolve( 'includes/lib/laxar/dist/polyfills.js' );
-const specPattern = resolve( './includes/widgets/shop-demo/**/spec/*.spec.js' );
-const assetsPattern = resolve( './includes/widgets/shop-demo/**/*.*' );
+const specsPattern = resolve( './includes/widgets/shop-demo/**/spec/*.spec.js' );
+const assetsPatterns = [
+   resolve( './includes/widgets/shop-demo/**/*.*' ),
+   resolve( './includes/lib/laxar-uikit/themes/default.theme/{css,fonts}/*.*' )
+];
 
 if( require.main === module ) {
-   const configs = require( 'glob' ).sync( specPattern ).map( karmaConfigForWidget );
+   const configs = require( 'glob' ).sync( specsPattern ).map( karmaConfigForWidget );
    run( configs );
 }
 
@@ -27,13 +30,9 @@ function karmaConfig() {
 
    return {
       frameworks: [ 'jasmine' ],
-      files: [
-         polyfillsPath,
-         specPattern,
-         { pattern: assetsPattern, included: false }
-      ],
+      files: files( specsPattern, [ polyfillsPath ], assetsPatterns ),
       preprocessors: {
-         [ specPattern ]: [ 'webpack', 'sourcemap' ]
+         [ specsPattern ]: [ 'webpack', 'sourcemap' ]
       },
       proxies: {
          '/includes': '/base/includes'
@@ -58,16 +57,10 @@ function karmaConfig() {
    };
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function karmaConfigForWidget( specPath ) {
    return Object.assign( karmaConfig(), {
       name: path.basename( specPath ),
-      files: [
-         polyfillsPath,
-         specPath,
-         { pattern: assetsPattern, included: false }
-      ]
+      files: files( specPath, [ polyfillsPath ], assetsPatterns )
    } );
 }
 
@@ -96,4 +89,12 @@ function run( configs, lastExitCode ) {
       run( configs, exitCode );
    } );
    server.start();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function files( specPath, dependencyPatterns, assetsPatterns ) {
+   return dependencyPatterns.map( _ => _ )
+      .concat( [ specPath ] )
+      .concat( assetsPatterns.map( pattern => ({ pattern, included: false }) ) );
 }

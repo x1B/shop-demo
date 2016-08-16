@@ -6,8 +6,6 @@
 
 import descriptor from 'json!../widget.json';
 import * as axMocks from 'laxar-mocks';
-// TODO (laxar-mocks#26) move to spec runner?  entry -> artifacts?
-import artifacts from 'laxar-loader/entry?widget=shop-demo/shopping-cart-widget';
 
 import articles from 'json!./spec_data.json';
 
