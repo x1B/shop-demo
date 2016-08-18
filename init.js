@@ -13,7 +13,6 @@ import artifacts from 'laxar-loader/entry?flow=main&theme=cube';
 
 const config = {
    name: 'LaxarJS ShopDemo',
-   baseHref: window.location.pathname,
    flow: {
       name: 'main',
       router: {
