@@ -18,7 +18,7 @@ const basePlugins = [
 module.exports = {
    entry: {
       'app': './init.js',
-      'vendor': [ 'react', 'jquery', 'angular', 'laxar', 'laxar-angular-adapter' ]
+      'vendor': [ 'polyfills', 'react', 'jquery', 'angular', 'laxar', 'laxar-angular-adapter' ]
    },
 
    output: {
@@ -43,7 +43,7 @@ module.exports = {
       ],
       extensions: [ '', '.js', '.jsx' ],
       alias: {
-         'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
+         'polyfills': path.resolve( './includes/lib/laxar/polyfills.js' ),
          'laxar-application': path.resolve( __dirname ),
          'laxar-application-dependencies': './var/flows/main/dependencies',
 
