@@ -23,7 +23,7 @@ module.exports = {
 
    output: {
       path: path.resolve( './var/build/' ),
-      publicPath: '/var/build',
+      publicPath: '/var/build/',
       filename: '[name].bundle.js'
    },
 
@@ -60,15 +60,57 @@ module.exports = {
             loader: 'babel-loader'
          },
          {
-            test: /\.png$/,
-            exclude: /(node_modules|bower_components|spec)/,
-            loader: 'file-loader'
-         },
-         {
             test: /.spec.jsx?$/,
             exclude: /(node_modules|bower_components)/,
             loader: './includes/lib/laxar-mocks/spec-loader'
+         },
+
+         {  // load styles, images and fonts with the file-loader
+            // (out-of-bundle in var/build/assets/)
+            test: /\.(css|gif|jpe?g|png|ttf|woff2?|svg|eot|otf)(\?.*)?$/,
+            loader: 'file-loader'
+         },
+         {  // ... after optimizing graphics with the image-loader ...
+            test: /\.(gif|jpe?g|png|svg)$/,
+            loader: 'img-loader?progressive=true'
+         },
+         {  // ... and resolving CSS url()s with the css loader
+            // (extract-loader extracts the CSS string from the JS module returned by the css-loader)
+            test: /\.css$/,
+            loader: 'extract-loader!css-loader'
+         },
+
+         {  // load scss files by precompiling with the sass-loader
+            test: /\/default.theme\/.*\.scss$/,
+            loader: 'style-loader!css-loader!sass-loader'
+         },
+         {  // use a different config for the cube theme to have the correct style include-path
+            test: /\/cube\.theme\/.*\.scss$/,
+            loader: 'style-loader!css-loader!sass-loader?config=sassLoaderCube'
          }
+
       ]
+   },
+   fileLoader: {
+      name: 'assets/[name]-[sha1:hash:hex:6].[ext]'
+   },
+   sassLoader: {
+      includePaths: [
+         './includes/lib/laxar-uikit/themes/default.theme/scss',
+         './includes/lib/laxar-uikit/scss',
+         './includes/lib/compass/core/stylesheets',
+         './bower_components/bootstrap-sass-official/assets/stylesheets',
+         './bower_components'
+      ].map( p => path.resolve( __dirname, p ) )
+   },
+   sassLoaderCube: {
+      includePaths: [
+         './includes/themes/cube.theme/scss',
+         './includes/lib/laxar-uikit/themes/default.theme/scss',
+         './includes/lib/laxar-uikit/scss',
+         './includes/lib/compass/core/stylesheets',
+         './bower_components/bootstrap-sass-official/assets/stylesheets',
+         './bower_components'
+      ].map( p => path.resolve( __dirname, p ) )
    }
 };

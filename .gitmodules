@@ -28,3 +28,6 @@
 [submodule "includes/lib/laxar-mocks"]
 	path = includes/lib/laxar-mocks
 	url = https://github.com/LaxarJS/laxar-mocks
+[submodule "includes/lib/compass"]
+	path = includes/lib/compass
+	url = https://github.com/Compass/compass.git
