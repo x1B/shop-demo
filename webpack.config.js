@@ -10,7 +10,7 @@ const webpack = require( 'webpack' );
 
 const basePlugins = [
    new webpack.ResolverPlugin( [
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'package.json', [ 'main' ] ),
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'package.json', [ 'browser', 'main' ] ),
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'bower.json', [ 'main' ] )
    ] )
 ];
@@ -44,17 +44,7 @@ module.exports = {
       extensions: [ '', '.js', '.jsx' ],
       alias: {
          'polyfills': path.resolve( './includes/lib/laxar/polyfills.js' ),
-         'laxar-application': path.resolve( __dirname ),
-         'laxar-application-dependencies': './var/flows/main/dependencies',
-
-         'laxar-path-root': '.',
-         'laxar-path-flows': './application/flows',
-         'laxar-path-default-theme': './includes/lib/laxar-uikit/themes/default.theme',
-         'laxar-path-layouts': './application/layouts',
-         'laxar-path-pages': './application/pages',
-         'laxar-path-widgets': './includes/widgets',
-         'laxar-path-controls': './includes/controls',
-         'laxar-path-themes': './includes/themes'
+         'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' )
       }
    },
 
