@@ -17,7 +17,8 @@
     "angular-route": "~1.5.7",
     "angular-sanitize": "~1.5.7",
     "number-to-locale-string": "^1.0.1",
-    "fast-json-patch": "^1.0.0"
+    "fast-json-patch": "^1.0.0",
+    "jquery-ui": "1.11.3"
   },
   "devDependencies": {
     "laxar-mocks": "~1.0.0",
