@@ -1,18 +1,17 @@
 {
    "redirectOn": {
-      "unknownPlace": "error404",
-      "error": "errorFatal"
+      "unknownPlace": "error404"
    },
    "places": {
       "error404": {
          "page": "404"
       },
 
-      "errorFatal": {
-         "page": "error"
+      "": {
+         "page":  "shop_demo"
       },
 
-      "": {
+      "go/:search": {
          "page":  "shop_demo"
       },
 
