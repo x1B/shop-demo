@@ -8,6 +8,8 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+
 const baseConfig = require( './webpack.config.js' );
 
 module.exports = Object.assign( {}, baseConfig, {
@@ -27,6 +29,23 @@ module.exports = Object.assign( {}, baseConfig, {
       new webpack.optimize.UglifyJsPlugin( {
          compress: { warnings: false },
          sourceMap: true
+      } ),
+      new ExtractTextPlugin('[name].bundle.css')
+   ] ),
+   module: Object.assign( {}, baseConfig.module, {
+      loaders: baseConfig.module.loaders.map( function( config ) {
+         const test = config.test;
+         const loader = config.loader;
+         if( loader === 'style-loader!css-loader' ) {
+            return {
+               test,
+               loader: ExtractTextPlugin.extract( 'css-loader' )
+            };
+         }
+         return {
+            test,
+            loader
+         };
       } )
-   ] )
+   } )
 } );
