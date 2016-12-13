@@ -17,7 +17,7 @@ define( [
       $scope.model = {
          searchTerm: ''
       };
-      $scope.search = search;
+      $scope.updateSearch = updateSearch;
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -30,6 +30,19 @@ define( [
          unfilteredArticles = data.entries || [];
          search();
       } );
+
+      eventBus.subscribe( 'didNavigate', ({ data }) => {
+         $scope.model.searchTerm = data.search || '';
+         search();
+      } );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function updateSearch() {
+         const search = $scope.model.searchTerm || null;
+         const target = '_self';
+         eventBus.publish( `navigateRequest.${target}`, { target, data: { search } } );
+      }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
