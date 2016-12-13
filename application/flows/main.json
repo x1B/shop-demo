@@ -4,19 +4,26 @@
    },
    "places": {
       "error404": {
+         "patterns": [ "/not-found" ],
          "page": "404"
       },
 
+      "browse": {
+         "patterns": [ "/browse/:search(.*)", "/browse" ],
+         "targets": {
+            "next": "confirmation"
+         },
+         "page":  "shop_demo"
+      },
+
       "": {
+         "redirectTo": "browse",
          "page":  "shop_demo"
       },
 
-      "go/:search": {
-         "page":  "shop_demo"
-      },
-
-      "finishOrder": {
-         "page": "finish_order"
+      "confirmation": {
+         "patterns": [ "/confirm" ],
+         "page":  "finish_order"
       }
    }
 }

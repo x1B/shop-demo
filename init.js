@@ -13,12 +13,20 @@ import artifacts from 'laxar-loader/artifacts?flow=main&theme=cube';
 
 const config = {
    name: 'LaxarJS ShopDemo',
-   flow: {
-      name: 'main',
-      router: {
-         hashbang: true,
-         dispatch: true
+   // routerImplementation: {
+   //    navigateTo: ...,
+   //    ...
+   // },
+   router: {
+      query: {
+         enabled: true
+      },
+      pagejs: {
+         hashbang: true
       }
+   },
+   flow: {
+      name: 'main'
    },
    logging: {
       threshold: 'TRACE'

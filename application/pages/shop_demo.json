@@ -80,7 +80,7 @@
                   "onActions": [ "addArticle" ]
                },
                "order": {
-                  "target": "finishOrder"
+                  "target": "confirmation"
                }
             }
          }
@@ -94,7 +94,7 @@
                   "onActions": [ "addArticle" ]
                },
                "order": {
-                  "target": "finishOrder"
+                  "target": "confirmation"
                }
             }
          }
