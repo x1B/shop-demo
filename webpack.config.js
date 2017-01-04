@@ -43,8 +43,9 @@ module.exports = {
       ],
       extensions: [ '', '.js', '.jsx', '.ts', '.tsx' ],
       alias: {
-         'polyfills': path.resolve( './includes/lib/laxar/polyfills.js' ),
+         'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
          'laxar-types': path.resolve( './includes/lib/laxar-angular2-adapter/types.ts' ),
+         'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' )
       }
    },
@@ -93,7 +94,6 @@ module.exports = {
             exclude: /(node_modules|bower_components)/,
             loader: 'ts-loader'
          }
-
       ]
    },
    fileLoader: {
