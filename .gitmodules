@@ -31,3 +31,6 @@
 [submodule "includes/lib/compass"]
 	path = includes/lib/compass
 	url = https://github.com/Compass/compass.git
+[submodule "includes/lib/laxar-angular2-adapter"]
+	path = includes/lib/laxar-angular2-adapter
+	url = https://github.com/LaxarJS/laxar-angular2-adapter.git

@@ -29,6 +29,9 @@
 
       "contentA": [
          {
+            "widget": "shop-demo/ng2-test-widget"
+         },
+         {
             "widget": "shop-demo/article-browser-widget",
             "features": {
                "articles": {

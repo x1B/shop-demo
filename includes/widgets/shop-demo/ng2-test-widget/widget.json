@@ -1,0 +1,17 @@
+{
+   "name": "ng2-test-widget",
+   "description": "Angular 2 integration test widget.",
+
+   "integration": {
+      "technology": "angular2",
+      "type": "widget"
+   },
+
+   "features": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+
+      }
+   }
+}
