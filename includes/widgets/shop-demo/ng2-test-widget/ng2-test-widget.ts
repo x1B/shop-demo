@@ -1,18 +1,22 @@
 import { Component, NgModule, OnDestroy } from '@angular/core';
-import { AxEventBus } from 'laxar-types';
+import { AxEventBus, AxContext } from 'laxar-types';
+import { AxAngularModule } from 'laxar-angular2-adapter';
 
 @Component( {
-   selector: 'ng2-test-widget',
    template: `
       <h1>Hello {{name}}</h1>
+      <div [axWidgetArea]="areaName"></div>
       <input (input)="nameChanged($event.target.value)" value="{{name}}">
    `
 } )
 export class Ng2TestWidget implements OnDestroy {
 
    name = 'World';
+   areaName: any;
 
-   constructor( eventBus: AxEventBus ) {
+   constructor( eventBus: AxEventBus, context: AxContext ) {
+      this.areaName = context.features.areaName;
+
       eventBus.subscribe( 'didNavigate', (event, meta) => {
          this.name = meta.cycleId;
          console.log( 'didNavigate' );
@@ -44,8 +48,7 @@ export class Ng2TestWidget implements OnDestroy {
 
 
 @NgModule( {
-   imports: [  ],
-   exports: [ Ng2TestWidget ],
+   imports: [ AxAngularModule ],
    declarations: [ Ng2TestWidget ]
 } )
 export class Ng2TestWidgetModule { }

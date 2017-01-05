@@ -1,26 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
-    "noImplicitAny": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "baseUrl": "./",
-    "paths": {
-      "laxar-types": [ "./includes/lib/laxar-angular2-adapter/types" ]
-    },
-    "typeRoots": [
-      "./node_modules/@types/"
-    ]
-  },
-  "compileOnSave": false,
-  "exclude": [
-    "**/bower_components/*",
-    "**/node_modules/*",
-    "**/*-aot.ts"
-  ]
+   "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": [ "es2015", "dom" ],
+      "noImplicitAny": false,
+      "suppressImplicitAnyIndexErrors": true,
+      "baseUrl": "./",
+      "paths": {
+         "laxar-types": [ "./includes/lib/laxar-angular2-adapter/types" ],
+         "laxar-angular2-adapter": [ "./includes/lib/laxar-angular2-adapter" ]
+      },
+      "typeRoots": [
+         "./node_modules/@types/"
+      ]
+   },
+   "compileOnSave": false,
+   "exclude": [
+      "**/bower_components/*",
+      "**/node_modules/*",
+      "**/*-aot.ts"
+   ]
 }
