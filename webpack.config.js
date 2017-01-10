@@ -62,7 +62,7 @@ module.exports = {
             loader: 'babel-loader'
          },
          {
-            test: /.spec.jsx?$/,
+            test: /.spec.(jsx?|tsx?)$/,
             exclude: /(node_modules|bower_components)/,
             loader: './includes/lib/laxar-mocks/spec-loader'
          },

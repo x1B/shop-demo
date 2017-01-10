@@ -6,7 +6,7 @@ import 'polyfills';
 import 'number-to-locale-string';
 import { bootstrap } from 'laxar';
 
-import * as angularAdapter from 'laxar-angular-adapter';
+import * as angular1Adapter from 'laxar-angular-adapter';
 import * as angular2Adapter from 'laxar-angular2-adapter';
 import * as reactAdapter from 'laxar-react-adapter';
 
@@ -39,7 +39,7 @@ const config = {
 };
 
 bootstrap( document.querySelector( '[data-ax-page]' ), {
-   widgetAdapters: [ angularAdapter, angular2Adapter, reactAdapter ],
+   widgetAdapters: [ angular1Adapter, angular2Adapter, reactAdapter ],
    configuration: config,
    artifacts
 } );

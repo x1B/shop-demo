@@ -11,6 +11,7 @@
       "suppressImplicitAnyIndexErrors": true,
       "baseUrl": "./",
       "paths": {
+         "laxar-mocks": [ "./includes/lib/laxar-mocks" ],
          "laxar-types": [ "./includes/lib/laxar-angular2-adapter/types" ],
          "laxar-angular2-adapter": [ "./includes/lib/laxar-angular2-adapter" ]
       },

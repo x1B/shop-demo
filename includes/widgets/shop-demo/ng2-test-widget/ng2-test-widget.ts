@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { AxEventBus, AxContext } from 'laxar-types';
+import { AxEventBus, AxContext, AxFeaturesHelper } from 'laxar-types';
 import { AxAngularModule } from 'laxar-angular2-adapter';
 
 @Component( {
@@ -10,8 +10,8 @@ export class Ng2TestWidget {
    name = 'World';
    areaName: any;
 
-   constructor( eventBus: AxEventBus, context: AxContext ) {
-      this.areaName = context.features.areaName;
+   constructor( eventBus: AxEventBus, featuresHelper: AxFeaturesHelper ) {
+      this.areaName = featuresHelper.get( 'areaName' );
    }
 
    nameChanged( newName: string ): void {

@@ -7,6 +7,8 @@
       "type": "widget"
    },
 
+   "controls": [ "ng2-test-control" ],
+
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "type": "object",
