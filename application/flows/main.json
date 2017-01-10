@@ -3,9 +3,11 @@
       "unknownPlace": "error404"
    },
    "places": {
-      "error404": {
-         "patterns": [ "/not-found" ],
-         "page": "404"
+
+      "start": {
+         "patterns": [ "/" ],
+         "redirectTo": "browse",
+         "page":  "shop_demo"
       },
 
       "browse": {
@@ -16,14 +18,15 @@
          "page":  "shop_demo"
       },
 
-      "": {
-         "redirectTo": "browse",
-         "page":  "shop_demo"
-      },
-
       "confirmation": {
          "patterns": [ "/confirm" ],
          "page":  "finish_order"
+      },
+
+      "error404": {
+         "patterns": [ "/not-found" ],
+         "page": "404"
       }
+
    }
 }
