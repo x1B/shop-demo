@@ -11,7 +11,9 @@ const resolve = p => path.resolve( __dirname, p );
 const polyfillsPath = resolve( 'includes/lib/laxar/dist/polyfills.js' );
 const specsPattern = resolve( './includes/widgets/shop-demo/**/spec/*.spec.js' );
 const assetsPatterns = [
-   resolve( './includes/widgets/shop-demo/**/*.*' ),
+   resolve( './includes/widgets/shop-demo/**/*.css' ),
+   resolve( './includes/widgets/shop-demo/**/*.scss' ),
+   resolve( './includes/widgets/shop-demo/**/*.html' ),
    resolve( './includes/lib/laxar-uikit/themes/default.theme/{css,fonts}/*.*' )
 ];
 
