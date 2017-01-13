@@ -10,7 +10,9 @@ const webpack = require( 'webpack' );
 
 const basePlugins = [
    new webpack.ResolverPlugin( [
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'package.json', [ 'browser', 'main' ] ),
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'package.json', [
+         'webpack', 'browser', 'main'
+      ] ),
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin( 'bower.json', [ 'main' ] )
    ] )
 ];

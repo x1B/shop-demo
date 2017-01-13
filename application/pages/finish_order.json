@@ -23,7 +23,7 @@
                   "htmlText": "<span class='app-thanks'>Thank you<br>for your order!</span>"
                },
                "intro": {
-                  "htmlText": "We will send your stuff as soon as possible.<br>Forgot to buy something? <a href='#' title='Go back'>Go Back.</a>"
+                  "htmlText": "We will send your stuff as soon as possible.<br>Forgot to buy something? <a href='' title='Go back'>Go Back.</a>"
                }
             }
          }
