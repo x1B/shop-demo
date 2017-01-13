@@ -26,9 +26,11 @@ if( require.main === module ) {
 
 function karmaConfig() {
 
-   const browsers = [ 'PhantomJS', 'Firefox' ].concat( [
+   const browsers = [
+      'PhantomJS',
+      'Firefox',
       process.env.TRAVIS ? 'ChromeTravisCi' : 'Chrome'
-   ] );
+   ];
 
    return {
       frameworks: [ 'jasmine' ],
@@ -96,7 +98,9 @@ function run( configs, lastExitCode ) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function files( specPath, dependencyPatterns, assetsPatterns ) {
-   return dependencyPatterns.map( _ => _ )
-      .concat( [ specPath ] )
-      .concat( assetsPatterns.map( pattern => ({ pattern, included: false }) ) );
+   return [
+      ...dependencyPatterns,
+      specPath,
+      ...assetsPatterns.map( pattern => ({ pattern, included: false }) )
+   ];
 }
