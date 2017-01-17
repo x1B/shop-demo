@@ -74,7 +74,7 @@ const config = {
             test: /\.(gif|jpe?g|png|ttf|woff2?|svg|eot|otf)(\?.*)?$/,
             loader: 'file-loader',
             options: {
-               name: isProduction ? 'assets/[name]-[sha1:chunkhash:10].[ext]' : 'assets/[name].[ext]'
+               name: isProduction ? 'assets/[name]-[sha1:hash:8].[ext]' : 'assets/[name].[ext]'
             }
          },
          {  // ... after optimizing graphics with the image-loader ...
