@@ -4,7 +4,7 @@
  * http://laxarjs.org/license
  */
 import 'laxar-angular2-adapter/test-support';
-import * as descriptor from 'json!../widget.json';
+import * as descriptor from '../widget.json';
 import * as axMocks from 'laxar-mocks';
 
 describe( 'An ng2-test-widget', () => {

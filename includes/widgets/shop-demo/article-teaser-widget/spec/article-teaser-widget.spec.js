@@ -6,7 +6,7 @@
 
 /* global define */
 define( [
-   'json!../widget.json',
+   '../widget.json',
    'laxar-mocks',
    'laxar-react-adapter',
    'json!./spec_data.json'

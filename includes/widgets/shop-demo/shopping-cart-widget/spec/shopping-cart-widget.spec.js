@@ -4,10 +4,10 @@
  * http://laxarjs.org/license
  */
 
-import descriptor from 'json!../widget.json';
+import descriptor from '../widget.json';
 import * as axMocks from 'laxar-mocks';
 
-import articles from 'json!./spec_data.json';
+import articles from './spec_data.json';
 
 describe( 'The ShoppingCartWidget', () => {
 

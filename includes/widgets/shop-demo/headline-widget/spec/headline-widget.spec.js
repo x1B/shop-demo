@@ -7,7 +7,7 @@
 // Just as an example, here is an AMD-based spec test.
 /* global define */
 define( [
-   'json!../widget.json',
+   '../widget.json',
    'laxar-mocks',
    'laxar-angular-adapter'
 ], ( descriptor, axMocks, adapter ) => {

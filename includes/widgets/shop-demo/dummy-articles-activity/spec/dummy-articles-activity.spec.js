@@ -3,7 +3,7 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-import descriptor from 'json!../widget.json';
+import descriptor from '../widget.json';
 import * as axMocks from 'laxar-mocks';
 import { articles } from '../articles';
 

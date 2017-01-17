@@ -6,10 +6,10 @@
 
 /* global define */
 define( [
-   'json!../widget.json',
+   '../widget.json',
    'laxar-mocks',
    'laxar',
-   'json!./spec_data.json'
+   './spec_data.json'
 ], ( descriptor, axMocks, ax, resourceData ) => {
    'use strict';
 

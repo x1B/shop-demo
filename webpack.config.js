@@ -13,6 +13,9 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const nodeEnv = process.env.NODE_ENV;
 const isProduction = nodeEnv === 'production';
 const isBrowserSpec = nodeEnv === 'browser-spec';
+const processPlugins = isProduction ?
+   productionPlugins :
+   isBrowserSpec ? browserSpecPlugins : _ => _;
 
 const publicPath = isProduction ? '/var/dist/' : '/var/build/';
 
@@ -30,20 +33,18 @@ const config = {
       filename: isProduction ? '[name].bundle.min.js' : '[name].bundle.js'
    },
 
-   plugins: [
+   plugins: processPlugins([
       new webpack.optimize.CommonsChunkPlugin( { name: 'vendor' } ),
       new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } ),
       // For React
       new webpack.DefinePlugin( { 'process.env': { 'NODE_ENV': JSON.stringify( nodeEnv ) } } ),
-      // For Angular
+      // For Angular 2
       new webpack.ContextReplacementPlugin(
          /angular[/\\]core[/\\](esm[/\\]src|src)[/\\]linker/,
          path.resolve( './includes' ), // location of your src
          {} // a map of your routes
-     )
-   ]
-   .concat( isProduction ? productionPlugins() : [] )
-   .concat( isBrowserSpec ? browserSpecPlugins() : [] ),
+        )
+   ]),
 
    resolve: {
       descriptionFiles: [ 'package.json', 'bower.json' ],
@@ -57,7 +58,6 @@ const config = {
          'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
          'laxar-types': path.resolve( './includes/lib/laxar-angular2-adapter/types.ts' ),
          'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
-         'laxar-mocks': path.resolve( './includes/lib/laxar-mocks' ),
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' )
       }
    },
@@ -76,7 +76,7 @@ const config = {
          {
             test: /.spec.(jsx?|tsx?)$/,
             exclude: /(node_modules|bower_components)/,
-            loader: 'laxar-mocks/spec-loader'
+            loader: './includes/lib/laxar-mocks/spec-loader'
          },
 
          {  // load styles, images and fonts with the file-loader
@@ -148,8 +148,8 @@ module.exports = config;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function productionPlugins() {
-   return [
+function productionPlugins( plugins ) {
+   return plugins.concat( [
       new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.min.js.map' } ),
       // TODO: this should be enabled, but it seems to break Angular 2.
       // new webpack.optimize.UglifyJsPlugin( {
@@ -157,15 +157,13 @@ function productionPlugins() {
       //    sourceMap: true
       // } ),
       new ExtractTextPlugin( { filename: '[name].bundle.css' } )
-   ];
+   ] );
 }
 
 function browserSpecPlugins() {
+   const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
    return [
-      new webpack.IgnorePlugin( /regenerator|nodent|js-beautify/, /ajv/ ),
-      new webpack.SourceMapDevToolPlugin( {
-         filename: '[name].bundle.js.map'
-      } ),
-      // new WebpackJasmineHtmlRunnerPlugin()
+      new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } ),
+      new WebpackJasmineHtmlRunnerPlugin()
    ];
 }
