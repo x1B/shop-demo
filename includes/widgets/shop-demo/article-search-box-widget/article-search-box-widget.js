@@ -10,21 +10,19 @@ define( [
 ], ng => {
    'use strict';
 
-   Controller.$inject = [ '$scope', 'axEventBus' ];
+   Controller.$inject = [ '$scope', 'axEventBus', 'axFeatures' ];
 
-   function Controller( $scope, eventBus ) {
+   function Controller( $scope, eventBus, features ) {
 
-      $scope.model = {
-         searchTerm: ''
-      };
+      $scope.model = { searchTerm: '' };
       $scope.updateSearch = updateSearch;
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       let unfilteredArticles = [];
       let filteredArticles = [];
-      const articlesResource = $scope.features.articles.resource;
-      const filterArticlesResource = $scope.features.filteredArticles.resource;
+      const articlesResource = features.articles.resource;
+      const filterArticlesResource = features.filteredArticles.resource;
 
       eventBus.subscribe( `didReplace.${articlesResource}`, ({ data }) => {
          unfilteredArticles = data.entries || [];
@@ -32,7 +30,7 @@ define( [
       } );
 
       eventBus.subscribe( 'didNavigate', ({ data }) => {
-         $scope.model.searchTerm = data.search || '';
+         $scope.model.searchTerm = data[ features.navigation.parameterName ] || '';
          search();
       } );
 
@@ -41,7 +39,9 @@ define( [
       function updateSearch() {
          const search = $scope.model.searchTerm || null;
          const target = '_self';
-         eventBus.publish( `navigateRequest.${target}`, { target, data: { search } } );
+         const data = {};
+         data[ features.navigation.parameterName ] = search;
+         eventBus.publish( `navigateRequest.${target}`, { target, data } );
       }
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////

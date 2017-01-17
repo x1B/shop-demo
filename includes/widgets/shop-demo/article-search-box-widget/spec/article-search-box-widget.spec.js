@@ -9,7 +9,7 @@ define( [
    '../widget.json',
    'laxar-mocks',
    'laxar',
-   'json!./spec_data.json'
+   './spec_data.json'
 ], ( descriptor, axMocks, ax, resourceData ) => {
    'use strict';
 
@@ -23,6 +23,9 @@ define( [
       beforeEach( axMocks.createSetupForWidget( descriptor ) );
       beforeEach( () => {
          axMocks.widget.configure( {
+            navigation: {
+               parameterName: 'query'
+            },
             articles: {
                resource: 'articles'
             },
@@ -66,18 +69,17 @@ define( [
          describe( 'and a search was initiated afterwards', () => {
 
             beforeEach( () => {
-               // testBed.scope.eventBus.publish.reset();
                widgetScope.model.searchTerm = 'beer';
-               widgetScope.search();
+               widgetScope.updateSearch();
             } );
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
-            it( 'publishes the matching articles only', () => {
-               expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'didReplace.filteredArticles', {
-                  resource: 'filteredArticles',
+            it( 'publishes the updated search term as a place parameter', () => {
+               expect( widgetEventBus.publish ).toHaveBeenCalledWith( 'navigateRequest._self', {
+                  target: '_self',
                   data: {
-                     entries: [ data.entries[ 1 ] ]
+                     query: 'beer'
                   }
                } );
             } );

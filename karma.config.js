@@ -43,7 +43,8 @@ function karmaConfig() {
       },
       webpack: webpackConfig(),
       webpackMiddleware: {
-         noInfo: true
+         noInfo: true,
+         quiet: true
       },
 
       reporters: [ 'progress' ],
@@ -72,8 +73,7 @@ function karmaConfigForWidget( specPath ) {
 
 function webpackConfig() {
    const config = Object.assign( {}, require('./webpack.config' ) );
-   delete config.entry.app;
-   delete config.entry.vendor;
+   delete config.entry;
    config.plugins = config.basePlugins;
    config.devtool = 'inline-source-map';
    return config;

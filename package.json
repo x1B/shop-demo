@@ -9,7 +9,7 @@
     "karma": "node karma.config.js",
     "optimize": "cross-env NODE_ENV=production webpack --progress",
     "prepublish": "bower install && webpack --progress",
-    "start": "webpack-dev-server --inline --hot --port 9001",
+    "start": "webpack-dev-server --inline --hot --port 8500",
     "test": "npm run karma && npm run eslint",
     "yo": "yo"
   },

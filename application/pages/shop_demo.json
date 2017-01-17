@@ -17,6 +17,9 @@
          {
             "widget": "shop-demo/article-search-box-widget",
             "features": {
+               "navigation": {
+                  "parameterName": "search"
+               },
                "articles": {
                   "resource": "articles"
                },

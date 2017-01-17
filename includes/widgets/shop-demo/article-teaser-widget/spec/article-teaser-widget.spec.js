@@ -9,7 +9,7 @@ define( [
    '../widget.json',
    'laxar-mocks',
    'laxar-react-adapter',
-   'json!./spec_data.json'
+   './spec_data.json'
 ], ( descriptor, axMocks, axReactAdapter, resourceData ) => {
    'use strict';
 

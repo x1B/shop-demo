@@ -13,9 +13,10 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const nodeEnv = process.env.NODE_ENV;
 const isProduction = nodeEnv === 'production';
 const isBrowserSpec = nodeEnv === 'browser-spec';
-const processPlugins = isProduction ?
-   productionPlugins :
-   isBrowserSpec ? browserSpecPlugins : _ => _;
+const processPlugins = {
+   'production': productionPlugins,
+   'browser-spec': browserSpecPlugins
+}[ nodeEnv ] || ( _ => _ );
 
 const publicPath = isProduction ? '/var/dist/' : '/var/build/';
 
@@ -33,18 +34,7 @@ const config = {
       filename: isProduction ? '[name].bundle.min.js' : '[name].bundle.js'
    },
 
-   plugins: processPlugins([
-      new webpack.optimize.CommonsChunkPlugin( { name: 'vendor' } ),
-      new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } ),
-      // For React
-      new webpack.DefinePlugin( { 'process.env': { 'NODE_ENV': JSON.stringify( nodeEnv ) } } ),
-      // For Angular 2
-      new webpack.ContextReplacementPlugin(
-         /angular[/\\]core[/\\](esm[/\\]src|src)[/\\]linker/,
-         path.resolve( './includes' ), // location of your src
-         {} // a map of your routes
-        )
-   ]),
+   plugins: processPlugins( basePlugins().concat( angular2Plugins() ).concat( reactPlugins() ) ),
 
    resolve: {
       descriptionFiles: [ 'package.json', 'bower.json' ],
@@ -84,7 +74,7 @@ const config = {
             test: /\.(gif|jpe?g|png|ttf|woff2?|svg|eot|otf)(\?.*)?$/,
             loader: 'file-loader',
             options: {
-               name: 'assets/[name]-[sha1:hash:hex:6].[ext]'
+               name: isProduction ? 'assets/[name]-[sha1:chunkhash:10].[ext]' : 'assets/[name].[ext]'
             }
          },
          {  // ... after optimizing graphics with the image-loader ...
@@ -134,8 +124,10 @@ const config = {
 
 if( isBrowserSpec ) {
    const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
+   delete config.entry.app;
+   delete config.entry.vendor;
    config.entry = WebpackJasmineHtmlRunnerPlugin.entry(
-      './includes/widgets/shop-demo/article-browser-widget/spec/*.spec.js'
+      './includes/widgets/shop-demo/*/spec/*.spec.js'
    );
    config.output = {
       path: path.resolve( path.join( process.cwd(), 'spec-output' ) ),
@@ -160,10 +152,33 @@ function productionPlugins( plugins ) {
    ] );
 }
 
+function basePlugins() {
+   return [
+      new webpack.optimize.CommonsChunkPlugin( { name: 'vendor' } ),
+      new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } )
+   ];
+}
+
 function browserSpecPlugins() {
    const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
    return [
       new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } ),
       new WebpackJasmineHtmlRunnerPlugin()
+   ].concat( angular2Plugins() ).concat( reactPlugins() );
+}
+
+function reactPlugins() {
+   return [
+      new webpack.DefinePlugin( { 'process.env': { 'NODE_ENV': JSON.stringify( nodeEnv ) } } )
+   ];
+}
+
+function angular2Plugins() {
+   return [
+      new webpack.ContextReplacementPlugin(
+         /angular[/\\]core[/\\](esm[/\\]src|src)[/\\]linker/,
+         path.resolve( './includes' ), // location of your src
+         {}
+      )
    ];
 }
