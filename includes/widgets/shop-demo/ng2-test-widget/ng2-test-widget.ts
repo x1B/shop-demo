@@ -1,6 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { AxEventBus, AxContext, AxFeaturesHelper } from 'laxar-types';
-import { AxAngularModule } from 'laxar-angular2-adapter';
+import { AxEventBus, AxContext, AxFeaturesHelper, AxAngularModule } from 'laxar-angular2-adapter';
 
 @Component( {
    templateUrl: 'ax-widget:template:ng2-test-widget'

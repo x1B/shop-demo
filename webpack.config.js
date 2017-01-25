@@ -46,7 +46,6 @@ const config = {
       extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
       alias: {
          'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
-         'laxar-types': path.resolve( './includes/lib/laxar-angular2-adapter/types.ts' ),
          'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' )
       }
@@ -124,11 +123,7 @@ const config = {
 
 if( isBrowserSpec ) {
    const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
-   delete config.entry.app;
-   delete config.entry.vendor;
-   config.entry = WebpackJasmineHtmlRunnerPlugin.entry(
-      './includes/widgets/shop-demo/*/spec/*.spec.js'
-   );
+   config.entry = WebpackJasmineHtmlRunnerPlugin.entry( './includes/widgets/shop-demo/*/spec/*.spec.js' );
    config.output = {
       path: path.resolve( path.join( process.cwd(), 'spec-output' ) ),
       publicPath: '/spec-output/',
