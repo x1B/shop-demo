@@ -94,8 +94,10 @@ const config = {
                includePaths: [
                   'laxar-uikit/themes/default.theme/scss',
                   'laxar-uikit/scss',
-                  'bootstrap-sass/assets/stylesheets',
-                  './bower_components'
+                  './bower_components/bootstrap-sass-official/assets/stylesheets',
+                  './bower_components',
+                  './includes/lib/laxar-uikit/scss',
+                  './includes/lib/laxar-uikit/themes/default.theme/scss'
                ].map( p => path.resolve( __dirname, p ) )
             }
          },
@@ -107,8 +109,10 @@ const config = {
                   './includes/themes/cube.theme/scss',
                   'laxar-uikit/themes/default.theme/scss',
                   'laxar-uikit/scss',
-                  'bootstrap-sass/assets/stylesheets',
-                  './bower_components'
+                  './bower_components/bootstrap-sass-official/assets/stylesheets',
+                  './bower_components',
+                  './includes/lib/laxar-uikit/scss',
+                  './includes/lib/laxar-uikit/themes/default.theme/scss'
                ].map( p => path.resolve( __dirname, p ) )
             }
          },
