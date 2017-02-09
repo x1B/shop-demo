@@ -39,6 +39,7 @@ const config = {
    resolve: {
       descriptionFiles: [ 'package.json', 'bower.json' ],
       modules: [
+         path.resolve( './includes/controls' ),
          path.resolve( './includes/lib' ),
          path.resolve( './node_modules' ),
          path.resolve( './bower_components' )
@@ -142,11 +143,10 @@ module.exports = config;
 function productionPlugins( plugins ) {
    return plugins.concat( [
       new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.min.js.map' } ),
-      // TODO: this should be enabled, but it seems to break Angular 2.
-      // new webpack.optimize.UglifyJsPlugin( {
-      //    compress: { warnings: false },
-      //    sourceMap: true
-      // } ),
+      new webpack.optimize.UglifyJsPlugin( {
+         compress: { warnings: false },
+         sourceMap: true
+      } ),
       new ExtractTextPlugin( { filename: '[name].bundle.css' } )
    ] );
 }

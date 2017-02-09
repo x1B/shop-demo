@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
-import { AxEventBus, AxContext, AxFeaturesHelper, AxAngularModule } from 'laxar-angular2-adapter';
+import { AxAngularModule, AxContext, AxControls, AxEventBus, AxFeaturesHelper, AxId } from 'laxar-angular2-adapter';
+import { Ng2TestControlModule } from 'ng2-test-control';
 
 @Component( {
    templateUrl: 'ax-widget:template:ng2-test-widget'
@@ -9,7 +10,7 @@ export class Ng2TestWidget {
    name = 'World';
    areaName: any;
 
-   constructor( eventBus: AxEventBus, featuresHelper: AxFeaturesHelper ) {
+   constructor( featuresHelper: AxFeaturesHelper ) {
       this.areaName = featuresHelper.get( 'areaName' );
    }
 
@@ -22,7 +23,7 @@ export class Ng2TestWidget {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @NgModule( {
-   imports: [ AxAngularModule ],
+   imports: [ AxAngularModule, Ng2TestControlModule ],
    declarations: [ Ng2TestWidget ]
 } )
 export class Ng2TestWidgetModule {}
