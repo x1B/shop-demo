@@ -119,7 +119,6 @@ const config = {
          },
          {
             test: /\.tsx?$/,
-            exclude: /(node_modules|bower_components)/,
             loader: 'ts-loader'
          }
       ]
