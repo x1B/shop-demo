@@ -128,7 +128,17 @@ const config = {
 
 if( isBrowserSpec ) {
    const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
-   config.entry = WebpackJasmineHtmlRunnerPlugin.entry( './includes/widgets/shop-demo/*/spec/*.spec.js' );
+   let widgetsRoot;
+   try {
+      widgetsRoot = require( './laxar.config.js' ).paths.widgets || 'widgets';
+   }
+   catch( e ) {
+      widgetsRoot = 'widgets';
+   }
+   const widgetsPattern = process.env.WIDGET ?
+      path.join( widgetsRoot, process.env.WIDGET, 'spec', '*.spec.js' ) :
+      path.join( widgetsRoot, 'shop-demo/*/spec/*.spec.js' );
+   config.entry = WebpackJasmineHtmlRunnerPlugin.entry( `./${widgetsPattern}` );
    config.output = {
       path: path.resolve( path.join( process.cwd(), 'spec-output' ) ),
       publicPath: '/spec-output/',

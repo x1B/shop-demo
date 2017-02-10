@@ -4,14 +4,13 @@
  * http://laxarjs.org/license
  */
 
-import descriptor from '../widget.json';
 import * as axMocks from 'laxar-mocks';
 
 import articles from './spec_data.json';
 
 describe( 'The ShoppingCartWidget', () => {
 
-   beforeEach( axMocks.createSetupForWidget( descriptor ) );
+   beforeEach( axMocks.setupForWidget() );
    beforeEach( () => {
       axMocks.widget.configure( {
          article: {

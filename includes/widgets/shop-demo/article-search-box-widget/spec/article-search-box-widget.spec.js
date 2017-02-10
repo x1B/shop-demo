@@ -6,11 +6,10 @@
 
 /* global define */
 define( [
-   '../widget.json',
    'laxar-mocks',
    'laxar',
    './spec_data.json'
-], ( descriptor, axMocks, ax, resourceData ) => {
+], ( axMocks, ax, resourceData ) => {
    'use strict';
 
    describe( 'A ArticleSearchBoxWidget', () => {
@@ -20,7 +19,7 @@ define( [
       let widgetScope;
       let testEventBus;
 
-      beforeEach( axMocks.createSetupForWidget( descriptor ) );
+      beforeEach( axMocks.setupForWidget() );
       beforeEach( () => {
          axMocks.widget.configure( {
             navigation: {

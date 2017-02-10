@@ -6,11 +6,10 @@
 
 /* global define */
 define( [
-   '../widget.json',
    'laxar-mocks',
    'laxar-react-adapter',
    './spec_data.json'
-], ( descriptor, axMocks, axReactAdapter, resourceData ) => {
+], ( axMocks, axReactAdapter, resourceData ) => {
    'use strict';
 
    describe( 'The article-teaser-widget', () => {
@@ -19,7 +18,7 @@ define( [
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      beforeEach( axMocks.createSetupForWidget( descriptor, { adapter: axReactAdapter } ) );
+      beforeEach( axMocks.setupForWidget() );
       beforeEach( () => {
          axMocks.widget.configure( {
             article: {

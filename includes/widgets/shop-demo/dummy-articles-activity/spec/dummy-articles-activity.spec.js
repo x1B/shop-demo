@@ -3,13 +3,12 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-import descriptor from '../widget.json';
 import * as axMocks from 'laxar-mocks';
 import { articles } from '../articles';
 
 describe( 'The dummy-articles-activity', () => {
 
-   beforeEach( axMocks.createSetupForWidget( descriptor ) );
+   beforeEach( axMocks.setupForWidget() );
    beforeEach( () => {
       axMocks.widget.configure( {
          articles: {

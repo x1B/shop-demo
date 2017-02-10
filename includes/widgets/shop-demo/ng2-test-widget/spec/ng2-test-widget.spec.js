@@ -11,7 +11,7 @@ describe( 'An ng2-test-widget', () => {
 
    let widgetDom;
 
-   beforeEach( axMocks.createSetupForWidget( descriptor ) );
+   beforeEach( axMocks.setupForWidget() );
 
    beforeEach( () => {
       axMocks.widget.configure( {

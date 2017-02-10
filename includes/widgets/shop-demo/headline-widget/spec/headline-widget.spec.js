@@ -7,19 +7,15 @@
 // Just as an example, here is an AMD-based spec test.
 /* global define */
 define( [
-   '../widget.json',
-   'laxar-mocks',
-   'laxar-angular-adapter'
-], ( descriptor, axMocks, adapter ) => {
+   'laxar-mocks'
+], axMocks => {
    'use strict';
 
    describe( 'The headline-widget', () => {
 
       let widgetDom;
 
-      beforeEach( axMocks.createSetupForWidget( descriptor, {
-         adapter
-      } ) );
+      beforeEach( axMocks.setupForWidget() );
 
       beforeEach( () => {
          axMocks.widget.configure( {
