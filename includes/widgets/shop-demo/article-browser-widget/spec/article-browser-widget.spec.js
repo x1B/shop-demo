@@ -7,18 +7,33 @@
 /* global define */
 define( [
    'laxar-mocks',
+   'angular',
+   'angular-mocks',
    'laxar',
    './spec_data.json'
-], ( axMocks, ax, resourceData ) => {
+], ( axMocks, ng, ngMocks, ax, resourceData ) => {
    'use strict';
 
    describe( 'The article-browser-widget', () => {
 
+      let $httpBackend;
+      let $rootScope;
       let data;
       let widgetEventBus;
       let testEventBus;
 
-      beforeEach( axMocks.setupForWidget() );
+      beforeEach( ng.mock.module('axAngularGlobalServices') );
+      beforeEach( ng.mock.module('axAngularWidgetAdapter') );
+      beforeEach( ng.mock.module('articleBrowserWidget') );
+
+      beforeEach( axMocks.setupForWidget( {
+
+      } ) );
+
+      beforeEach( () => {
+
+      } );
+
       beforeEach( () => {
          axMocks.widget.configure( {
             articles: {
@@ -28,12 +43,30 @@ define( [
                resource: 'selectedArticle'
             }
          } );
+         ng.mock.module( $provide => {
+            $provide.factory( '$timeout', () => {
+               return { hans: true };
+            } );
+         } );
+         axMocks.widget.whenServicesAvailable( services => {
+            services.axConfiguration = { HALLO: 'wach' };
+            ng.mock.inject( (_$httpBackend_, _$rootScope_) => {
+               $httpBackend = _$httpBackend_;
+               $rootScope = _$rootScope_;
+               $httpBackend.whenGET( '/test' ).respond( { ok: true } );
+               $httpBackend.X100 = 'X100';
+               ng.test = 'TEST TEST';
+            } );
+         } );
       } );
+
       beforeEach( axMocks.widget.load );
       beforeEach( () => {
          data = ax.object.deepClone( resourceData );
+
          widgetEventBus = axMocks.widget.axEventBus;
          testEventBus = axMocks.eventBus;
+         $httpBackend.flush();
       } );
       afterEach( axMocks.tearDown );
 

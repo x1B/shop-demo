@@ -4,7 +4,9 @@
   "description": "A DemoApp to learn how LaxarJS works.",
   "license": "MIT",
   "scripts": {
-    "browser-spec": "cross-env NODE_ENV=browser-spec webpack && cross-env NODE_ENV=browser-spec webpack-dev-server --port 8180",
+    "browser-spec": "npm run browser-spec-build && npm run browser-spec-run",
+    "browser-spec-build": "cross-env NODE_ENV=browser-spec webpack",
+    "browser-spec-run": "cross-env NODE_ENV=browser-spec webpack-dev-server --port 8180",
     "eslint": "eslint init.js includes/widgets/shop-demo *.config.js",
     "karma": "node karma.config.js",
     "optimize": "cross-env NODE_ENV=production webpack --progress",
@@ -46,9 +48,9 @@
     "ts-loader": "^1.3.3",
     "typescript": "^2.1.4",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.0-rc.7",
-    "webpack-dev-server": "^2.2.0-rc.0",
-    "webpack-jasmine-html-runner-plugin": "^0.5.0",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0",
+    "webpack-jasmine-html-runner-plugin": "^0.7.0",
     "yo": "~1.7.0"
   },
   "dependencies": {

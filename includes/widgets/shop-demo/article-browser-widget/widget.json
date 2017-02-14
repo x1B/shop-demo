@@ -6,6 +6,10 @@
       "technology": "angular",
       "type": "widget"
    },
+   
+   "controls": [
+      "laxar-accordion-control"
+   ],
 
    "styleSource": "scss/article-browser-widget.scss",
 

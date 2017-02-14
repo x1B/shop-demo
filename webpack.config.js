@@ -25,7 +25,11 @@ const publicPath = isProduction ? '/var/dist/' : '/var/build/';
 const config = {
    entry: {
       'app': './init.js',
-      'vendor': [ 'polyfills', 'react', 'jquery', 'angular', 'laxar', 'laxar-angular-adapter' ]
+      'vendor': [
+         'polyfills', 'react', 'jquery', 'laxar',
+         // 'laxar-angular-adapter'
+         // , 'angular'
+      ]
    },
 
    output: {
@@ -46,9 +50,10 @@ const config = {
       ],
       extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
       alias: {
-         'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
+         'polyfills': path.resolve( './includes/lib/laxar/polyfills.js' ),
          'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
-         'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' )
+         'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' ),
+         'angular': path.resolve( './bower_components/angular' )
       }
    },
 
