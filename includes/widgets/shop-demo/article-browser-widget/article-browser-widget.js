@@ -9,22 +9,14 @@ define( [
 ], ng => {
    'use strict';
 
-   window.angularFromWidget = ng;
-   ng.knownRefs = ng.knownRefs || [];
-   ng.knownRefs.push( 'widget' );
-   console.log( 'angular from widget' );
+   Controller.$inject = [ '$scope', 'axEventBus', '$httpBackend', '$http' ];
 
-   Controller.$inject = [ '$scope', 'axEventBus', '$httpBackend', '$http', '$timeout', 'axConfiguration' ];
-
-   function Controller( $scope, eventBus, $httpBackend, $http, $timeout, conf ) {
-
-      console.log( 'Controller test?', ng.test, $timeout, conf.HALLO );
+   function Controller( $scope, eventBus, $httpBackend, $http ) {
 
       $scope.resources = {};
       $scope.selectedArticle = null;
 
       $http.get( '/test' );
-
 
       const articlesResource = $scope.features.articles.resource;
       eventBus.subscribe( `didReplace.${articlesResource}`, event => {

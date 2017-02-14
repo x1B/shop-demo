@@ -22,17 +22,7 @@ define( [
       let widgetEventBus;
       let testEventBus;
 
-      beforeEach( ng.mock.module('axAngularGlobalServices') );
-      beforeEach( ng.mock.module('axAngularWidgetAdapter') );
-      beforeEach( ng.mock.module('articleBrowserWidget') );
-
-      beforeEach( axMocks.setupForWidget( {
-
-      } ) );
-
-      beforeEach( () => {
-
-      } );
+      beforeEach( axMocks.setupForWidget() );
 
       beforeEach( () => {
          axMocks.widget.configure( {
@@ -48,14 +38,10 @@ define( [
                return { hans: true };
             } );
          } );
-         axMocks.widget.whenServicesAvailable( services => {
-            services.axConfiguration = { HALLO: 'wach' };
-            ng.mock.inject( (_$httpBackend_, _$rootScope_) => {
+         axMocks.widget.whenServicesAvailable( () => {
+            ng.mock.inject( _$httpBackend_ => {
                $httpBackend = _$httpBackend_;
-               $rootScope = _$rootScope_;
                $httpBackend.whenGET( '/test' ).respond( { ok: true } );
-               $httpBackend.X100 = 'X100';
-               ng.test = 'TEST TEST';
             } );
          } );
       } );

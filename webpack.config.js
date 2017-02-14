@@ -50,7 +50,7 @@ const config = {
       ],
       extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
       alias: {
-         'polyfills': path.resolve( './includes/lib/laxar/polyfills.js' ),
+         'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
          'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' ),
          'angular': path.resolve( './bower_components/angular' )
