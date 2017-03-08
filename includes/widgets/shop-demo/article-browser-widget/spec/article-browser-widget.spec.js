@@ -17,7 +17,6 @@ define( [
    describe( 'The article-browser-widget', () => {
 
       let $httpBackend;
-      let $rootScope;
       let data;
       let widgetEventBus;
       let testEventBus;
@@ -41,7 +40,7 @@ define( [
          axMocks.widget.whenServicesAvailable( () => {
             ng.mock.inject( _$httpBackend_ => {
                $httpBackend = _$httpBackend_;
-               $httpBackend.whenGET( '/test' ).respond( { ok: true } );
+               $httpBackend.whenGET( '/' ).respond( { ok: true } );
             } );
          } );
       } );

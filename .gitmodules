@@ -22,9 +22,6 @@
 [submodule "includes/controls/laxar-i18n-control"]
 	path = includes/controls/laxar-i18n-control
 	url = https://github.com/LaxarJS/laxar-i18n-control
-[submodule "includes/controls/laxar-accordion-control"]
-	path = includes/controls/laxar-accordion-control
-	url = https://github.com/LaxarJS/ax-accordion-control
 [submodule "includes/lib/laxar-mocks"]
 	path = includes/lib/laxar-mocks
 	url = https://github.com/LaxarJS/laxar-mocks

@@ -5,7 +5,6 @@
  */
 import 'laxar-angular2-adapter/test-support';
 import * as axMocks from 'laxar-mocks';
-import descriptor from '../widget.json';
 
 describe( 'An ng2-test-widget', () => {
 

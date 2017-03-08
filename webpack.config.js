@@ -26,11 +26,17 @@ const config = {
    entry: {
       'app': './init.js',
       'vendor': [
-         'polyfills', 'react', 'jquery', 'laxar',
-         // 'laxar-angular-adapter'
-         // , 'angular'
+         // 'polyfills',
+         // 'react',
+         // 'jquery',
+         // 'laxar'
+         // 'laxar-react-adapter',
+         // 'angular', 'laxar-angular-adapter'
+         // '@angular/core', 'laxar-angular2-adapter'
       ]
    },
+
+   devtool: '#cheap-inline-source-map',
 
    output: {
       path: path.resolve( `./${publicPath}` ),
@@ -53,7 +59,11 @@ const config = {
          'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
          'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' ),
-         'angular': path.resolve( './bower_components/angular' )
+         'angular': path.resolve( './bower_components/angular' ),
+
+         // TODO: temporary, remove
+         'laxar-button-list-control': 'includes/widgets/ax-button-list-control',
+         'laxar-accordion-control': 'includes/widgets/ax-accordion-control'
       }
    },
 
@@ -69,7 +79,7 @@ const config = {
             loader: 'babel-loader'
          },
          {
-            test: /.spec.(jsx?|tsx?)$/,
+            test: /\.spec\.(jsx?|tsx?)$/,
             exclude: /(node_modules|bower_components)/,
             loader: './includes/lib/laxar-mocks/spec-loader'
          },
@@ -125,6 +135,13 @@ const config = {
          {
             test: /\.tsx?$/,
             loader: 'ts-loader'
+         },
+
+
+         // TODO: temporary, remove
+         {
+            test: /ax-button-list-control\/*.html/,
+            loader: 'html-loader'
          }
       ]
    }
@@ -167,15 +184,13 @@ function productionPlugins( plugins ) {
 
 function basePlugins() {
    return [
-      new webpack.optimize.CommonsChunkPlugin( { name: 'vendor' } ),
-      new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } )
+      new webpack.optimize.CommonsChunkPlugin( { name: 'vendor' } )
    ];
 }
 
 function browserSpecPlugins() {
    const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
    return [
-      new webpack.SourceMapDevToolPlugin( { filename: '[name].bundle.js.map' } ),
       new WebpackJasmineHtmlRunnerPlugin()
    ].concat( angular2Plugins() ).concat( reactPlugins() );
 }
