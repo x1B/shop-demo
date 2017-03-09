@@ -32,13 +32,6 @@
 
       "contentA": [
          {
-            "widget": "shop-demo/ng2-test-widget",
-            "id": "ng2Test",
-            "features": {
-               "areaName": "ng2Area"
-            }
-         },
-         {
             "widget": "shop-demo/article-browser-widget",
             "features": {
                "articles": {
@@ -47,23 +40,6 @@
                "selection": {
                   "resource": "selectedArticle"
                }
-            }
-         }
-      ],
-      "ng2Test.ng2Area": [
-         {
-            "widget": "shop-demo/ng2-test-widget",
-            "id": "ng2Test2",
-            "features": {
-               "areaName": "wurst"
-            }
-         }
-      ],
-      "ng2Test2.wurst": [
-         {
-            "widget": "shop-demo/ng2-test-widget",
-            "features": {
-               "areaName": "egal"
             }
          }
       ],
@@ -82,7 +58,7 @@
       ],
       "contentC": [
          {
-            "widget": "ax-accordion-widget",
+            "widget": "laxar-accordion-widget",
             "id": "accordion",
             "features": {
                "areas": [

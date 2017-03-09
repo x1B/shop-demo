@@ -61,6 +61,7 @@
     "@angular/platform-browser-dynamic": "~2.4.0",
     "bootstrap-sass": "^3.3.7",
     "core-js": "^2.4.1",
+    "laxar-accordion-widget": "^3.0.0-alpha.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "reflect-metadata": "^0.1.8",

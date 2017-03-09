@@ -4,6 +4,7 @@
  * http://laxarjs.org/license
  */
 /* eslint-env node */
+'use strict';
 
 const path = require( 'path' );
 const webpack = require( 'webpack' );
@@ -26,8 +27,8 @@ const config = {
    entry: {
       'app': './init.js',
       'vendor': [
-         'polyfills', 'react', 'jquery', 'laxar',
-         // 'laxar-angular-adapter'
+         'laxar/polyfills', 'react', 'jquery', 'laxar',
+         'laxar-angular-adapter'
          // , 'angular'
       ]
    },
@@ -50,8 +51,6 @@ const config = {
       ],
       extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
       alias: {
-         'polyfills': path.resolve( './includes/lib/laxar/dist/polyfills.js' ),
-         'laxar-uikit': path.resolve( './includes/lib/laxar-uikit' ),
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' ),
          'angular': path.resolve( './bower_components/angular' )
       }

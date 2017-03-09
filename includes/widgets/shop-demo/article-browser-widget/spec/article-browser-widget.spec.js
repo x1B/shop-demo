@@ -17,7 +17,6 @@ define( [
    describe( 'The article-browser-widget', () => {
 
       let $httpBackend;
-      let $rootScope;
       let data;
       let widgetEventBus;
       let testEventBus;

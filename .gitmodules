@@ -16,15 +16,9 @@
 [submodule "includes/lib/laxar-uikit"]
 	path = includes/lib/laxar-uikit
 	url = https://github.com/LaxarJS/laxar-uikit.git
-[submodule "includes/widgets/ax-accordion-widget"]
-	path = includes/widgets/ax-accordion-widget
-	url = https://github.com/x1b/ax-accordion-widget.git
 [submodule "includes/controls/laxar-i18n-control"]
 	path = includes/controls/laxar-i18n-control
 	url = https://github.com/LaxarJS/laxar-i18n-control
-[submodule "includes/controls/laxar-accordion-control"]
-	path = includes/controls/laxar-accordion-control
-	url = https://github.com/LaxarJS/ax-accordion-control
 [submodule "includes/lib/laxar-mocks"]
 	path = includes/lib/laxar-mocks
 	url = https://github.com/LaxarJS/laxar-mocks
