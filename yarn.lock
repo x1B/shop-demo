@@ -69,14 +69,7 @@ ajv-keywords@^1.0.0, ajv-keywords@^1.1.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.0.tgz#c11e6859eafff83e0dafc416929472eca946aa2c"
 
-ajv@^4.10.0, ajv@^4.7.0:
-  version "4.10.4"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.10.4.tgz#c0974dd00b3464984892d6010aa9c2c945933254"
-  dependencies:
-    co "^4.6.0"
-    json-stable-stringify "^1.0.1"
-
-ajv@^4.11.2:
+ajv@^4.10.0, ajv@^4.11.2, ajv@^4.7.0:
   version "4.11.4"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.4.tgz#ebf3a55d4b132ea60ff5847ae85d2ef069960b45"
   dependencies:
@@ -3895,18 +3888,18 @@ laxar-accordion-widget@^3.0.0-alpha.0:
   dependencies:
     laxar-accordion-control "2.0.0-alpha.2"
 
-laxar-loader@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/laxar-loader/-/laxar-loader-0.5.0.tgz#8e28f0fff0a85f2b78bf0f96b9de277b8b4dd6b9"
+laxar-loader@^2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/laxar-loader/-/laxar-loader-2.0.0-alpha.1.tgz#501ea0d53f3b8838587e43c6fdcbb38b7635749c"
   dependencies:
     json-loader "^0.5.4"
-    laxar-tooling "^0.5.0"
+    laxar-tooling "^0.6.0-alpha.0"
     loader-utils "^0.2.15"
     raw-loader "^0.5.1"
 
-laxar-tooling@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/laxar-tooling/-/laxar-tooling-0.5.0.tgz#f45816286219f3c443596ecad93bfcab77b8a9c7"
+laxar-tooling@^0.6.0-alpha.0:
+  version "0.6.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/laxar-tooling/-/laxar-tooling-0.6.0-alpha.0.tgz#8839efec80f1b0f267eba51640254e8894df581d"
   dependencies:
     ajv "^4.10.0"
     jsonlint "^1.6.2"
