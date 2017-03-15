@@ -82,7 +82,7 @@
       ],
       "contentC": [
          {
-            "widget": "ax-accordion-widget",
+            "widget": "laxar-accordion-widget",
             "id": "accordion",
             "features": {
                "areas": [
