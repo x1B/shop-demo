@@ -10,6 +10,9 @@
                   "resource": "articles"
                }
             }
+         },
+         {
+            "widget": "laxar-log-activity"
          }
       ],
 
@@ -45,6 +48,17 @@
       ],
       "contentB": [
          {
+            "widget": "laxar-headline-widget",
+            "features": {
+               "headline": {
+                  "i18nHtmlText": {
+                     "en": "<i class='fa fa-shopping-cart'></i> Buy stuff!",
+                     "de": "<i class='fa fa-shopping-cart'></i> Kaufen Sie!"
+                  }
+               }
+            }
+         },
+         {
             "widget": "shop-demo/article-teaser-widget",
             "features": {
                "article": {
@@ -53,6 +67,17 @@
                "confirmation": {
                   "action": "addArticle"
                }
+            }
+         },
+         {
+            "widget": "laxar-command-bar-widget",
+            "features": {
+               "buttons": [
+                  {
+                     "i18nHtmlLabel": "<i class='fa fa-shopping-cart'></i> rein damit",
+                     "action": "addArticle"
+                  }
+               ]
             }
          }
       ],

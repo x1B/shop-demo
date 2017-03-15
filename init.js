@@ -35,6 +35,11 @@ const config = {
    theme: 'cube',
    tooling: {
       enabled: true
+   },
+   widgets: {
+      'laxar-log-activity': {
+         resourceUrl: '/'
+      }
    }
 };
 

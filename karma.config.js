@@ -1,6 +1,7 @@
 /* eslint-env node */
 
 module.exports = function( config ) {
+   console.log( 'EXPORTS function( config )' );
    config.set( karmaConfig() );
 };
 
@@ -86,7 +87,7 @@ function run( configs, lastExitCode ) {
       process.exit( lastExitCode );
    }
    const config = configs.shift();
-   const specFile = config.files[ 1 ];
+   const [ , specFile ] = config.files;
    process.stdout.write( `Karma: launching ${specFile}\n` );
    const server = new karma.Server( config, exitCode => {
       process.stdout.write( `Karma: exited with ${exitCode}\n` );

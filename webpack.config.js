@@ -52,7 +52,8 @@ const config = {
       extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
       alias: {
          'default.theme': path.resolve( './includes/lib/laxar-uikit/themes/default.theme' ),
-         'angular': path.resolve( './bower_components/angular' )
+         'angular': path.resolve( './bower_components/angular' ),
+         'laxar-log-activity': path.resolve( './includes/github/ax-log-activity' )
       }
    },
 

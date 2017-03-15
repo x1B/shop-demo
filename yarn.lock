@@ -2428,6 +2428,10 @@ fancy-log@^1.1.0:
     chalk "^1.1.1"
     time-stamp "^1.0.0"
 
+fast-json-patch@~0.5.2:
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/fast-json-patch/-/fast-json-patch-0.5.7.tgz#b5a8f49d259624596ef98b872f3fda895b4d8665"
+
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
@@ -3888,6 +3892,24 @@ laxar-accordion-widget@^3.0.0-alpha.0:
   dependencies:
     laxar-accordion-control "2.0.0-alpha.2"
 
+laxar-button-list-control@2.0.0-alpha.0:
+  version "2.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/laxar-button-list-control/-/laxar-button-list-control-2.0.0-alpha.0.tgz#e5a08ef562c75750676689595a938aecedc1a441"
+
+laxar-command-bar-widget@^3.0.0-alpha.0:
+  version "3.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/laxar-command-bar-widget/-/laxar-command-bar-widget-3.0.0-alpha.0.tgz#e9b5324e05e94632261d02c53ea72ca47b7a3366"
+  dependencies:
+    laxar-button-list-control "2.0.0-alpha.0"
+    laxar-patterns "^2.0.0-alpha.2"
+
+laxar-headline-widget@^4.0.0-alpha.1:
+  version "4.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/laxar-headline-widget/-/laxar-headline-widget-4.0.0-alpha.1.tgz#6af6f625fef73543126d175e39a1c5947ceb37fb"
+  dependencies:
+    laxar-button-list-control "2.0.0-alpha.0"
+    laxar-patterns "^2.0.0-alpha.2"
+
 laxar-loader@^2.0.0-alpha.1:
   version "2.0.0-alpha.1"
   resolved "https://registry.yarnpkg.com/laxar-loader/-/laxar-loader-2.0.0-alpha.1.tgz#501ea0d53f3b8838587e43c6fdcbb38b7635749c"
@@ -3897,6 +3919,21 @@ laxar-loader@^2.0.0-alpha.1:
     loader-utils "^0.2.15"
     raw-loader "^0.5.1"
 
+laxar-patterns@^2.0.0-alpha.2:
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/laxar-patterns/-/laxar-patterns-2.0.0-beta.0.tgz#f483b05b72a53be1b3a184187d8c017d53b14661"
+  dependencies:
+    fast-json-patch "~0.5.2"
+    laxar "^2.0.0-alpha.14"
+
+laxar-tooling@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/laxar-tooling/-/laxar-tooling-0.6.0.tgz#1fc178e9a011767f7382f8d893d80da7d1adea88"
+  dependencies:
+    ajv "^4.10.0"
+    jsonlint "^1.6.2"
+    source-map-support "^0.4.2"
+
 laxar-tooling@^0.6.0-alpha.0:
   version "0.6.0-alpha.0"
   resolved "https://registry.yarnpkg.com/laxar-tooling/-/laxar-tooling-0.6.0-alpha.0.tgz#8839efec80f1b0f267eba51640254e8894df581d"
@@ -3904,6 +3941,12 @@ laxar-tooling@^0.6.0-alpha.0:
     ajv "^4.10.0"
     jsonlint "^1.6.2"
     source-map-support "^0.4.2"
+
+laxar@^2.0.0-alpha.14:
+  version "2.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/laxar/-/laxar-2.0.0-alpha.18.tgz#935375a9563ea861d44422b0efd5d97da537cffa"
+  dependencies:
+    page "~1.7.1"
 
 lazy-cache@^1.0.3:
   version "1.0.4"
@@ -4739,6 +4782,12 @@ pad-component@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/pad-component/-/pad-component-0.0.1.tgz#ad1f22ce1bf0fdc0d6ddd908af17f351a404b8ac"
 
+page@~1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/page/-/page-1.7.1.tgz#3886c147b895487783759b37e800a11213bc38ed"
+  dependencies:
+    path-to-regexp "~1.2.1"
+
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
@@ -4823,6 +4872,12 @@ path-key@^2.0.0:
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
+
+path-to-regexp@~1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.2.1.tgz#b33705c140234d873c8721c7b9fd8b541ed3aff9"
+  dependencies:
+    isarray "0.0.1"
 
 path-type@^1.0.0:
   version "1.1.0"
