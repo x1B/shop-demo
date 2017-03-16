@@ -5,13 +5,13 @@
    "places": {
 
       "start": {
-         "patterns": [ "/" ],
-         "redirectTo": "browse",
+         "patterns": [ "/", "/shopDemo" ],
+         "redirectToPath": "/browse",
          "page":  "shop_demo"
       },
 
       "browse": {
-         "patterns": [ "/browse/:search(.*)", "/browse" ],
+         "patterns": [ "/browse/:search", "/browse" ],
          "targets": {
             "next": "confirmation"
          },

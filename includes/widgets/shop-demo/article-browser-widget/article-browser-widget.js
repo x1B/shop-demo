@@ -16,8 +16,6 @@ define( [
       $scope.resources = {};
       $scope.selectedArticle = null;
 
-      $http.get( '/test' );
-
       const articlesResource = $scope.features.articles.resource;
       eventBus.subscribe( `didReplace.${articlesResource}`, event => {
          $scope.resources.articles = event.data;
