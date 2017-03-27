@@ -1,10 +1,10 @@
 {
-   "layout": "application-one-column",
+   "layout": "one-column",
 
    "areas": {
       "content": [
          {
-            "widget": "shop-demo/headline-widget",
+            "widget": "headline-widget",
             "features": {
                "headline": {
                   "htmlText": "404 - Page not Found"

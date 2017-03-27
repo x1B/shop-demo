@@ -6,7 +6,6 @@
 /* eslint-env node */
 
 const path = require( 'path' );
-const webpack = require( 'webpack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +32,10 @@ module.exports = ( env = {} ) => {
 
       resolve: {
          modules: [ path.resolve( __dirname, 'node_modules' ) ],
-         extensions: [ '.js', '.vue' ]
+         extensions: [ '.js', '.vue' ],
+         alias: {
+            'default.theme': 'laxar-uikit/themes/default.theme'
+         }
       },
 
       module: {
@@ -74,12 +76,15 @@ module.exports = ( env = {} ) => {
                   'style-loader!css-loader'
             },
             {  // load scss files by precompiling with the sass-loader
-               test: /\/mdlite.theme\/.*\.s[ac]ss$/,
+               test: /\/default.theme\/.*\.s[ac]ss$/,
                loader: 'sass-loader',
                options: {
                   includePaths: [
-                     path.resolve( __dirname, './application/themes/mdlite.theme/scss' )
-                  ]
+                     './node_modules/laxar-uikit/themes/default.theme/scss',
+                     './node_modules/laxar-uikit/scss',
+                     './node_modules/bootstrap-sass/assets/stylesheets',
+                     './node_modules'
+                  ].map( p => path.resolve( __dirname, p ) )
                }
             }
          ]

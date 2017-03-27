@@ -12,7 +12,7 @@ import artifacts from 'laxar-loader/artifacts?flow=main&theme[]=default';
 const configuration = {
    name: 'shop-demo',
    logging: { threshold: 'TRACE' },
-   theme: 'cube',
+   theme: 'default',
    router: {
       navigo: { useHash: true }
    }

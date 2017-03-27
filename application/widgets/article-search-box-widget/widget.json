@@ -3,7 +3,7 @@
    "description": "Allows the user to search for articles.",
 
    "integration": {
-      "technology": "angular",
+      "technology": "vue",
       "type": "widget"
    },
 

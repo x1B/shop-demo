@@ -1,10 +1,10 @@
 {
-   "layout": "application",
+   "layout": "main",
 
    "areas": {
       "contentA": [
          {
-            "widget": "shop-demo/headline-widget",
+            "widget": "headline-widget",
             "features": {
                "headline": {
                   "htmlText": ""
@@ -17,7 +17,7 @@
       ],
       "contentB": [
          {
-            "widget": "shop-demo/headline-widget",
+            "widget": "headline-widget",
             "features": {
                "headline": {
                   "htmlText": "<span class='app-thanks'>Thank you<br>for your order!</span>"

@@ -1,5 +1,5 @@
 {
-   "layout": "application",
+   "layout": "main",
 
    "areas": {
 
@@ -15,21 +15,6 @@
       ],
 
       "searchBox": [
-         {
-            "widget": "article-search-box-widget",
-            "enabled": false,
-            "features": {
-               "navigation": {
-                  "parameterName": "search"
-               },
-               "articles": {
-                  "resource": "articles"
-               },
-               "filteredArticles": {
-                  "resource": "filteredArticles"
-               }
-            }
-         }
       ],
 
       "contentA": [
@@ -47,32 +32,9 @@
       ],
 
       "contentB": [
-         {
-            "widget": "article-teaser-widget",
-            "features": {
-               "article": {
-                  "resource": "selectedArticle"
-               },
-               "confirmation": {
-                  "action": "addArticle"
-               }
-            }
-         }
       ],
 
       "contentC": [
-         {
-            "widget": "shopping-cart-widget",
-            "features": {
-               "article": {
-                  "resource": "selectedArticle",
-                  "onActions": [ "addArticle" ]
-               },
-               "order": {
-                  "target": "confirmation"
-               }
-            }
-         }
       ]
 
    }

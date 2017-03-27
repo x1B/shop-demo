@@ -3,13 +3,9 @@
    "description": "Displays a list of articles and lets the user select one.",
 
    "integration": {
-      "technology": "angular",
+      "technology": "vue",
       "type": "widget"
    },
-   
-   "controls": [
-      "laxar-accordion-control"
-   ],
 
    "styleSource": "scss/article-browser-widget.scss",
 
