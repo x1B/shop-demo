@@ -1,0 +1,79 @@
+{
+   "layout": "application",
+
+   "areas": {
+
+      "activities": [
+         {
+            "widget": "dummy-articles-activity",
+            "features": {
+               "articles": {
+                  "resource": "articles"
+               }
+            }
+         }
+      ],
+
+      "searchBox": [
+         {
+            "widget": "article-search-box-widget",
+            "enabled": false,
+            "features": {
+               "navigation": {
+                  "parameterName": "search"
+               },
+               "articles": {
+                  "resource": "articles"
+               },
+               "filteredArticles": {
+                  "resource": "filteredArticles"
+               }
+            }
+         }
+      ],
+
+      "contentA": [
+         {
+            "widget": "article-browser-widget",
+            "features": {
+               "articles": {
+                  "resource": "filteredArticles"
+               },
+               "selection": {
+                  "resource": "selectedArticle"
+               }
+            }
+         }
+      ],
+
+      "contentB": [
+         {
+            "widget": "article-teaser-widget",
+            "features": {
+               "article": {
+                  "resource": "selectedArticle"
+               },
+               "confirmation": {
+                  "action": "addArticle"
+               }
+            }
+         }
+      ],
+
+      "contentC": [
+         {
+            "widget": "shopping-cart-widget",
+            "features": {
+               "article": {
+                  "resource": "selectedArticle",
+                  "onActions": [ "addArticle" ]
+               },
+               "order": {
+                  "target": "confirmation"
+               }
+            }
+         }
+      ]
+
+   }
+}

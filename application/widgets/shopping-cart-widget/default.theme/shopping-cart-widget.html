@@ -1,0 +1,42 @@
+<h3 class="ax-function-point"><i class="fa fa-shopping-cart"></i> Shopping Cart</h3>
+<table class="table table-striped">
+   <colgroup>
+      <col class="app-col-1">
+      <col class="app-col-2">
+      <col class="app-col-3">
+      <col class="app-col-4">
+      <col class="app-col-5">
+   </colgroup>
+   <thead>
+   <tr class="app-no-articles-row">
+      <th class="app-no-articles" colspan="5">
+         Please select articles to add them to the cart!
+      </th>
+   </tr>
+   <tr class="app-articles-row">
+      <th>Art. ID</th>
+      <th>Article</th>
+      <th class="text-right">Price</th>
+      <th class="text-right" colspan="2">Quantity</th>
+   </tr>
+   </thead>
+   <tbody class="app-articles-container">
+
+   <!-- articles will be inserted here -->
+
+   </tbody>
+   <tfoot>
+   <tr>
+      <td></td>
+      <td>Subtotal</td>
+      <td class="text-right app-out-sum"></td>
+      <td colspan="2"></td>
+   </tr>
+   </tfoot>
+</table>
+
+<div class="clearfix app-order-button-area">
+   <button class="btn btn-default btn-success pull-right"
+           type="button"
+           data-ng-click="placeOrder()"><i class="fa fa-paper-plane"></i> Order</button>
+</div>
