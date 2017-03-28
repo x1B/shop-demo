@@ -22,7 +22,7 @@
             "widget": "article-browser-widget",
             "features": {
                "articles": {
-                  "resource": "filteredArticles"
+                  "resource": "articles"
                },
                "selection": {
                   "resource": "selectedArticle"
@@ -32,6 +32,17 @@
       ],
 
       "contentB": [
+         {
+            "widget": "article-teaser-widget",
+            "features": {
+               "article": {
+                  "resource": "selectedArticle"
+               },
+               "confirmation": {
+                  "action": "addToCart"
+               }
+            }
+         }
       ],
 
       "contentC": [

@@ -1,10 +1,37 @@
+<template>
+   <h3 :class={ `ax-function-point ${isSelected ? 'app-selection' : ''}` }>
+      <i :class='fa fa-search'></i> Details
+   </h3>
+   <div className={ 'app-teaser-wrapper clearfix' + (article.id && ' app-selection') }>
+      <h4 className={ article.id || 'app-no-selection' }>{ article.name }</h4>
+      <div className='row'>
+         <div className='col col-md-12 app-teaser-image-wrapper'>
+            { article.pictureUrl && <img className='app-teaser-image' src={ article.pictureUrl } /> }
+         </div>
+      </div>
+      <div className='row'>
+         <div className='col col-md-12'>
+            <dl className='dl-horizontal'>
+               <dt className={ article.id || 'ax-disabled' }>Art. ID</dt>
+               <dd>{ article.id }</dd>
+
+               <dt className={ article.id || 'ax-disabled' }>Description</dt>
+               <dd dangerouslySetInnerHTML={{__html: article.htmlDescription}}></dd>
+
+               <dt className={ article.id || 'ax-disabled' }>Price</dt>
+               <dd>{ this.formattedPrice( article.price ) }</dd>
+            </dl>
+         </div>
+      </div>
+   </div>
+</template>
+
+<script>
 /**
- * Copyright 2016 aixigo AG
+ * Copyright 2017 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-import React from 'react';
-
 export default {
    name: 'article-teaser-widget',
    injections: [ 'axEventBus', 'axFeatures', 'axReactRender' ],
@@ -43,37 +70,14 @@ export default {
 const ArticleHeader = React.createClass({
    render() {
       const { isSelected } = this.props;
-      return <h3 className={ `ax-function-point ${isSelected ? 'app-selection' : ''}` }>
-         <i className='fa fa-search'></i> Details
-      </h3>;
+      return ;
    }
 });
 
 const ArticleTeaser = React.createClass({
    render() {
       const { article } = this.props;
-      return <div className={ 'app-teaser-wrapper clearfix' + (article.id && ' app-selection') }>
-         <h4 className={ article.id || 'app-no-selection' }>{ article.name }</h4>
-         <div className='row'>
-            <div className='col col-md-12 app-teaser-image-wrapper'>
-               { article.pictureUrl && <img className='app-teaser-image' src={ article.pictureUrl } /> }
-            </div>
-         </div>
-         <div className='row'>
-            <div className='col col-md-12'>
-               <dl className='dl-horizontal'>
-                  <dt className={ article.id || 'ax-disabled' }>Art. ID</dt>
-                  <dd>{ article.id }</dd>
-
-                  <dt className={ article.id || 'ax-disabled' }>Description</dt>
-                  <dd dangerouslySetInnerHTML={{__html: article.htmlDescription}}></dd>
-
-                  <dt className={ article.id || 'ax-disabled' }>Price</dt>
-                  <dd>{ this.formattedPrice( article.price ) }</dd>
-               </dl>
-            </div>
-         </div>
-      </div>;
+      return ;
    },
 
    formattedPrice( price ) {
@@ -81,3 +85,5 @@ const ArticleTeaser = React.createClass({
    }
 
 });
+
+</script>

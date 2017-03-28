@@ -12,10 +12,10 @@
          <col class="app-col-3">
       </colgroup>
       <thead>
-         <tr data-ng-if="!resources.articles.entries.length">
+         <tr v-if="!resources.articles.entries.length">
             <th class="app-no-articles" colspan="3">No articles</th>
          </tr>
-         <tr data-ng-if="resources.articles.entries.length">
+         <tr v-if="resources.articles.entries.length">
             <th>Art. ID</th>
             <th>Article</th>
             <th class="price">Price</th>
@@ -24,14 +24,14 @@
       <tbody>
          <tr class="selectable"
             v-for="article in resources.articles.entries"
-            v-class="{ selected: article.id === selectedArticle.id }"
+            :class="{ selected: article.id === selectedArticle.id }"
             @click="selectArticle( article )">
             <td class="app-col-1">{{ article.id }}</td>
             <td>{{ article.name }}</td>
             <td class="price">{{ article.price }}</td>
          </tr>
          <tr class="app-no-articles"
-             data-ng-if="!resources.articles.entries.length">
+             v-if="!resources.articles.entries.length">
             <td colspan="5">&nbsp;</td>
          </tr>
       </tbody>
@@ -42,20 +42,24 @@
 <script>
 export default {
    data: () => ({
+      selectedArticle: { id: null },
       resources: {
-         articles: {
-            entries: []
-         }
+         articles: { entries: [] }
       }
    }),
+   injections: [ 'axEventBus', 'axFeatures' ],
    created() {
-      const { axEventBus } = this.$injections;
-      this.interval = setInterval(() => {
-         this.counter++;
-      }, 1000);
+      this.eventBus = axEventBus;
+      this.eventBus.subscribe( `didReplace.${this.features.articles.resource}`, ({ data }) => {
+         this.resources.articles = data;
+      } );
    },
-   destroyed() {
-      clearInterval(this.interval);
+   methods: {
+      selectArticle( data ) {
+         this.selectedArticle = data;
+         const { resource } = this.features.selection;
+         this.eventBus.publish( `didReplace.${resource}`, { resource, data } );
+      }
    }
 }
 </script>
