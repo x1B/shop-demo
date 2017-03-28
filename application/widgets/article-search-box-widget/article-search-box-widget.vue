@@ -1,12 +1,14 @@
 <template>
-   <form role="form">
+   <form role="form" @submit="search()">
       <div class="form-group">
          <div class="input-group">
             <input class="form-control"
-                   type="text"
-                   placeholder="Search for articles"
-                   @change="updateSearch()"
-                   v-model="searchTerm">
+               type="text"
+               placeholder="Search for articles"
+               v-model="searchTerm">
+            <span class="input-group-btn">
+               <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+            </span>
          </div>
       </div>
    </form>
@@ -22,7 +24,11 @@ const searchFields = [ 'some', 'id', 'htmlDescription' ];
  * http://laxarjs.org/license
  */
 export default {
-   data: () => ({ searchTerm: '', articles: [], filteredArticles: [] }),
+   data: () => ({
+      searchTerm: '',
+      articles: [],
+      filteredArticles: []
+   }),
    created() {
       const articlesResource = this.features.articles.resource;
 
