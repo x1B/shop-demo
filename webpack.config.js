@@ -75,11 +75,24 @@ module.exports = ( env = {} ) => {
                   ExtractTextPlugin.extract( { fallback: 'style-loader', use: 'css-loader' } ) :
                   'style-loader!css-loader'
             },
-            {  // load scss files by precompiling with the sass-loader
-               test: /\/default.theme\/.*\.s[ac]ss$/,
+            {
+               test: /\/default[.]theme\/.*\.s[ac]ss$/,
                loader: 'sass-loader',
                options: {
                   includePaths: [
+                     './node_modules/laxar-uikit/themes/default.theme/scss',
+                     './node_modules/laxar-uikit/scss',
+                     './node_modules/bootstrap-sass/assets/stylesheets',
+                     './node_modules'
+                  ].map( p => path.resolve( __dirname, p ) )
+               }
+            },
+            {
+               test: /\/cube[.]theme\/.*\.s[ac]ss$/,
+               loader: 'sass-loader',
+               options: {
+                  includePaths: [
+                     './application/themes/cube.theme/scss',
                      './node_modules/laxar-uikit/themes/default.theme/scss',
                      './node_modules/laxar-uikit/scss',
                      './node_modules/bootstrap-sass/assets/stylesheets',

@@ -15,6 +15,20 @@
       ],
 
       "searchBox": [
+         {
+            "widget": "article-search-box-widget",
+            "features": {
+               "articles": {
+                  "resource": "articles"
+               },
+               "filteredArticles": {
+                  "resource": "filteredArticles"
+               },
+               "navigation": {
+                  "parameterName": "search"
+               }
+            }
+         }
       ],
 
       "contentA": [
@@ -22,7 +36,7 @@
             "widget": "article-browser-widget",
             "features": {
                "articles": {
-                  "resource": "articles"
+                  "resource": "filteredArticles"
                },
                "selection": {
                   "resource": "selectedArticle"
@@ -46,6 +60,18 @@
       ],
 
       "contentC": [
+         {
+            "widget": "shopping-cart-widget",
+            "features": {
+               "article": {
+                  "resource": "selectedArticle",
+                  "onActions": [ "addToCart" ]
+               },
+               "order": {
+                  "target": "next"
+               }
+            }
+         }
       ]
 
    }

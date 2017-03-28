@@ -7,12 +7,12 @@ vue.config.productionTip = false;
 
 import { create } from 'laxar';
 import * as vueAdapter from 'laxar-vue-adapter';
-import artifacts from 'laxar-loader/artifacts?flow=main&theme[]=default';
+import artifacts from 'laxar-loader/artifacts?flow=main&theme=cube';
 
 const configuration = {
    name: 'shop-demo',
    logging: { threshold: 'TRACE' },
-   theme: 'default',
+   theme: 'cube',
    router: {
       navigo: { useHash: true }
    }
