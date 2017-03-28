@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Michael Kurze
+ * Copyright 2017 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -12,7 +12,7 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 module.exports = ( env = {} ) => {
 
-   const publicPath = env.production ? 'dist/' : 'build/';
+   const publicPath = env.production ? '/dist/' : '/build/';
 
    return {
       devtool: '#source-map',
@@ -21,7 +21,7 @@ module.exports = ( env = {} ) => {
       },
 
       output: {
-         path: path.resolve( __dirname, publicPath ),
+         path: path.resolve( __dirname, `./${publicPath}` ),
          publicPath,
          filename: env.production ? '[name].bundle.min.js' : '[name].bundle.js'
       },

@@ -4,8 +4,8 @@
       <i class='fa fa-search'></i> Details
    </h3>
    <div class="app-teaser-wrapper clearfix"
-      :class="article.id ? ' app-selection' : ''">
-      <h4 :class="article.id ? '' : 'app-no-selection'">{{ article.name }}</h4>
+      :class="{ 'app-selection' : article.id }">
+      <h4 :class="{ 'app-no-selection' : !article.id }">{{ article.name || 'No article selected' }}</h4>
       <div class="row">
          <div class="col col-md-12 app-teaser-image-wrapper">
             <img v-if="article.pictureUrl" class='app-teaser-image' :src="article.pictureUrl" />
@@ -28,7 +28,8 @@
    </div>
    <div class="clearfix">
       <button type="button"
-          :class="`btn pull-right ${article ? 'btn-info' : 'ax-disabled'}`"
+          class="btn pull-right"
+          :class="{ 'btn-info': article.id, 'ax-disabled': !article.id }"
           @click="addToCart()"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
    </div>
 </div>
