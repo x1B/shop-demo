@@ -1,5 +1,5 @@
 <template>
-   <form role="form" @submit="search()">
+   <form role="form" @submit.prevent="search()">
       <div class="form-group">
          <div class="input-group">
             <input class="form-control"
