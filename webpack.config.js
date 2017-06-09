@@ -84,7 +84,7 @@ function config( env ) {
                test: /\.(css|s[ac]ss)$/,
                loader: env.production ?
                   ExtractTextPlugin.extract( { fallback: 'style-loader', use: 'css-loader' } ) :
-                  'style-loader!css-loader'
+                  'style-loader!css-loader?sourceMap!resolve-url-loader?sourceMap'
             },
             {
                test: /[/]default[.]theme[/].*[.]s[ac]ss$/,
